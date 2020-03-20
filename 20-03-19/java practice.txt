@@ -1,0 +1,108 @@
+1. 예제3-2를 do while문을 사용하여 작성하세요.
+
+2. 예제3-6을 do while문을 사용하여 작성하세요.
+
+3. 한 학급의 학생수를 입력해서 학생수만큼
+   이름,국어,영어,수학 점수를 반복 입력해서
+  개인 평균 , 학급 전체 평균을 구하시오. 배열. for each 사용
+
+//1.예제 3-2를 do while문을 사용하여 작성하세요.
+import java.util.Scanner;				
+public class WhileSample
+{
+	public static void main(String[] args)
+	{
+		int count =0, sum =0;
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("정수를 입력하고 마지막에 -1을 입력하세요");
+		
+		int n;
+		
+		do
+		{
+			n=scanner.nextInt();
+			if(n == -1)		//시작부터 -1(종료)를 입력받았을 경우
+				break;
+			sum += n;
+			count++;
+			
+		}while(n != -1);
+		
+		if(count ==0)
+			System.out.println("입력된 수가 없습니다.");
+		else
+		{
+			System.out.print("정수의 갯수는 "+ count + "개이며 ");
+			System.out.println("평균은 " + (double)sum/count + "입니다.");
+		}
+		scanner.close();
+	}
+}
+
+
+//2.예제 3-6를 do while문을 사용하여 작성하세요.
+import java.util.Scanner;
+public class BreakExample
+{
+	public static void main(String[] args)
+	{
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("exit를 입력하면 종료합니다. ");
+
+		do
+		{
+			System.out.print(">>");
+			String text = scanner.nextLine();
+			if(text.equals("exit"))
+				break;
+		}while(true) ;
+		
+		System.out.println("종료합니다.");
+		
+		scanner.close();
+	}
+}
+
+
+//3.한 학급의 학생수를 입력해서 학생수만큼
+//  이름,국어,영어,수학 점수를 반복 입력해서
+//  개인평균,학급 전체 평균을 구하시오. 배열,for-each사용
+import java.util.Scanner;
+public class StuInfo
+{
+	public static void main(String[] args)
+	{
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("학급의 인원수를 입력하세요. :");
+		int n = scanner.nextInt();				//인덱스 입력
+		
+		String[] name = new String[n];			//입력받은 인덱스를 갖는 배열 생성
+		int[] kor = new int[n], eng = new int[n];
+		int[] math = new int[n], sum = new int[n];
+		int fisum = 0;
+		
+		for(int i = 0; i<n;i++)
+		{
+			System.out.println((i+1)+"번째 학생의 이름 ,국어 ,영어 ,수학점수 순으로 입력해주십시오.");
+			name[i] = scanner.next();
+			kor[i] = scanner.nextInt();
+			eng[i] = scanner.nextInt();
+			math[i] = scanner.nextInt();
+			
+			sum[i] = kor[i]+eng[i]+math[i];
+			
+			System.out.println((i+1)+"번째 학생의 개인평균은 " +(float)(sum[i])/3 + "입니다.");
+		}
+		
+		for(int k:sum)
+			fisum += k;
+		
+		
+		System.out.println("학급 전체 평균은 "+(float)(fisum/3)/n + "입니다.");
+		scanner.close();
+
+	}
+}

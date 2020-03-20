@@ -1,0 +1,203 @@
+#include<stdio.h>
+
+
+int main()
+{
+	//3월 6일 코딩
+
+	//for문 활용
+	/*
+	int sum=0;
+
+	for (int i = 0 + 3;i <= 100 ; i+=3)
+	{
+			sum += i;
+	}
+	
+	printf("1에서 100까지 3의 배수합 : %d\n",sum);
+	*/
+
+	//for문을 사용한 구구단
+	/*
+	int a=0,i;
+
+	printf("몇 단을 구할 것인지 적으시오. : ");
+	scanf_s(" %d", &a);
+
+	for (i = 0 + 1;i < 100;i++)
+	{
+		printf("\n%d X %d = %d",a, i, a * i);
+	}
+	*/
+
+	//중첩for문을 사용한 구구단
+	/*
+	int i, k;
+
+	for(i=1;i<=9;i++)
+	{
+		for (k = 1;k <= 9;k++)
+		{
+			printf("%d X %d = %d\n", i, k, i * k);
+		}
+		printf("\n");
+	}
+	*/
+
+	//무한루프 - 조건 달성시 루프 종료
+	/*
+	for (int i = 0; ; )
+	{
+		printf(" %d \t", i);
+		i++;
+		if (i > 100000)		//break,return,Ctrl+C를 이용하여 탈출
+			break;
+	}
+	*/
+
+	//Flag 사용
+	/*
+	int a;
+
+	for (;;)
+	{
+		scanf_s("%d", &a);
+		//Flag 기법. 여기서 Flag는 a이고 Flag가 세워지는 조건은 a==-1이다.
+		if (a == -1)			
+		{
+			break;				//Flag가 세워지면 종료
+		}
+		printf("%d\n", a);
+	}
+	*/
+
+	//while문
+	/*
+	int i = 0;
+
+	while (i < 5)
+	{
+		printf("while문을 공부합니다.\n");
+		i++;			//실수로 증감식을 누락하면 무한루프에 빠진다.
+	}
+	*/
+
+	//while문 응용
+	/*
+	int sum = 0,i=1;
+	
+	while (i <= 10)
+	{
+		sum += i;
+		i++;
+	}
+
+	printf("1에서 10까지의 합 : %d\n", sum);
+	*/
+
+	//while문 무한루프
+	/*
+	int a = 0;
+
+	while (1) {
+		scanf_s(" %d", &a);
+		if (a == -1)
+			break;			//return 0; 혹은 Ctrl+C를 이용해도 된다.
+		printf("%d\n", a);
+	}
+	*/
+
+	//do while문
+	/*
+	int a;
+
+	//값을 입력 받아서 10보다 작은 범위에서 반복
+
+	do
+	{
+		printf("값을 입력하시오. : ");
+		scanf_s("%d", &a);
+	} while (a < 10);
+	*/
+
+	//do while문2
+	/*
+	int menu;
+	
+	printf("\n손님 주문하시겠습니까?\n");
+	printf("<1>카페라뗴 <2>카푸치노 <3>아메리카노 <4>그만시킬래요==>");
+	scanf_s("%d", &menu);
+
+	while (menu != 4)
+	{
+		printf("\n손님 주문하시겠습니까?\n");
+		printf("<1>카페라떼 <2>카푸치노 <3>아메리카노 <4>그만시킬래요==>");
+		scanf_s("%d", &menu);
+
+		switch (menu)
+		{
+			case 1: printf("#카페라떼 주문하셨습니다.\n"); break;
+			case 2: printf("#카푸치노 주문하셨습니다.\n"); break;
+			case 3: printf("#아메리카노 주문하셨습니다.\n"); break;
+			case 4: printf("주문하신 커피 준비하겠습니다.\n"); break;
+			default: printf("잘못 주문하셨습니다.\n");
+
+		}
+	}
+	*/
+
+	//break 사용
+	/*
+	int sum = 0,i;
+
+	for (i = 1;i <= 100;i++)
+	{
+		sum += i;
+
+		if (sum >= 1000) break;
+	}
+
+	printf("1~100의 합에서 최초로 1000S이 넘는 위치는? : %d\n", i);
+	*/
+
+	//continue 사용
+	/*
+	int sum = 0;
+
+	for (int i = 1;i <= 100;i++)
+	{
+		if (i % 3 == 0)
+			continue;
+		sum += i;
+	}
+	printf("3의 배수를 제외한 1~100까지 수의 합 : %d\n", sum);
+	*/
+
+	//입력한 숫자만큼 별표 출력하기
+	
+	int str[100];					//배열을 사용하기 위해 문자열 선언
+	int ch;
+
+	int i=0, k, star=0;
+	
+	printf("숫자를 여러개 입력 :");
+	scanf_s("%s", str, 100);		//문자로 표기된 숫자를 입력
+
+	ch = str[i];
+	while (ch != '\0')
+	{
+		//star = (int)ch - 48;		//아스키코드 숫자를 정수로 전환
+
+		for (k = 0;k < ch;k++)
+			printf("*");
+		
+		printf("\n");
+		
+		i++;
+		ch = str[i];
+	}
+	
+
+
+	return 0;
+}                                            

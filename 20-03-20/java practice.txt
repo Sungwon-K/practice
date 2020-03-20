@@ -1,0 +1,90 @@
+1. Member클래스를 만드시오.
+멤버변수 : name, address, job, age
+멤버함수 : showInfo() - 전체 데이터 출력
+
+2. 1번에서 만든 Member클래스를 사용해서
+'홍길동', '이순신' 인스턴스를 생성해보시오.
+
+3. 1번클래스를 이용해서, 이름,주소,직업,나이를 
+키보드로 입력받아 정보를 출력하시오. 
+- scanner 사용
+
+//Member class
+
+package MainMethod;
+
+public class Member {
+	String name,address,job;
+	int age;
+	
+	//기본 생성자 선언
+	public Member() {
+	};
+	
+	//패러미터 모두를 사용하는 생성자 선언
+	public Member(String name, String address, String job, int age )
+	{
+		this.name = name;
+		this.address = address;
+		this.job = job;
+		this.age = age;
+	}
+	
+	//입력값 출력
+	public void showInfo()
+	{
+		System.out.println(this.name + "씨 " + this.address +" " + this.job +" " + this.age+"세 ");
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------------
+
+//MainMethod class
+
+package MainMethod;
+
+import java.util.Scanner;
+
+public class MainMethod {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		Member[] person = new Member[2];
+		
+			
+		person[0]= new Member("홍길동","산속 어딘가","도적",18); 
+		person[1]= new Member("이순신","바다 어딘가","장군",35);
+		
+		
+		for(int i = 0; i<person.length;i++)
+			person[i].showInfo();
+		
+		System.out.println("입력할 인원 수를 입력하세요. :");
+		
+		int num = scan.nextInt();
+		Member[] persons = new Member[num];
+		System.out.println(num +"명을 입력합니다.");
+		
+		for(int i=0;i<num;i++)
+			persons[i] = new Member();
+		
+		for(int i=0;i<num;i++)
+		{
+			System.out.println((i+1)+"번째 분의 성함,주소,직업,나이를 입력해주십시오.");
+			persons[i].name = scan.next();
+			persons[i].address = scan.next();
+			persons[i].job = scan.next();
+			persons[i].age = scan.nextInt();
+		}
+		
+		for(int i = 0;i<num;i++)
+			persons[i].showInfo();
+			
+			
+		scan.close();
+		
+
+	}
+
+}

@@ -1,0 +1,52 @@
+1. 도서명,출판사,가격을 입력할 수 있는 book  구조체를 생성해서
+10권을 책을 입력받아서 books.txt에 저장하기
+
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+#include<malloc.h>
+
+int main()
+{
+	struct book			//book 구조체
+	{
+		char bona[100];
+		char cop[100];
+		char price[50];
+	};
+
+	int cnt=0;
+
+	struct book* p;			//구조체 포인터 
+	FILE* wfp;				//파일 포인터
+
+	fopen_s(&wfp, "c:\\C_WorkSpace\\data\\books.txt","a");
+	fputs("------------------------------------------------\n", wfp);
+
+	printf("몇권을 입력 하시겠습니까? :");
+	scanf_s("%d", &cnt);
+
+	p = (struct book*)malloc(sizeof(struct book) * cnt);
+	for (int i = 0;i < cnt;i++)
+	{
+		printf("도서명을 입력하세요 : ");
+		scanf_s(" %s",p[i].bona, 100);
+		printf("출판사를 입력하세요 : ");
+		scanf_s(" %s", p[i].cop,100);
+		printf("가격을 입력하세요 : ");
+		scanf_s(" %s", &p[i].price, 50);
+
+		puts("\n입력받은 정보는 다음과 같습니다.");
+		printf("%10s %10s%10s\n\n", p[i].bona, p[i].cop, p[i].price);
+		
+		fputs(p[i].bona, wfp);
+		fputs(",\t\t",wfp);
+		fputs(p[i].cop, wfp);
+		fputs(",\t\t",wfp);
+		fputs(p[i].price, wfp);
+		fputs("\n",wfp);
+	
+	}
+
+	fclose(wfp);
+	free(p);
+}

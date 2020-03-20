@@ -1,0 +1,177 @@
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+
+int main()
+{
+	//배열 기본
+	/*
+	int aa[4];
+	int sum = 0,i ;
+
+	for (i = 0;i < 4;i++)
+	{
+		printf("%d번째 숫자를 입력하세요 : ", i + 1);
+		scanf_s("%d", &aa[i]);
+	}
+
+	for (i = 0;i <= 3;i++)
+		sum += aa[i];
+
+	printf("합계 : %d\n", sum);
+	*/
+
+	//문자열 선언 출력
+	/*
+	char ss[8] = "Basic-C";
+	int i;
+
+	ss[5] = '#';
+
+	for (i = 0;i < 8;i++)
+	{
+		printf("ss[%d]==> %c\n", i, ss[i]);
+	}
+
+	printf("문자열 배열 ss ==> %s\n", ss);
+	*/
+
+	//문자열 순서 바꿔서 출력
+	/*
+	char ss[5] = "abcd";
+	char tt[5];
+	int i;
+
+	for (i = 0;i < 4;i++)
+	{
+		tt[i] = ss[3 - i];
+	}
+	tt[4] = '\0';			//tt배열은 문자열로 선언되지 않아 
+							//널값이 없으므로 임의로 넣어준다
+
+	printf("거꾸로 출력한 결과 : %s\n", tt);
+	*/
+
+	//문자열 길이 구하기
+	/*
+	char ss[] = "XYZ";
+	int len;
+
+	len = strlen(ss);
+
+	printf("문자열 \"%s\"의 길이 : %d\n",ss,len);
+	*/
+
+	//strcpy_s()함수
+	/*
+	char ss[]="XYZ",tt[]="ABC";
+
+	strcpy_s(ss, 4, tt);
+
+	printf("문자열 ss의 내용 : %s\n", ss);
+	*/
+
+	//strcat_s()함수
+	/*
+	char ss[7] = "XYZ", tt[]="ABC";
+
+	strcat_s(ss, 7, tt);
+
+	printf("이어진 문자열 ss의 내용 : %s\n", ss);
+	*/
+
+	//strcmp_s()함수
+	/*
+	char ss[] = "XYZ", tt[] = "ABC";
+	int r;
+
+	r = strcmp(ss, tt);
+
+	printf("두 문자열의 비교결과 : %d\n", r);
+	*/
+
+	//gets_s(),puts() 사용
+	/*
+	char ss[20], tt[20];
+	int r1, r2;
+
+	puts("첫번쨰 문자열을 입력하시오 : ");
+	gets_s(ss, 20);
+
+	puts("두번쨰 문자열을 입력하시오 : ");
+	gets_s(tt, 20);
+
+	r1 = strlen(ss);
+	r2 = strlen(tt);
+
+	printf("첫번쨰 문자열의 길이 : %d\n", r1);
+	printf("두번쨰 문자열의 길이 : %d\n", r2);
+
+	if (strcmp(ss, tt) == 0)
+		puts("두 문자열의 내용이 같습니다.\n");
+	else
+		puts("두 문자열의 내용이 다릅니다.\n");
+	*/
+
+	//2중 for문을 이용한 2차원 배열
+	/*
+	int aa[3][4];
+	int i, k,val =1;
+		
+	printf("aa[0][0]부터 aa[2][3]까지 출력\n");
+	for (i = 0;i < 3;i++)
+	{
+		for (k = 0;k < 4;k++)
+		{
+			printf("%3d", aa[i][k]=val++);	
+		}
+		printf("\n");
+	}
+	*/
+
+	//변수의 주소 알아내기
+	/*
+	int a = 100, b = 200;
+
+	printf("변수 a의 주소는 %d입니다.\n", &a);
+	printf("변수 b의 주소는 %d입니다.\n", &b);
+	*/
+
+	//일반 변수와 포인터 변수의 관계
+	/*
+	char ch[4] = { 0 };
+	char* p;
+
+	ch[0] = 'A';
+	p = ch;
+
+	printf("ch가 가지고 있는 값 : ch : %c\n", *ch);
+	printf("ch의 주소(address) : &ch : %d\n", ch);
+	printf("p가 가지고 있는 값 : p : %d\n", p);
+	printf("p가 가리키는 곳의 실제값 : *p = %c\n", *p);
+	*/
+
+	//포인터의 관계
+	/*
+	char ch;
+	char* p, * q;
+
+	ch = '0';
+	p = &ch;
+
+	q = p;
+
+	*q = 'Z';
+
+	printf("ch가 가지고 있는 값 :ch = %c\n\n", ch);
+	*/
+
+	//배열명을 포인터로 사용
+	int aa[3] = { 10,20,30 };
+
+	printf("aa : %d", aa);
+	printf("&aa : %d", &aa);
+	printf("*aa : %d", *aa);
+
+
+	return 0;
+}

@@ -1,0 +1,285 @@
+#include<stdio.h>
+
+
+int main()
+{
+	//scanf_s()의 기능을 이용한 사칙연산기
+	/*
+	int a = 0, b = 0, result = 0, i;
+	char k,y;
+
+	for (i = 0;i < 4;i--)
+	{
+		printf("첫번째 계산할 값을 입력하시오 : ");//도움말 출력*
+		scanf_s("%d", &a);
+		
+		printf("사칙연산을 고르시오.");
+		printf("+ - * / %% : ");//사칙연산 지정
+		scanf_s(" %c", &k,1);
+
+		printf("두번째 계산할 값을 입력하시오 : ");//도움말 출력*
+		scanf_s("%d", &b);
+			
+
+		//if문 사칙연산 계산
+		if (k == '+')
+		{
+			result = a + b;
+
+			printf("\n%d + %d = %d\n", a, b, result);
+		}
+		else if (k == '-')
+		{
+			result = a - b;
+
+			printf("\n%d - %d = %d\n", a, b, result);
+		}
+		else if (k == '*')
+		{
+			result = a * b;
+
+			printf("\n%d * %d = %d\n", a, b, result);
+		}
+		else if (k == '/')
+		{
+			if (b != 0)
+			{
+				result = a / b;
+
+				printf("\n%d / %d = %d\n", a, b, result);
+			}
+			else
+				printf("0으로는 나눌 수 없습니다.\n");
+		}
+		else
+		{
+			if (b != 0)
+			{
+				result = a % b;
+
+				printf("\n%d %% %d = %d\n", a, b, result);
+			}
+			else
+				printf("0으로는 나눌 수 없습니다.\n");
+
+		}
+
+		//루프
+		printf("\n계속하시겠습니까?(Y/N) : ");
+		scanf_s(" %c", &y, 1);
+		
+		if (y == 'y'|| y == 'Y')
+			printf("\n\n");
+		else
+			break;
+		}
+	*/
+
+	//자릿수 맞춰 출력하기
+	/*
+	printf("%d\n", 123);         //기본 정수형
+	printf("%5d\n", 123);        //5자리 확보 후 null값 대입
+	printf("%05d\n", 123);       //5자리 확부 후 0 대입
+
+	printf("%f\n", 123.45);     //기본 실수형 - 소숫점 위는 null, 아래는 0 대입
+	printf("%7.1f\n", 123.45);  //7자리 확보(.포함) 후 소숫점 첫자리까지
+	printf("%7.3f\n", 123.45);  //7자리 확보(.포함) 후 소숫점 셋째자리까지
+
+	printf("%s\n", "Basic-C");   //기본 문자열형
+	printf("%10s\n", "Basic-C"); //10자리 확보 후 null값 대입	
+	*/
+
+	//서식 문자 사용
+	/*/
+	printf("\n줄 바꿈\n연습 \n");
+	printf("\t탭키\t연습 \n");
+	printf("이것을\r덮어씁니다 \n");
+	printf("\a\a\a삐소리 3번\n");
+	printf("글자가 \"강조\"되는 효과 \n");
+	printf("\\\\\\역슬래시 세개 출력 \n");
+	*/
+
+	//변수에 변수 대입
+	/*
+	int a, b, c, d;
+
+	a = 100 + 100;
+	b = a + 100;
+	c = a + b - 100;
+	d = a + b + c;
+
+	printf("a, b, c, d의 값 : %d, %d, %d, %d\n", a, b, c, d);
+
+	a = b = c = d = 100;
+	printf("a, b, c, d의 값 : %d, %d, %d, %d\n", a, b, c, d);
+
+	a = a + 200;
+
+	printf("a의 값 : %d\n", a);
+	*/
+
+	//문자형 변수와 char<->int형 사이의 호완
+	/*
+	char a, b, c, i;
+
+	a = 'A';
+
+	printf("a변수를 문자로 불러오면 :%c, ", a);
+	printf("정수로 불러오면 : %d\n", a);
+
+	b = 'a';
+	c = b + 5;
+
+	printf("b변수를 문자로 불러오면 :%c, 정수로 불러오면 : %d\n", b,b);
+	printf("c변수를 문자로 불러오면 :%c, 정수로 불러오면 : %d\n", c,c);
+
+	c = 90;
+
+	printf("c변수를 문자로 불러오면 :%c, 정수로 불러오면 : %d\n", c,c);
+
+	for (i = 97;i < 'z';i++)
+	{
+		printf("%c 는 정수로 불러오면 : %d\n", i, i);
+	}
+	*/
+
+	//char<->int 사이의 호완을 이용한 아스키코드 정수값 검색기
+	/*
+	char a;
+
+	printf("정수값이 알고 싶은 문자를 입력하시오 : ");
+	scanf_s(" %c", &a, 1);
+
+	printf("\n%c의 정수값은 %d입니다.", a, a);
+	*/
+
+	//문자열 형식 사용
+	/*
+	char str1[10], str2[10];
+	char str3[10] = "CookBook";     //문자열 선언과 동시에 대입
+
+	strcpy_s(str1, 10, "Basic-C");		//strcpy를 이용한 대입
+	strcpy_s(str2, 10,  str3);				//문자열 변수를 복사
+
+	printf("str1 : %s\n", str1);
+	printf("str2 : %s\n", str2);
+	printf("str3 : %s\n", str3);
+	*/
+	
+	//산술연산자 사용
+	/*
+	int a, b = 5, c = 3;
+
+	a = b + c;
+	printf("%d + %d = %d\n", b, c, a);	//더하기
+
+	a = b - c;
+	printf("%d - %d = %d\n", b, c, a);	//뺴기
+
+	a = b * c;
+	printf("%d * %d = %d\n", b, c, a);	//곱하기
+
+	a = b / c;
+	printf("%d / %d = %d\n", b, c, a);	//나누기
+
+	a = b % c;
+	printf("%d %% %d = %d\n", b, c, a);	//나머지값
+	*/
+
+	//연산자 우선순위와 강제 형변환
+	/*
+	int a = 2, b = 3, c = 4;
+	int result1 = 0, mok = 0, namugi = 0;
+	float result2 = 0;
+
+	result1 = a + b - c;
+	printf("%d + %d - %d= %d\n", a, b, c, result1);
+
+	result1 = a + b * c;
+	printf("%d + %d * %d= %d\n", a, b, c, result1);
+
+	result2 = a * b/ (float) c;
+	printf("%d * %d / %d= %f\n", a, b, c, result2);
+
+	mok = c/b;
+	printf("%d / %d의 몫은 %d\n", c,b, mok);
+
+	namugi = c % b;
+	printf("%d / %d의 나머지는 %d\n", c, b, namugi);
+	*/
+
+	//대입연산자와 증감연산자
+	/*int a = 10;
+	
+	a++;
+	printf("a++ : %d\n", a);
+
+	a--;
+	printf("a-- : %d\n", a);
+
+	a+=5;
+	printf("a+= : %d\n", a);
+
+	a-=5;
+	printf("a-= : %d\n", a);
+
+	a*=5;
+	printf("a*= : %d\n", a);
+
+	a/=5;
+	printf("a++ : %d\n", a);
+
+	a%=5;
+	printf("a++ : %d\n", a);
+	*/
+
+	//1.국어, 영어, 수학 점수를 입력받아서 평균을 출력하시오.
+	/*
+	int	k = 0, e = 0, m = 0, avg = 0;
+
+	printf("국어 점수를 입력하시오 :");	//국어점수 입력
+	scanf_s(" %d", &k);
+
+	printf("\n영어 점수를 입력하시오 :");	//영어점수 입력
+	scanf_s(" %d", &e);
+
+	printf("\n수학 점수를 입력하시오 :");	//수학점수 입력
+	scanf_s(" %d", &m);
+
+	printf("국어 점수 : %d\n영어 점수 : %d\n수학 점수 : %d\n점수들의 평균은 %d입니다.\n",k,e,m,avg = (k + e + m) / 3);	//평균 계산&출력
+	*/
+
+	//2.정수 a의 값을 짝수/홀수 판별하기
+	/*
+	int a;
+
+	for (a = 0;a < 100;a++)								//정수 발생
+	{
+		if (a % 2 == 0)									//조건이 짝수
+			printf("%d는 짝수입니다.\n", a);
+		else if (a % 2 == 1)							//조건이 홀수
+			printf("%d는 홀수입니다.\n", a);
+		else                                            //오류
+			printf("잘못 입력되었습니다.\n");
+	}
+	*/
+
+	//3.정수 a의 값을 키보드로 입력받아서 짝수/홀수 판별하기
+	/*
+	int a = 0;
+
+	printf("정수를 입력하시오 : ");
+	scanf_s(" %d", &a);
+
+	if (a % 2 == 0)									//조건이 짝수
+		printf("\n입력 받은 %d는 짝수입니다.\n", a);
+	else if (a % 2 == 1)							//조건이 홀수
+		printf("\n입력 받은 %d는 홀수입니다.\n", a);
+	else                                            //오류
+		printf("\n잘못 입력되었습니다.\n");
+	*/
+
+	return 0;
+
+
+}                                      

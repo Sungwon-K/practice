@@ -1,0 +1,90 @@
+1.  3명의 학생 이름, 전화번호를 scanf로 받아서
+    배열에 저장한 후 출력하시오.
+
+2. 1번을 무한반복하다가 x를 입력하면 종료하도록 변경하시오.
+
+3. 2번을 함수로 구현하세요.
+
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+
+void stoutput(char* n, char* m)			//이름,번호 출력 함수
+{
+	printf("\n입력 받은 %s 학생의 전화번호는 %s입니다.\n\n", n, m);
+}
+	
+int	stinfo()				//이름,번호 입력 함수&종료 판별
+{
+	char name[100] = { 0 }, number[100] = { 0 };
+
+	printf("학생 이름을 입력하세요 :");
+	scanf_s("%s", name,100);
+	if (*name == 'x')					//종료 판별
+		return 0;
+	printf("전화번호를 입력하세요 :");
+	scanf_s("%s", number,100);
+	if( *number == 'x')					//종료 판별
+		return 0;
+
+	stoutput(name, number);
+
+}
+
+void stcycle(int limit)			//정해진 횟수만큼 반복하는 함수
+{
+	for (int i = 0;i < limit;i++)
+		stinfo();
+}
+
+void stulcycle()				//무한반복 중 특정조건시 종료하는 함수
+{
+	while(1)
+	{
+		if(stinfo() == 0)
+			return 0;
+	}
+}
+
+
+int main()
+{
+	
+	//1.3명의 학생 이름, 전화번호를 scnaf_s로 받아서
+	//배열에 저장한 후 출력하시오.
+
+	int limit = 0;
+
+	printf("처리할 학생 수를 입력하세요 :");
+	scanf_s("%d", &limit);
+
+	stcycle(limit);					//반복 횟수 지정
+
+
+	//2.1번을 무한반복 하다가 x를 입력하면 종료하도록 변경하시오.
+	char name2[100] = { 0 }, number2[100] = { 0 };
+
+	printf("☆종료하시려면 x를 눌러주세요★\n");
+
+	while (1)
+	{
+		printf("학생 이름을 입력하세요 :");
+		scanf_s("%s", name2, 100);
+		if (*name2 == 'x')				//반복 종료
+			break;
+		printf("전화번호를 입력하세요 :");
+		scanf_s("%s", number2, 100);
+
+		if (*number2 == 'x')				//반복 종료
+			break;
+
+		printf("\n입력 받은 %s 학생의 전화번호는 %s입니다.\n\n", name2, number2);
+	}
+	
+
+	//3.2번을 함수로 구현하세요.
+
+	printf("☆종료하시려면 x를 눌러주세요★\n");
+	stulcycle();					//무한 반복 시작
+
+	return 0;
+}

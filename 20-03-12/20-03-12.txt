@@ -1,0 +1,130 @@
+*calloc()처음부터 0으로 초기화된 메모리를 확보,형식 동일
+p=(int*)calloc(4*3)
+p=(int*)calloc(sizeof(int)*3
+
+*realloc()메모리의 크기를 실시간으로 변경하는 함수
+p=(int*)reallloc( p , sizeof(int)*10);
+
+※p는 포인터이므로 배열처럼 활용가능		
+
+
+여러줄의 문자열을 처리 : 2차원 배열		
+-문자 하나만 저장 : char
+-한줄을 저장 : char s[10] or char* p; 배열 또는 포인터 변수 
+여러줄의 문자열을 저장 : char s[3][10]
+
+but, 들어가는 글자 수가 일정치 않으면 메모리 낭비가 있다
+ex)
+B  a  s  c  i  f  _  C  \0  ?  ?  ?
+P  r  o  g  r a m  m  i   n  g \0
+S  t  u  d  y\0 ?  ?   ?   ?  ?  ?
+
+그래서 메모리 낭비를 없애기 위해 포인터 배열을 쓴다
+char* p[3]
+
+출력
+char p[2][100] = { "Hello World",
+	          "C-Language" };
+printf("%s\n", p[0]);		=>첫번째 줄인 "Hello World"출력
+printf("%s\n", p);		=>첫번째 줄인 "Hello World"출력
+printf("%s\n", p[1]);		=>두번째 줄인 "C-Language"출력
+printf("%s\n", p+1);		=>두번째 줄인 "C-Language"출력
+	
+printf("%c\n",p[0][0]);	=>첫번째 칸인 'H'출력
+printf("%s\n",p[0][0]);	=>서식(%s 문자열)이랑 입력값(p[0][0] 한 글자)이 맞지 않아서
+			    아무 것도 출력안된다.
+   
+
+*JAVA = ArrayList 사이즈가 가변적인 배열(realloc기능)
+
+*구조체 배열
+구조체 변수를 배열로 선언
+ex) struct student s[3];
+
+*구조체 포인터
+구조체 변수를 포인터로 선언
+ex) struct student* p;
+
+p->kor = 100;		//포인터가 아닐때 p.kor 이었던 것이 p->kor로 바뀐다.
+
+
+*구조체 - 서로 다른 변수의 형태를 하나의 블록으로 묶는다(보통 실무에서는 거의 구조체를 사용)
+객체(object)를 구조체로 표현
+기본형
+struct 구조체이름
+{
+   데이터형식 멤버_변수 1;
+   데이터형식 멤버_변수 2;
+   ...
+};
+
+struct 구조체이름 구조체변수;
+
+
+ex)비빔밥(object)
+struct bibim		//bibim 구조체 구조
+{
+   int a;
+   char b;
+   float c;
+   char d[5];
+};
+
+struct bibim b1;			//구조체 변수1 생성 - b1이라는 비빔밥 구조체 생성
+struct bibim b2;			//구조체 변수2 생성
+struct bibim b3 = {1,'y',0.1,"OK"};	//구조체 변수3 생성과 동시에 초기화
+
+b1.a = 10;  		//b1구조체의 a을 10으로 초기화
+
+
+*함수포인터 - 함수를 가리키는 포인터,함수 호출 가능
+
+
+struct bibim
+{
+   ~~
+}b;
+구조체형과 구조체변수 동시에 선언
+
+
+typedef struct _student
+{
+   ~~
+}student;
+
+student s;
+구조체형 앞에 typedef(inition)을 붙이면 구조체 변수 선언때 struct를 붙이지 않아도 된다.
+(구조체인지 명확하지 않기 때문에 추천x)
+
+
+*공용체 - 하나의 공간을 서로 다른 두 변수가 사용
+union student
+{
+   int tot;
+   char grade;
+};
+
+union student u;
+
+u.tot = 300;
+
+선언은 구조체(struct)에서 union으로 바꾼 차이
+
+
+*열거형 - 단순히 1,2,3,4,..와 같은 숫자를 기호를 써서 표현
+enum week
+{
+   sun,		=>0  단어지만 ""를 붙이지 않는다(문자열이 아니다-기호처리)
+   mon,		=>1
+   tue,		=>2
+   wed,		=>3
+   thu,		=>4
+   fri,		=>5
+   sat		=>6
+};
+enum week ww;
+
+ww= sat;		역시 단어지만 ""를 붙이지 않는다(기호이기 때문에)
+
+데이터 값이 0부터 시작해 1씩 증가한다.
+

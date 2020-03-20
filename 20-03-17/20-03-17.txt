@@ -1,0 +1,78 @@
+*OOP(Object Oriented Programming)
+객체 지향 프로그래밍
+
+Object => Class => 변수&함수(method)
+변수(상태),함수(동작)을 묶어서 객체를 표현
+-변수&함수를 묶은 것을 class라고 한다
+-class를 설계도(개념), 그 설계도로 만든 object를 instance(실체)라고한다.
+-이 세상에 모든 것(object), class로 만들어진 것(instance)를 구분해야한다
+object 안에 instance도 포함
+
+Object는 message를 통해 다른 SW의 Object와 통신,상호작용
+-message send == method call
+
+Class-개념 =>	실행메모리X
+instance-실체=> 	실행메모리O
+둘다 메모리에 올라가지만 실행 메모리에 오르는건 실체인 instance
+
+추상화
+-object 모델링, 공통 특징을 가진 모든 object를 대표하는 class 도출
+
+캡슐화
+-데이터와 연산을 같은 객체 안에 넣어서 묶는다
+
+정보은닉
+-객체 내부의 dat와 구현의 세부사항을 감추는것
+-외부의 영향 받지않음
+
+상속
+-이미 작성된 부모class(superclass)를 이어받는 자식class(subclass)을 생성
+
+다형성
+-동질이상 : 같은건데 형태가 다르다
+ex)수증기,물,얼음 - 어쨌든 다 H20
+-함수에서는 이름이 같고 기능이 다른 함수를 여러개 만들어 사용(C같은 절차지향은 불가능)
+
+*의사코드(psuedo code)
+if(입력된 값이 0이면)
+{
+	프로그램 종료
+}			//설명을 위해 사용하는 대략적인 코드
+
+*오버로딩(overloading)
+이름은 같고 매개변수의 갯수나 타입이 다른 함수를 여러개 만드는 것
+ex)
+Click(left);
+Click(right);
+Click(double,triple);
+
+*오버라이딩(overriding)
+이름과 매개변수의 갯수 타입,리턴값의 타입이 전부 일치하는 함수를 여러개 만드는 것
+-부모(class)가 정의한 함수를 자식(class)이 다시 재정의(상속전용)
+
+
+*메인프레임(main frame)
+PC가 나오기 전, 기업에서 사용되던 업무용 컴퓨터.
+고가면서 당시 기준으로 고성능.
+-IBM이 대표적 Main Frame 개발회사.
+-중앙집중방식. 모든 처리(I/O,연산,저장)를 메인프레임이 담당
+-입출력장치는 터미널(키보드,모니터)이 담당,터미널은 연산,저장기능 없음
+Dummy Terminal
+
+--------------------------------------------
+Client/Server(C/S)
+PC가 보급되고 성능이 좋아지면서
+일부 작업을 PC에서 분산처리.
+Server는 메인프레임보다 저가의 장비로 구성.
+
+2Tier
+
+3Tier
+Client + Middle Ware + Server
+
+
+Web
+Client + Web Server + Db Server
+브라우저 + Tomcat + Oracle
+front<------------------>back
+          Web Application Server(WAS)

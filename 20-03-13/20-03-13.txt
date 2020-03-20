@@ -1,0 +1,85 @@
+*main()함수의 매개변수
+
+int main(int argc, char* argv[])
+{
+  소스 내용
+}
+코드 작성 후 cmd를 이용하여 매개변수 입력하며 실행 가능
+
+*dir/w 도스 명령어
+cmd창에서 입력시 현재 폴더 담긴 폴더와 파일을 표시해준다
+
+
+*헤더파일
+.h라는 확장자를 사용하는 파일
+함수의 프로토 타입이나 구조체 등의 데이터 구조가 정의되어 있다.
+stdio.h 	표준입출력
+string.h	문자열 관련
+math.h	수학 관련
+malloc.h	메모리관련
+stdlib.h	c 표준 라이브러리 관련
+time.h	시간관련
+
+*사용자 정의 함수 호출
+#incude "사용자 정의 함수"
+-솔루션 탐색기->헤더파일 새항목 추가
+
+
+*c파일 쪼개기
+각자 코딩하던 c파일을 메인 안에서 호출할 수 있다.
+
+
+*전처리기(Preprocessor)
+컴파일하기 전에 처리되는 문장,소스 시작부분에 위치하며 #으로 시작
+#include,
+#define,
+#ifdef,
+#undef 등
+
+*#define
+:주로 리터럴 상수 대신 이름 있는 상수를 정의할 때 사용
+
+*리터럴 상수
+ex)20, 30, hello 표시하는 기호가 없는 그 자체가 저장되어 있는 상수
+
+*const 예약어
+#define과 비슷한 기능
+const로 변수를 선언하면 해당 변수는 상수의 역할을 함
+ex)
+const int a= 100;	//a는 100의 정수값을 가지는 상수처리됨(변경 불가)
+
+*static 예약어  <->  dynamic(동적)
+처음 설정된 값을 초기화하지 않고 계속 유지(정적)
+ex)
+void myfunc()
+static int a = 0;
+
+a+=100;
+1.함수 1번째 실행 : a=100
+2.함수 2번째 실행 : a=200
+
+*extern 예약어
+다른 소스 파일에 선언된 전역 변수를 현재 소스 파일에 가져와서 사용
+ex)
+main.c			func.c
+
+void func()
+int a;			extern int a;
+
+int main()			void func()
+{			{
+   a =100;			   printf("%d",a);
+   func()			}
+}
+
+결과 : 100
+main.c파일에서 전역변수 a를 extern 예약어를 사용하여 func.c파일로 받아온다.
+
+
+시뮬레이터(Simulator)
+-하드웨어를 소프트웨어로 구현해 놓은것
+실제 하드웨어를 쓰는 것처럼 체험 가능
+ex)
+안드로이드 AVD
+AutoCad Circuits
+

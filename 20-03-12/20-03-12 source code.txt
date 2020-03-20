@@ -1,0 +1,415 @@
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+#include<malloc.h>
+#include<time.h>
+
+
+int main()
+{
+	//malloc 사용
+	/*
+	int* p;
+	int i, sum = 0, cnt;
+
+	printf("입력할 개수는?");
+	scanf_s("%d", &cnt);
+
+	p = (int*)malloc(sizeof(int) * cnt);
+
+	for (i = 0;i < cnt;i++)
+	{
+		printf("%d 번째 숫자 : ", i + 1);
+		scanf_s("%d", &p[i]);
+	}
+
+	for (i = 0;i < cnt;i++)
+		sum += p[i];
+	printf("입력 숫자 합 : %d\n", sum);
+
+	free(p);
+	*/
+
+	//realloc() 사용
+	/*
+	int* p;
+	int i, sum = 0, cnt = 0, data;
+
+	p = (int*)malloc(sizeof(int) * 1);
+	printf("1 번째 숫자 : ");
+	scanf_s("%d", &p[0]);
+	cnt++;
+
+	for (i = 2;;i++)
+	{
+		printf("%d번째 숫자 : ", i);
+		scanf_s("%d", &data);
+
+		if (data != 0)
+			p = (int*)realloc(p, sizeof(int) * i);
+		else
+			break;
+
+		p[i - 1] = data;
+		cnt++;
+	}
+
+	for (i = 0; i < cnt; i++)
+		sum += p[i];
+
+	printf("입력 숫자 합 : %d\n", sum);
+
+	free(p);
+	*/
+
+	//포인터 배열의 사용
+	/*
+	char* p[3];
+	char imsi[100];
+	int i, size;
+
+	for (i = 0;i < 3;i++)
+	{
+		printf("%d번째 문자열 : ", i + 1);
+		gets_s(imsi, 100);
+
+		size = strlen(imsi);
+		p[i] = (char*)malloc((sizeof(char) * size) + 1);
+
+		strcpy_s(p[i], size + 1, imsi);
+
+	}
+
+	printf("\n--입력과 반대로 출력(포인터)--\n");
+	for(i = 2;i >= 0;i--)
+	{
+		printf("%d:%s\n", i + 1, p[i]);
+	}
+
+	for (i = 0;i < 3;i++)
+		free(p[i]);
+	*/
+
+	//포인터 배열 사용2
+	/*
+	char* p = "Hello World";
+	char p[] = "Hello World";
+
+	printf("%s\n", p);
+	printf("%c\n", *(p+0));
+	printf("%c\n", p[0]);
+	printf("%c\n", *(p+1));
+	printf("%c\n", p[1]);
+	*/
+
+	//구조체 사용
+	/*
+	struct bibim
+	{
+		int a;
+		float b;
+		char c;
+		char d[5];
+	};
+
+	struct bibim b1;
+
+	b1.a = 10;
+	b1.b = 1.1f;
+	b1.c = 'A';
+	strcpy_s(b1.d, 5, "ABCD");
+
+	printf("b1.a : %d\n", b1.a);
+	printf("b1.b : %f\n", b1.b);
+	printf("b1.c : %c\n", b1.c);
+	printf("b1.d : %s\n", b1.d);
+	*/
+
+	//구조체 사용2
+	/*
+		typedef struct _student
+		{
+			char name[10];
+			int kor;
+			int eng;
+			float avg;
+		}student;
+
+		student s;
+
+		printf("이름 : ");
+		scanf_s("%s", s.name, 9);
+
+		printf("국어점수 : ");
+		scanf_s("%d", &s.kor);
+
+		printf("영어점수 : ");
+		scanf_s("%d", &s.eng);
+
+		printf("\n---구조체 활용---\n");
+		printf("학생 이름 : %s\n", s.name);
+		printf("국어점수 : %d\n", s.kor);
+		printf("영어점수 : %d\n", s.eng);
+		printf("평균점수 : %5.1f\n", s.avg = (s.kor + s.eng) / 2.0f);
+	*/
+
+	//구조체 배열 사용
+	/*
+	struct student
+
+	{
+		char name[10];
+		int kor;
+		int eng;
+		float avg;
+	};
+
+	struct student s[3] = { 0 };
+
+	int i;
+
+	strcpy_s(s[0].name, 9, "Kim");
+	s[0].kor = 90;
+	s[0].eng = 80;
+	s[0].avg = (s[0].kor + s[0].eng) / 2.0f;
+
+	strcpy_s(s[1].name, 9, "Lee");
+	s[1].kor = 70;
+	s[1].eng = 60;
+	s[1].avg = (s[1].kor + s[1].eng) / 2.0f;
+
+	strcpy_s(s[2].name, 9, "Park");
+	s[2].kor = 50;
+	s[2].eng = 40;
+	s[2].avg = (s[2].kor + s[2].eng) / 2.0f;
+
+	printf("--구조체 배열--\n");
+	for (i = 0;i < 3;i++)
+	{
+		printf("학생 이름 : %s\n", s[i].name);
+		printf("국어 점수 : %d\n", s[i].kor);
+		printf("영어 점수 : %d\n", s[i].eng);
+		printf("평균 점수 : %5.1f\n", s[i].avg);
+		printf("\n");
+	}
+	*/
+
+	//구조체 포인터 사용
+	/*
+	struct student
+	{
+		char name[10];
+		int kor;
+		int eng;
+		float avg;
+	};
+
+	struct student s,*p;
+
+	p = &s;
+
+	printf("이름 입력 : ");
+	scanf_s("%s", p->name, 10);
+
+	printf("국어 점수 : ");
+	scanf_s("%d", &p->kor);
+
+	printf("영어 점수 : ");
+	scanf_s("%d", &p->eng);
+
+	p->avg = (p->kor + p->eng) / 2.0f;
+
+	printf("\n---구조체 포인터 활용---\n");
+	printf("학생 이름 : %s\n", p->name);
+	printf("국어 점수 : %d\n", p->kor);
+	printf("영어 점수 : %d\n", p->eng);
+	printf("평균 점수 : %5.1f\n", p->avg);
+	printf("\n");
+	printf("\n---구조체 포인터 활용---\n");
+	printf("학생 이름 : %s\n", s.name);
+	printf("국어 점수 : %d\n", s.kor);
+	printf("영어 점수 : %d\n", s.eng);
+	printf("평균 점수 : %5.1f\n", s.avg);
+	printf("\n");
+	*/
+
+	//로또 계산기
+	/*
+	int lotto[6];
+	char ck='N';
+
+	srand((unsigned)time(NULL));
+	for (int i = 0;i < 6;)
+	{
+		lotto[i] = rand() % 45 + 1;
+
+		for (int j = 0;j < i;j++)
+		{
+			if (lotto[i] == lotto[j])
+			{
+				ck == 'Y';
+				printf("  중복입니다.  ");
+			}
+		}
+
+		if (ck=='N')
+		{
+			printf("%3d", lotto[i]);
+			i++;
+		}
+
+	}
+	*/
+
+	//공용체 사용
+	/*
+	union student
+	{
+		int tot;
+		char grade;
+	};
+
+	union student u;
+
+	u.tot = 300;
+	u.grade = 'A';
+
+	printf("\n---공용체 활용---\n");
+	printf("총점 : %d\n", u.tot);
+	printf("총점 : %d\n", u.grade);
+	*/
+
+	//열거형 사용
+	/*
+	enum week
+	{
+		sun,
+		mon,
+		tue,
+		wed,
+		thu,
+		fri,
+		sat
+	};
+
+	enum week ww;
+
+	ww = sat;
+
+	if (ww == sun)
+		printf("오늘은 일요일입니다.\n\n", ww);
+	else
+		printf("오늘은 일요일이 아닙니다.\n\n", ww);
+	*/
+
+	//구조체 포인터 활용
+	/*
+	struct student
+	{
+		char name[10];
+		int age;
+	};
+
+	struct student* s;
+	int cnt;
+
+	printf("입력할 학생 수 : ");
+	scanf_s(" %d", &cnt);
+
+	s = (struct student*)malloc(sizeof(struct student) * cnt);
+
+	for (int i = 0;i < cnt;i++)
+	{
+		printf("이름과 나이 입력 : ");
+		scanf_s("%s %d", s[i].name, 9, &s[i].age);
+	}
+
+	printf("\n\n--학생 명단--\n");
+	for (int i = 0;i < cnt;i++)
+		printf("이름:%s,나이:%d\n", s[i].name, s[i].age);
+
+	free(s);
+	*/
+
+	//2차원 문자열 출력
+	/*
+	char p[2][100] = { "Hello World","C-Language" };
+	printf("%s\n", p[0]);
+	printf("%s\n", p);
+	printf("%s\n", p[1]);
+	printf("%s\n", p+1);
+	
+	printf("%c\n",p[0][0]);
+	printf("%s\n",p[0][0]);
+	*/
+
+	//구조체와 공용체 혼합
+	/*
+	typedef struct _person
+	{
+		char name[10];
+		union _id
+		{
+			char phone[15];
+			char jumin[15];
+		} id;
+	}person;
+
+	person p1;
+
+	printf("이름 : ");
+	scanf_s("%s", p1.name, 10);
+	printf("전화번호 또는 주민번호 : ");
+	scanf_s("%s", p1.id.jumin, 15);
+
+	printf("\n--- 구조체/공용체 혼합 활용 ---\n");
+	printf("이름 : %s\n", p1.name);
+	printf("전화번호/주민번호 : %s\n", p1.id.phone);
+	*/
+
+	//열거형을 활용한 월 이름
+	/*
+	enum month
+	{
+		January =1,	February,March,	April,May,June,July,
+		August,	September,	October,	Novemboer,	December
+	};
+
+	enum month mm;
+
+	printf("월 입력 : ");
+	scanf_s("%d", &mm);
+
+	switch (mm)
+	{
+	case January: printf("%d월은 January입니다.\n", mm);
+		break;
+	case February:printf("%d월은 February입니다.\n", mm);
+		break;
+	case March:printf("%d월은 March입니다.\n", mm);
+		break;
+	case April:printf("%d월은 April입니다.\n", mm);
+		break;
+	case May:printf("%d월은 May입니다.\n", mm);
+		break;
+	case June:printf("%d월은 June입니다.\n", mm);
+		break;
+	case July:printf("%d월은 July입니다.\n", mm);
+		break;
+	case August:printf("%d월은 August입니다.\n", mm);
+		break;
+	case September:printf("%d월은 September입니다.\n", mm);
+		break;
+	case October:printf("%d월은 October입니다.\n", mm);
+		break;
+	case Novemboer:printf("%d월은 November입니다.\n", mm);
+		break;
+	case December:printf("%d월은 December입니다.\n", mm);
+		break;
+	default:printf("잘못 입력되었습니다.\n", mm);
+		break;
+	}
+	printf("\n\n");
+	*/
+	
+	
+}

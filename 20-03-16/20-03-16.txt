@@ -1,0 +1,49 @@
+*빵판 5V, Led는 전압에 따라 다른 색이 나온다.
+-저항으로 V를 맞춰준단
+
+필수 함수 setup과 loop함수
+
+*Setup 함수
+Void setup()		-매개 변수 없음
+{
+   pinMode(led, OUTPUT);	-디지털 핀을 출력 모드로 초기화
+}
+
+*Loop 함수
+void loop()
+{
+   digitalWrite(led,HIGH);	-HIGH = 1,즉 스위치의 on이랑 같다
+   delay(1000);
+   digitalWrite(led,LOW);	-LOW = 0,즉 스위치의 off랑 같다
+   delay(1000);
+}
+
+-analogWrite(rpin,255);
+
+시리얼 통신(시리얼 모니터에 표시)
+Serial.bigin - 시리얼 통신 초기화
+Serial.print - 출력
+Serial.println - 출력+줄넘김
+
+
+*https://codingrun.com/
+https://codeda.tistory.com/20?category=772497
+아두이노 코딩 사이트
+
+저항 읽는법
+검0			-=/=/=/=/=-
+갈1			왼쪽에서부터 첫째 숫자,둘째숫자,0의 갯수,저항갑의 오차.
+빨2			ex)
+주3			주주빨금
+노4			 3 3 2 10 => 3300(오차 +-10%)
+초5
+파6
+보7
+회8
+흰9
+은+-10%
+금+-5%
+
+
+*아두이노는 한번 컴파일로 코드가 업로드된 체로 저장되어있다
+(한번 업로드한 후에는 전력만 제공되면 저장된 코드로 계속 실행)

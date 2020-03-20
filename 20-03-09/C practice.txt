@@ -1,0 +1,85 @@
+1. id, password를 키보드로 입력받아서
+배열에 저장하기.(회원가입). 
+
+2. 키보드로 입력한 id,password가
+1의 id, password와 일치하면
+'로그인되었습니다.' 출력하기 (로그인)
+
+3. 국어,영어,수학 성적을 입력받아서 배열에 저장한 후
+평균 구하기. for문 사용
+
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+
+int main()
+{
+	//1.Id,Password를 키보드로 입력받아서 배열에 저장하기.(회원가입)
+	char Id[100],Pw[100];
+
+	printf("Id를 입력하시오 : ");				//정보 입력
+	gets_s(Id, 100);
+	printf("Password를 입력하시오 : ");
+	gets_s(Pw, 100);
+
+	puts("\n\n입력 받은 Id와 Password는 다음과 같습니다.");	//입력받은 정보 출력
+	printf("Id		: %s\n", Id);
+	printf("Password	: %s\b\b\b***\n", Pw);		//보안을 위해 비밀번호 뒷3자리 별표처리
+
+	//2.키보드로 입력한 Id,Password가 1의 Id,Password와 일치하면
+	//'로그인되었습니다.'출력하기(로그인)
+	char Id2[100],Pw2[100];
+
+	printf("\n\nId를 입력하시오 : ");			//2번째 정보 입력
+	gets_s(Id2, 100);
+	printf("Password를 입력하시오 : ");
+	gets_s(Pw2, 100);
+
+	if (!strcmp(Id, Id2) && !strcmp(Pw, Pw2))		//1번째 정보와 비교
+		puts("\n로그인되었습니다.");
+	else
+	{
+		puts("\n\n입력 받은 Id와 Password는 다음과 같습니다.");
+		printf("Id		: %s\n", Id2);
+		printf("Password	: %s\b\b\b***\n", Pw2);
+	}
+	
+	//3.국어,영어,수학 성적을 입력 받아서 배열에 저장한 후
+	//평균 구하기. for문 사용
+	
+	int k[100], e[100], m[100],i;				//점수 저장할 배열 선언
+	char ed;
+	
+	for ( i = 1;i < 100;i++)
+	{
+		printf("\n국어 성적을 입력하시오 : ");		//정보 입력
+		scanf_s(" %d",&k[i]);
+		printf("영어 성적을 입력하시오 : ");
+		scanf_s(" %d",&e[i]);
+		printf("수학 성적을 입력하시오 : ");
+		scanf_s(" %d",&m[i]);
+
+		printf("\n입력 받은 %d번째 성적은 다음과 같습니다.\n",i);	//평균값 출력
+		printf("국어성적 : %d\n", k[i]);
+		printf("영어성적 : %d\n", e[i]);
+		printf("수학성적 : %d\n", m[i]);
+		printf("평균점수 : %d\n", (k[i]+e[i]+m[i])/3.0);
+		
+
+		printf("\n계속 하시겠습니까? (Y/N) :");		//반복 의사 확인
+		scanf_s(" %c",&ed, 1);
+		
+		if (ed == 'Y' || ed == 'y')
+			printf("\n\n");
+		else if (ed == 'N' || ed == 'n')
+			return 0;
+		else
+		{
+			printf("\n오류입니다. 프로그램을 종료합니다.");
+			return 0;
+		}
+		
+		
+	}
+
+	return 0;
+}

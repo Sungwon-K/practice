@@ -1,0 +1,115 @@
+1.로또번호생성기 만들기
+
+1~45까지의 숫자 6개를
+중복되지 않게 만들기
+
+난수,%,배열,for문 사용
+
+
+2.학번,학생명,학과명을 입력받아서 student.txt
+에 저장하기(csv형식)
+
+2019E00001,홍길동,컴퓨터공학과
+
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+#include<time.h>
+
+int getNumber()
+{
+	return rand() % 45 + 1;			// 1~45숫자 난수 발생기
+}
+
+void numcollect()
+{
+	int num,LN[6];
+	char dup = 'N';
+
+	for (int i = 0;i < 6;)				//생성된 로또 번호 채우기
+	{
+		num = getNumber();
+		for (int k = 0;k < i;k++)		//중복 체크
+		{
+			if (LN[k] == num)
+				dup = 'Y';
+		}
+
+		if (dup == 'N')			//갑 입력
+		{
+			LN[i] = num;
+			i++;
+		}
+		else
+			dup = 'N';
+	}
+
+	printf("추첨된 로또 번호 :");
+
+	for (int t = 0;t < 6;t++)
+		printf("%d*\t", LN[t]);
+
+}
+
+int exitcheck(char arr[100])
+{
+	if (*arr == 'x')
+		return 0;
+	else if (*arr == 'X')
+		return 0;
+}
+
+int main()
+{
+	//1.로또번호 생성기 만들기
+	puts("**로또 추첨을 시작합니다.**\n\n");
+	srand((unsigned)time(NULL)); 				//rand() 함수 초기화,이걸 안하면
+							 //계속 같은 값이 나온다.
+	numcollect();
+	
+	printf("\n\n");
+
+	//2.학번,학생명,학과명을 입력받아서 student.txt에 저장하기(csv형식)
+	FILE* wfp;
+	char stuinfo[100], stuna[100], scna[100];
+	
+	fopen_s(&wfp,"c:\\C_WorkSpace\\data\\Student.txt", "a");
+
+	puts("그만하시려면 x키를 입력하세요.");
+	
+	while (1)
+	{
+		printf("학번을 입력하시오. :");				//입력과 동시에 종료 체크
+		gets_s(stuinfo, 100);
+		if (exitcheck(stuinfo) == 0)
+			break;
+
+		printf("학생명을 입력하시오. :");
+		gets_s(stuna, 100);
+		if (exitcheck(stuna) == 0)
+			break;
+
+		printf("학과명을 입력하시오. :");
+		gets_s(scna, 100);
+		if (exitcheck(scna) == 0)
+			break;
+	
+
+		puts("입력받은 정보는 아래와 같습니다.");		//입력값 확인
+		printf("%s,%s,%s\n\n", stuinfo,stuna,scna);
+
+
+		fputs(stuinfo, wfp);	//CSV형식 표현
+		fputs(",\t", wfp);
+
+		fputs(stuna, wfp);
+		fputs(",\t", wfp);
+
+		fputs(scna, wfp);
+		fputs("\n", wfp);
+
+	}
+	fclose(wfp);
+
+	return 0;
+
+}

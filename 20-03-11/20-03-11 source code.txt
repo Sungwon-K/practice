@@ -1,0 +1,222 @@
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+#include<time.h>
+
+
+int main()
+{
+	//문자열 입출력 함수 사용 예
+	/*
+	char s[20];
+
+	printf("문자열을 입력 : ");
+	gets_s(s, 20);
+
+	puts(s);
+	*/
+
+	//getch(),putch() 사용
+	/*
+	char ch;
+	ch = getch();		//입력할때 입력내용 표시하지 않음
+	putch(ch);
+
+	ch = getch();
+	putch(ch);
+
+	ch = getch();
+	putch(ch);
+	*/
+
+	//getch(),putch() 사용2
+	/*
+	char password[5] = "5678";
+	char input[5];
+
+	int i;
+
+	printf("비밀번호 4글자를 입력하세요 : ");
+	for (i = 0;i < 4;i++)
+		input[i] = getch();
+
+	if (strncmp(password, input, 4) == 0)
+	{
+		printf("\n비밀번호 통과~~\n");
+	}
+	else
+	{
+		printf("\n입력한 비밀번호");
+		for (i = 0;i < 4;i++)
+			putch(input[i]);
+		printf("가 틀렸음\n");
+	}
+	*/
+
+	//getche()사용
+	/*
+	char ch;
+
+	ch = getche();
+
+	ch = getche();
+
+	ch = getche();
+	*/
+
+	//getchar()사용
+	/*
+	char ch;
+
+	printf("문자열을 입력하세요 :");
+	ch = getchar();
+	putchar(ch);
+
+	ch = getchar();
+	putchar(ch);
+
+	ch = getchar();
+	putchar(ch);
+	*/
+
+	//fgets()
+	/*
+	char s[20];
+	FILE* rfp;
+
+	fopen_s(&rfp, "c:\\C_WorkSpace\\data1.txt", "r");
+
+	fgets(s, 20, rfp);
+
+	printf("파일에서 읽은 문자열 : ");
+	puts(s);
+
+	fclose(rfp);
+	*/
+
+	//fgets()를 활용한 Dos 명령어 type 재현
+	/*
+	char str[200];
+	FILE* rfp;
+
+	fopen_s(&rfp,"c:\\windows\\win.ini","r");
+
+	while(1)
+	{
+		fgets(str, 200, rfp);
+
+		if (feof(rfp))
+			break;
+
+		printf("%s", str);
+	}
+
+	fclose(rfp);
+	*/
+	
+	//type 다른 재현
+	/*
+	char str[200];
+	FILE* rfp;
+
+	fopen_s(&rfp, path[1], "r");
+	for (;;)
+	{
+		fgets(str, 200, rfp);
+		if (feof(rfp))
+		{
+			break;
+		}
+		printf("%s", str);
+	}
+	fclose(rfp);
+	*/
+
+	//fscanf_s()
+	/*
+	FILE* rfp;
+	int sum = 0, in, i;
+
+	fopen_s(&rfp,"c:\\C_WorkSpace\\data\\data2.txt", "r");
+
+	for (i = 0;i < 5;i++)
+	{
+		fscanf_s(rfp, "%d", &in);
+		sum = sum + in;
+	}
+
+	printf("합계 : %d\n", sum);
+
+	fclose(rfp);
+	*/
+
+	//fputs()를 활용한 Dos 명령어 Copy 재현
+	/*
+	char str[200];
+	FILE* rfp2;
+	FILE* wfp2;
+
+	fopen_s(&rfp2,"c:\\windows\\win.ini","r");
+	fopen_s(&wfp2,"c:\\C_WorkSpace\\data\\data5.txt","w");
+
+	while (1)
+	{
+		fgets(str,200,rfp2);
+
+		if(feof(rfp2))
+			break;
+		fputs(str, wfp2); 
+	}
+	
+	fclose(rfp2);
+	fclose(wfp2);
+	*/
+
+	//fprintf()
+	/*
+	FILE* wfp;
+	int sum = 0, in, i;
+
+	fopen_s(&wfp, "c:\\C_WorkSpace\\data\\data7.txt", "a");
+
+	for (i = 0;i < 5;i++)
+	{
+		printf("숫자 %d :", i + 1);
+		scanf_s("%d", &in);
+		sum += in;
+	}
+
+	fprintf(wfp, "합계 : %d\n", sum);
+
+	fclose(wfp);
+	*/
+
+	//파일에서 읽어온 문자열을 거꾸로 출력
+	/*
+	FILE* rfp;
+	FILE* wfp;
+
+	char str1[200], str2[200];
+	int size, i;
+
+	fopen_s(&rfp, "c:\\C_WorkSpace\\data\\in.txt","r");
+	fopen_s(&wfp, "c:\\C_WorkSpace\\data\\out.txt","a");
+
+	while (1)
+	{
+		fgets(str1, 200, rfp);
+
+		if (feof(rfp))
+			break;
+
+		size = strlen(str1);
+		for (i = size - 1;i >= 0;i--)
+			str2[size - 1- i] = str1[i - 1];
+
+		str2[size - 1] = '\0';
+		fputs(str1, wfp);
+		fputs(str2, wfp);
+		fputs("\n", wfp);
+	}
+	fclose(rfp);
+	fclose(wfp);
+	*/

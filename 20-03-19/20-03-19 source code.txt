@@ -1,0 +1,234 @@
+import java.util.Scanner;
+
+public class CircleArea //오픈 클래스
+{
+	//메소드에서 배열 리턴
+	/*
+	static int[] makeArray()
+	{
+		int[] temp = new int[4];
+		for(int i=0;i<temp.length;i++)
+			temp[i]=i;
+		return temp;
+	}
+	*/
+	
+	
+	//enum Week {월,화,수,목,금,토,일}
+	public static void main(String[] args) 
+	{
+		//Scanner scanner = new Scanner(System.in);
+		
+		//if/else문
+		/*
+		char grade;
+				
+		System.out.print("점수를 입력하세요(0~100): ");
+		int score = scanner.nextInt();
+		
+		if(score>=90)
+			grade = 'A';
+		else if(score >= 80)
+			grade = 'B';
+		else if(score>= 70)
+			grade = 'C';
+		else if(score >= 60)
+			grade = 'D';
+		else
+			grade = 'F';
+		
+		System.out.println("학점은 " + grade + "입니다." );
+		
+		scanner.close();
+		*/
+		
+		//switch문
+		/*
+		System.out.print("무슨 커피 드릴까요?");
+		String order = scanner.next();
+		int price = 0;
+		
+		switch (order) {
+		case "에스프레소":
+		case "카푸치노":
+		case "카페라떼":
+		price = 3500;
+		break;
+		case "아메리카노":
+		price = 2000;
+		break;
+		default:
+		System.out.println("메뉴에 없습니다.");
+		}
+		
+		if(price != 0)
+			System.out.println(order + "는 " + price + "원입니다. ");
+		scanner.close();
+		*/
+		
+		//continue문
+		/*
+		System.out.println("정수를 5개 입력하세요.");
+		int sum = 0;
+		for(int i =0; i<5;i++)
+		{
+			int n = scanner.nextInt();
+			if(n<=0)
+				continue;
+			else
+				sum += n;
+			System.out.println("양수의 합은 " + sum);
+			
+			scanner.close();
+			*/
+		
+		//while문
+		/*
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("exit를 입력하면 종료합니다. ");
+
+		do
+		{
+			System.out.print(">>");
+			String text = scanner.nextLine();
+			if(text.equals("exit"))
+				break;
+		}while(true) ;
+		
+		System.out.println("종료합니다.");
+		
+		scanner.close();
+		*/
+		
+		//배열 선언,생성
+		/*
+		int[] intArray = new int[5];
+		
+		int max=0;
+		System.out.println("양수 5개를 입력하세요.");
+		for(int i =0;i<5;i++)
+		{
+			intArray[i] = scanner.nextInt();
+			if(intArray[i]>max)
+				max = intArray[i];
+		}
+		System.out.print("가장 큰수는" + max + "입니다.");
+		scanner.close();
+		*/
+		
+		//for-each문
+		/*
+		int[] n = {1,2,3,4,5};
+		String[] names = {"사과","배","바나나","체리","딸기","포도"};
+		
+		int sum = 0;
+		for(int k : n)
+		{
+			System.out.print(k + " ");
+			sum += k;
+		}
+		System.out.println("합은"+sum);
+		
+		for(String s : names)
+			System.out.print(s + " ");
+		System.out.println();
+		
+		for(Week day : Week.values())
+			System.out.print(day + "요일 ");
+		System.out.println();
+		*/
+		
+		//2차원 배열
+		/*
+		double score[][] = {{3.3, 3.4},
+							{3.5, 3.6},
+							{3.7, 4.0},
+							{4.1, 4.2}};
+		
+		double sum = 0;
+		
+		for(int year = 0; year<score.length;year++)
+		{
+			for(int term = 0;term<score[year].length;term++)
+			{
+				sum += score[year][term];
+			}
+		}
+		
+		int n = score.length;
+		int m = score[0].length;
+		System.out.println("4년 전체 평점 평균은 "+sum/(n*m));
+	    */
+		
+		//메소드에서 배열 리턴
+		/*
+		int[] intArray = makeArray();
+		for(int i=0;i<intArray.length;i++)
+			System.out.print(intArray[i] + " ");
+			*/
+		
+		//1.예저 3-2를 do while문을 사용하여 작성하세요.
+		/*
+		int count =0, sum =0;
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("정수를 입력하고 마지막에 -1을 입력하세요");
+		
+		int n;
+		
+		do
+		{
+			n=scanner.nextInt();
+			if(n == -1)
+				break;
+			sum += n;
+			count++;
+			
+		}while(n != -1);
+		
+		if(count ==0)
+			System.out.println("입력된 수가 없습니다.");
+		else
+		{
+			System.out.print("정수의 갯수는 "+ count + "개이며 ");
+			System.out.println("평균은 " + (double)sum/count + "입니다.");
+		}
+		scanner.close();
+		*/
+		
+		//한 학급의 학생수를 입력해서 학생수만큼
+		//이름,국어,영어,수학 점수를 반복 입력해서
+		//개인평균,학급 전체 평균을 구하시오. 배열,for-each사용
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("학급의 인원수를 입력하세요. :");
+		int n = scanner.nextInt();
+		
+		String[] name = new String[n];
+		int[] kor = new int[n],eng = new int[n],math = new int[n];
+		int[] sum = new int[n];
+		int fisum = 0;
+		
+		for(int i = 0; i<n;i++)
+		{
+			System.out.println((i+1)+"번째 학생의 이름 ,국어 ,영어 ,수학점수 순으로 입력해주십시오.");
+			name[i] = scanner.next();
+			kor[i] = scanner.nextInt();
+			eng[i] = scanner.nextInt();
+			math[i] = scanner.nextInt();
+			
+			sum[i] = kor[i]+eng[i]+math[i];
+			
+			System.out.println((i+1)+"번째 학생의 개인평균은 " +(float)(sum[i])/3 + "입니다.");
+		}
+		
+		for(int k:sum)
+			fisum += k;
+		
+		
+		System.out.println("학급 전체 평균은 "+(float)(fisum/3)/n + "입니다.");
+		scanner.close();
+
+	}
+}

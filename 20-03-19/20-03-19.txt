@@ -1,0 +1,75 @@
+*next()
+빈칸이 나오면 중간에 멈춘다
+nextLine()
+엔터가 나올때까지 빈칸도 포함해서 전부 저장한다.
+
+*equals
+문자열은 if(A =="문자열)로 사용할 수 없다. 이럴때 사용
+ex)if(text.equals("exit"))
+text에 들어있는 문자열을 "exit"와 비교
+
+
+*배열 선언
+int intArray[];	->int[] intArray;
+char charArray[];	->char[] charArray
+
+*배열 생성
+intArray = new int[5];	
+
+*배열 선언과 동시에 생성(추천)
+int intArray[] = new int[5];	=>int[] intArray = new int[5];
+
+*초기화
+int Array[] = {4,3,2,1,0};
+
+
+*length
+배열의 길이 구하기
+ex) 
+int[] intArray = new int[5];
+int size = intArray.lengh
+-C언어의 Strlen과 동일
+
+2차원의 배열의 길이 구하기
+ex)
+int[] intArray = new int[2][5];
+intArray.lengh => 배열의 행의 갯수 : 2
+intArray[0].lengh = > 1번째행 열의 갯수 : 5
+
+
+*for-each
+배열의 크기만큼 루프를 돌면서 원소를 순차적 접근
+ex)
+int[] num = {1,2,3,4,5};
+int sum =0;
++
+for(int k : num)	//정수형 변수 k에 num배열의 첫 인덱스부터(num[0]) 마지막 인덱스까지(num[4])대입
+   sum += k;
+System.out.println("합은 " + sum);
+
+=>기존에는
+for(int k; k<5 ; k++)	   //for문에 의해 증가되는 k를 인덱스로 사용하여 num[k]를 구한후 연산해야한다
+   sum += num[k];       k를 이용하여 num[k]를 구하는 작업과 k의 증감식을 짜야하는 번거로움이 있다.
+
+
+
+*2차원 배열
+int[][] intArray = new int[2][5];
+cahr[][] charArray = new char[3][4];
+double[][] doubleArray = new double[4][6];
+
+
+*메소드에서 배열 리턴
+int[] makeArray()
+{
+   int temp[] = new int[4];
+   return temp;
+}
+
+C처럼 배열 자체가 아닌 레퍼런스를 리턴.
+(C에서 배열 이름이 포인터였던거처럼 JAVA에서 배열의 이름은 레퍼런스)
+C와 다른점은 heap에 저장되서 함수가 끝나면 배열자체가 사라지는 C와는 달리
+java는 new int[4]가 사라지지 않는다.(레퍼런스 temp는 사라진다.)
+
+
+

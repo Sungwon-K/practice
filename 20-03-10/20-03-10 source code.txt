@@ -1,0 +1,203 @@
+#include<stdio.h>                                                                                                                                                                                                                                                                                                                                                                                                                   
+#include<string.h>
+
+int result;
+int a, b;
+//int a =100;
+
+int plus(int v1, int v2)
+{
+	result = v1 + v2;
+	return result;
+}
+
+int calc(int v1, int v2, int op)
+{
+	switch (op)
+	{
+	case 1: result = v1 + v2; break;
+	case 2: result = v1 - v2; break;
+	case 3: result = v1 * v2; break;
+	case 4: result = v1 / v2; break;
+	}
+
+	return result;
+}
+
+void func1(char a, char b)
+{
+	int sw;
+	
+	sw = a;
+	a = b;
+	b = sw;
+}
+
+void func2(char *a,char *b)
+{
+	int sw;
+
+	sw = *a;
+	*a = *b;
+	*b = sw;
+}
+
+int sum(int a[])
+{
+	return a[0]+a[1];
+}
+
+int calc2(int a,int b, int* re)
+{
+	re[0] = a + b;
+	re[1] = a - b;
+	
+	return re;
+}
+
+int inputData()
+{
+	printf("첫번쨰:");
+	scanf_s("%d", &a);
+	printf("두번쨰:");
+	scanf_s("%d", &b);
+}
+
+int calc3()
+{
+	result = a + b;
+}
+
+int PrintResult()
+{
+	printf("result : %d\n", result);
+}
+
+void gugu(int dan)
+{
+	for (int i = 1;i <= 9;i++)
+	{
+		printf("%2d X %2d = %2d\n", dan, i, dan * i);
+	}
+}
+
+
+int main()
+{
+	//배열명과 포인터 연산
+	/*
+	int a = 10,*p;
+	printf("a의 주소 : %p\n", &a);
+	p = &a;
+	printf("p의 값 : %p\n", p);
+	printf("p가 가리키는 값 : %d\n", *p);
+	printf("p의 주소 : %p\n", &p);
+
+	int b[3] = { 10,20,30 };
+	printf("b의 값 : %d\n",b);
+	printf("b의 두번째 칸의 주소 : %d\n", &b[0]);
+	printf("b의 두번째 칸의 주소 : %d\nb의 첫째 칸의 주소 : %d\n",b+1, &b[1]);
+
+	printf("b가 가리키는 값 : %d\n",*b);
+	printf("b의 첫번째 값 : %d\n", *(b+0));
+	printf("b의 첫번째 값 : %d\n", b[0]);
+	printf("b의 두번째 값 : %d\n", b[1]);
+	printf("b의 두번째 값 : %d\n", *(b+1));
+
+	for (int i = 0;i < 3;i++) {
+		printf("b[i] : %d\n", b[i]);
+		printf("*(b+i) : %d\n\n", *(b+i));
+	}
+	*/
+
+	//함수 사용
+	/*
+	printf("100과 200의 plus()함수 결과는 %d\n",plus(100,200));
+	*/
+
+	//함수 사용2
+	/*
+	int oper, a, b;
+
+	printf("계산 입력 (1:+, 2:-, 3:*, 4:/) :");
+	scanf_s("%d", &oper);
+
+	printf("계산할 두 숫자를 입력 :");
+	scanf_s("%d %d", &a, &b);
+
+	printf("계산 결과는 : %d\n",calc(a,b,oper));
+	*/
+
+	//전역변수&지역변수
+	/*
+	func1();
+	printf("main()에서 a의 값 : %d\n", a);
+	*/
+
+	//매개변수 전달방법
+	/*
+	int a;
+
+	func1();
+
+	a = func2();
+	printf("int형 함수에서 돌려준 값 : %d\n", a);
+	*/
+
+	//매개변수 사용
+	/*
+	int result = sum(10,20);
+	printf("result : %d\n", result);
+	printf("result : %d\n", sum(30,40));
+	
+	PrintResult(sum(2000, 3000));
+	*/
+
+	//Call by Address
+	/*
+	int a = 10;
+
+	func1(&a);
+	printf("func1() 실행 후의 a : %d\n", a);
+	*/
+
+	//Call by Address를 이용한 변수값 스왑
+	/*
+	char a = 'A', b = 'Z';
+
+	printf("원래 값:a=%c,b=%c\n", a, b);
+
+	func1(a, b);
+	printf("값을 전달한 후:a=%c,b=%c\n", a, b);
+
+	func2(&a, &b);
+	printf("주소를 전달한 후:a=%c,b=%c\n", a, b);
+	*/
+
+	//배열을 매개변수로 넣고,리턴하는 법
+	/*
+	int result[2];
+	int arr[] = { 100,200 };
+	printf("result:%d\n", sum(arr));
+	
+	calc2(10,20,result);
+	printf("result[0] : %d\n",result[0]);
+	printf("result[1] : %d\n",result[1]);
+	*/
+
+	//협업 시큘레이션
+	/*
+	inputData();
+	calc3();
+	PrintResult();
+	*/
+
+	int input;
+
+	printf("출력하고 싶은 단을 입력:");
+	scanf_s("%d", &input);
+
+	gugu(input);
+
+	return 0;
+}
