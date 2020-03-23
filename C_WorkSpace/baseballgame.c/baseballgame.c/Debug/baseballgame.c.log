@@ -1,0 +1,26 @@
+﻿  game.c
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(29,13): warning C4013: 'rand'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(69,24): warning C4047: '==': 'int *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(75,19): warning C4047: '=': 'int *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(87,10): warning C4477: 'printf' : 서식 문자열 '%3d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int *'입니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(102,22): warning C4047: '==': 'int *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(108,17): warning C4047: '=': 'int *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(142,19): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(142,19): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(196,10): warning C4477: 'printf' : 서식 문자열 '%3d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int *'입니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(215,8): warning C4013: 'srand'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(216,16): warning C4047: '함수': 'int **'의 간접 참조 수준이 'int [3]'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(216,16): warning C4024: 'randnum': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(222,21): warning C4047: '함수': 'int **'의 간접 참조 수준이 'int [3]'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(222,21): warning C4024: 'numtest': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(244,14): warning C4047: '함수': 'int **'의 간접 참조 수준이 'int [3]'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(244,14): warning C4024: 'col': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(263,14): warning C4047: '함수': 'int **'의 간접 참조 수준이 'int [3]'과(와) 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(263,14): warning C4024: 'col': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(204,7): warning C4101: 'sel' :참조되지 않은 지역 변수입니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(38): warning C4715: 'flowcheck': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(45): warning C4715: 'exitcheck': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(114): warning C4716: 'randnum': 값을 반환해야 합니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(89): warning C4715: 'numtest': 모든 제어 경로에서 값을 반환하지는 않습니다.
+C:\C_WorkSpace\baseballgame.c\baseballgame.c\game.c(146): warning C4715: 'coltest': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  baseballgame.c.vcxproj -> C:\C_WorkSpace\baseballgame.c\Debug\baseballgame.c.exe

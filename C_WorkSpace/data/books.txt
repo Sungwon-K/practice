@@ -1,0 +1,30 @@
+ksw		ksw		100
+
+kmm		kmm		10
+
+ksdf		sdf		1
+
+werwer		ghgd		5
+
+sdfsfd		ewrqr		6
+
+sgsgd		werwt		7
+
+qweqwe		fdsgdfsg		10
+
+sdf		werewr		9
+
+asda		qwer		10
+
+adw		agta		11
+
+----------------------------------a,		a,		1
+b,		b,		2
+c,		c,		3
+d,		d,		4
+e,		e,		5
+f,		f,		6
+g,		g,		7
+h,		h,		8
+i,		i,		9
+j,		j,		10
