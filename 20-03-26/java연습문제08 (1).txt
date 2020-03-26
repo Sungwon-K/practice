@@ -1,0 +1,136 @@
+1. Exception이 발생하면, 에러메시지를 로그(20180221171420.log)파일에
+기록하는 프로그램을 작성하시오.
+(파일명 : 20190305153010.log)
+(저장경로 : c:\\log)
+
+1/0 로 테스트
+
+catch블럭에서 파일에 에러메시지 기록.
+
+
+2.예제9-5 화면을 FlowLayout을 사용하여 작성하시오.
+
+//CalendarInfo Class
+package practice08;
+
+import java.util.Calendar;
+
+public class CalendarInfo {
+	String s= new String();
+	
+	public CalendarInfo() {
+		Calendar now = Calendar.getInstance();
+		String year = Integer.toString(now.get(Calendar.YEAR));
+		String month = Integer.toString(now.get(Calendar.MONTH)+1);
+		String date = Integer.toString(now.get(Calendar.DAY_OF_MONTH));
+		String hour = Integer.toString(now.get(Calendar.HOUR_OF_DAY));
+		String min = Integer.toString(now.get(Calendar.MINUTE));
+		String sec = Integer.toString(now.get(Calendar.SECOND));
+		
+		year.concat(month);
+		year.concat(date);
+		year.concat(hour);
+		year.concat(min);
+		year.concat(sec);
+		
+		this.s = year.concat(month.concat(date).concat(hour).concat(min.concat(sec)));
+	}
+	
+	public void showInfo() {
+		System.out.println(this.s);
+	}
+
+
+}
+
+//GridLayoutEx(실제는 FlowLayout) Class
+package practice08;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class GridLayoutEx extends JFrame{
+	public GridLayoutEx() {
+		this.setTitle("GridLayout Sample");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//4*2격자의 GridLayout 배치 관리자 생성
+			
+		
+		Container a = getContentPane();
+		
+			
+		a.setLayout(new FlowLayout(FlowLayout.LEFT,75,5));
+					
+		a.add(new JLabel("이름"));
+		a.add(new JTextField("                                    "));
+		a.add(new JLabel("학번"));
+		a.add(new JTextField("                                    "));
+		a.add(new JLabel("학과"));
+		a.add(new JTextField("                                    "));
+		a.add(new JLabel("과목"));
+		a.add(new JTextField("                                    "));
+		
+		
+		
+		this.setSize(300,200);
+		this.setResizable(false);
+		this.setVisible(true);
+	}
+
+}
+
+//MainMethod Class
+package practice08;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class MainMethod {
+
+	public static void main(String[] args) {
+		
+		//1.Exception이 발생하면, 에러메시지를 로그(년월시분초.log)파일에 기록
+		CalendarInfo cal = new CalendarInfo();
+		Scanner scan = new Scanner(System.in);
+		
+		
+		FileWriter errorMassage = null;
+	
+		
+		try {
+			System.out.println("입력하시오.");
+			int c = scan.nextInt();
+			System.out.println("결과값은 "+ c);
+		} 
+		catch(Exception e){ 
+			
+			try {
+				
+			
+				errorMassage = new FileWriter("c:\\log\\"+cal.s +".log");
+				errorMassage.write(e.toString());
+				errorMassage.close();
+				
+			} 
+			catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		
+		}
+		
+		//2.예제9-5 화면을 FlowLayout을 상둉하여 작성
+		
+		new GridLayoutEx();
+		
+		
+		
+		//scan.close();
+	}
+}

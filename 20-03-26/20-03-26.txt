@@ -1,0 +1,207 @@
+*filewriter 파일에 입력
+
+scan~
+FileWriter fout = null;		//FileWriter에 쓸 공간 초기화
+int c;
+
+try{
+	fout = new FileWriter("c:\\~~~~\\test.txt);
+	while(true){
+		String line = scanner.nextLine();	//빈칸을 포함한 한줄 입력
+		if(line.length()==0)			//한 줄에 엔터만 입력한 경우
+			break;
+		fout.write(line, 0 , line.length());	//읽은 문자열을 파일에 저장
+		fout.write("\r\n",0,2);		//한줄 띄기 위해 \r\n을 파일에 저장
+	}
+	fout.close();
+}
+catch(IOException e){
+	syso("입출력 오류");
+}
+
+
+*BufferedOutputStream - 버퍼 스트림을 이용한 출력
+filereader fin =null;			//파일 읽기값 초기화
+int c;
+try{
+	fin = new FilreReader("c:\\~~\\test2.txt");
+	bufferedoutputstream out = new bufferedoutputstream(system.out,5);
+
+	while ((c = fin.read()) !=-1 ){		//파일 데이터를 모두 스크린에 출력
+		out.write(c)
+	}
+
+	//파일 데이터가 모두 출력된 상태
+	new scanner(system.in).nextline();
+	out.flush();			//버퍼에 남아 있던 문자 모두 출력
+	fin.close();
+	out.close();
+
+	} catch(IOException e) {
+		e.printStackTrace();
+	}
+}
+
+*isDirectory(),isFile() 경로명이 디렉토리인지에 파일인지에 따라 true/false를 리턴
+ex)
+if(f.isDirectory())
+	syso(f.getpath() + "는 디렉토리입니다");
+else(f.isFile())
+	syso(f.getpath() + "는 파일입니다.");
+
+is~() 형태의 이름을 가진 함수는 리턴값이 boolean
+A is B ? 에서 따온 이름
+
+
+*syso.printf - 출력 포맷
+똑같은 레퍼런스도 원하는 자료형으로 출력할 수 있다.
+ex)
+long t= f.lastModifed();
+syso.printf("%tb %td %ta %tT\n",t ,t ,t ,t);
+
+=> 3월 17 금 18:13:39
+똑같은 t레퍼런스로 월 일 요일 시간까지 표현된다.
+
+--------------------------------------------------------------------------------------------------
+
+*CLI(Command Line Interface)
+명령어(Command)를 사용하는 인터페이스
+예)MS - DOS
+
+GUI(Graphic User Interface)
+Graphic기반의 사용자 인터페이스.
+예)MS - Windows, MacOS
+
+
+Container
+다른 컴포넌트를 담는 그릇(박스) 같은 역할
+
+
+JFrame-------------------------창 그 자체
+JPanel---------------------기능을 넣는 박스|
+                               |     |
+         JLabel               |     |
+         JTextField          |     |
+         JLabel               |     |
+         JTextField          |     |
+         JCheckBox         |     |
+                               |     |
+----------------------------     |
+---------------------------------
+
+
+*Frame만들기
+public class MyFrame extends JFrame { 
+	public MyFrame(){
+		this.setTitle("학사관리");		//창 이름
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//창 닫기 클릭시 종료
+
+		Container contentPane = this.getContentPane();	//컨테이너 선언
+		
+		contentPane.setBackground(Color.DARK_GRAY);	//컨테이너 배경색
+		contentPane.setLayout(new FlowLayout());	//FlowLayout 배치관리자
+		
+		contentPane.add(new JButton("Ok"));		//Ok 버튼 달기
+		contentPane.add(new JButton("Cancel"));	//Cancel 버튼 달기
+		contentPane.add(new JButton("Ignore"));		//Ignore 버튼 달기
+		
+
+
+		this.setSize(300,300);		//창 사이  Size&Visible은 코딩시 맨 마지막에
+		this.setResizable(false);	//창 조절 안됨
+		this.setVisible(true);		//창 보임
+	}
+	main method~(){
+		new MyFrame();
+	}
+}
+
+//이미 기초가 있는 JFrame 상속 받아 사용.(기본적으로 최소화 최대화 종료 버튼 3개가 있다)
+
+
+*setDefaultCloseOperation(JFrame.Exit_ON_CLOSE);	//필수 코드 종료 버튼 클릭시 백그라운드에서도 종료
+
+
+배치관리자
+*FlowLayout
+공간 내에 왼쪽에서 오른쪽으로 배치
+가로 길이에 영향을 받는다.
+좁으면 아래 줄로 내려간다.
+
+오버로딩
+FlowLayout()
+FlowLayout(int align)
+FLowLayout(int align, int hGap,int vGap)
+
+align : 컴포넌트 정렬 방법. 왼쪽정렬(FlowLayout.LEFT), 오른쪽정렬(FlowLayout.RIGHT), 중앙정렬(FlowLayout.CENTER(디폴트))
+
+hGap : 좌우 수평간격, 픽셀단위. 디폴트5
+vGap : 위아래 수직간격,픽셀단위.디폴트5
+
+
+*BorderLayout (이클립스 모양)
+동서남북으로 나누고 센터가 크다.
+컨테이너의 크기가 변하면 재배치
+
+container.setLayout(new BorderLayout());			//BorderLayout(hGap,vGap);
+container.add(new JButton("div"),BorderLayout.WEST);
+container.add(new JButton("Calculate"),borderLadyout.CENTER);
+
+*GridLayout
+그리드(격자)모양으로 분할하여 각 셀에 하나씩 컴포넌트 배치
+
+container.setLayout(new GridLayout(4,3));	//4X3 분할로 컴포넌트 배치
+container.add(new JButton("1"));		//상단 왼쪽 첫 번째 셀에 버튼 배치
+container.add(new JButton("2"));		//그 옆 셀에 버튼 배치
+
+
+배치관리자 없는 컨테이너
+-크기나 위치를 개발자가 결정하고자 할때
+-시간이나 마우스/키보드의 입력에 따라 컴포넌트들의 위치와 크기가 수시로 변할때
+-여러 컴포넌트를 겹치게 연출하고 싶을때
+
+@.setLayout(null);
+
+
+JButton btn1 = new JButton("버튼이름");
+btn1.setBountds( 수평 좌표, 수직 좌표, 버튼넓이 , 버튼높이);
+@.add(btn1);
+
+void setSize(int width, int height)	//컴포넌트를 넓이*높이 크기로 설정
+void setLocation(int x, int y)		//컴포넌트의 왼쪽 상단 모서리 좌표를 (x,y)로 설정
+void setBounds(int x, int y, int width, int height) //크기와 위치 동시 설정
+
+
+-------------------------------------------------------------------------------------------------
+
+*Event
+SW를 사용하면서 발생하는 모든 일
+
+Event 기반 프로그래밍
+어떤 Event가 발생했을때 어떤 일을 수행하도록 하는 프로그래밍
+
+Event Listener
+이벤트가 발생했을 때 어던 일을 수행할지를 지정
+
+
+
+Event -> 그에 연결되는 리스너 : Event 이름Listener
+ex) 
+이벤트 종류	리스너'인터페이스'		리스너의 '추상 메소드'
+Action 	->	 Actionlistener 	->	void actionPerformed(ActionEvent)
+
+이벤트 발생->리스너에 의해 추상 메소드 호출->오버라이딩한 메소드를 실행 (Call Back 자동 호출 메소드)
+
+
+JButton.addActionListener(); //Action리스너
+
+JButton.addActionListener(new MyButtonListener1());
+
+
+
+class MyActionListener implements ActionListener {	//인터페이스
+	public void actionPerformed(ActionEvent e){	//ActionEvent 발생한 이벤트 객체
+		JButton b = (JButton)e.getsource();	//e.getsource()로 이벤트 내용 불러오기 
+						  단, object 자료형이므로 JButton로 캐스팅
+	
