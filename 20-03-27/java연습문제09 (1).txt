@@ -1,0 +1,425 @@
+1.화면에 현재 시간을 출력하는 Label을 만들고,
+각 버튼을 클릭하면
+
+버튼1 - 외부클래스
+버튼2 - 내부클래스
+버튼3 - 익명클래스
+버튼4 - 메인클래스가 직접 리스너상속
+해서 중앙 Label에 시간 출력
+
+4가지 방법으로 현재 날짜/시간이 출력되게 하시오.
+
+2. 현재 시간을 구해서 
+
+12시 미만 : Good Morning
+12~18 : Good Afternoon
+18이후 : Good Evening
+
+메시지를 Label에 출력하시오.
+
+3. Gallery 프로그램을 좌우 화살표를 이용해서 이미지가
+출력되도록 변경하시오. (예제11-7활용)
+
+4. 3번에서 마지막까지 가면, 다시 처음으로 이동하고,
+ 처음으로 가면, 다시 마지막으로 이동하게 하시오.
+
+
+//날짜 정보 얻어오는 캘린더 클래스
+package practice09;
+
+import java.util.Calendar;
+
+public class TimeInfo {
+	private String slash = new String("/");
+	public String s = new String();
+	public int t =0;
+	
+	public TimeInfo() {
+		Calendar now = Calendar.getInstance();
+		
+		int t = now.get(Calendar.HOUR_OF_DAY);
+		
+		this.t = t;
+		
+				
+		String hour = Integer.toString(now.get(Calendar.HOUR_OF_DAY));
+		String min = Integer.toString(now.get(Calendar.MINUTE));
+		String sec = Integer.toString(now.get(Calendar.SECOND));
+		
+		this.s = hour.concat(slash.concat(min.concat(slash.concat(sec))));
+		
+	}
+}
+
+
+//Gallery(잘못만든 클래스 - 키리스너로 방향키 값을 받아 사진 변경)
+package practice09;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+
+public class Gallery extends JFrame {
+	
+	private JRadioButton[] radio = new JRadioButton [3];
+	private JLabel imageLabel = new JLabel();
+	private String[] text = {"사과","배","체리"};
+	private ImageIcon[] image = {
+			new ImageIcon("images/apple.jpg"),
+			new ImageIcon("images/pear.jpg"),
+			new ImageIcon("images/cherry.jpg")
+	};
+	public int index =0;
+	
+	public Gallery(){
+		this.setTitle("Gallelry");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container c = getContentPane();
+		
+		c.setLayout(new BorderLayout());
+		
+		JPanel radioPanel = new JPanel();
+		
+		radioPanel.setBackground(Color.GRAY);
+		
+		ButtonGroup g = new ButtonGroup();
+		
+		for(int i = 0 ;i <radio.length;i++) {
+			index = i;
+			radio[i] = new JRadioButton(text[i]);
+			g.add(radio[i]);
+			radioPanel.add(radio[i]);
+			radio[i].addItemListener(new MyItemListener());
+		}
+		imageLabel.setIcon(image[index]);
+		c.addKeyListener(new MyKeyListener());
+		
+		c.add(radioPanel, BorderLayout.NORTH);
+		c.add(imageLabel, BorderLayout.CENTER);
+		
+		imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		radio[2].setSelected(true);
+		this.setSize(250, 200);
+		this.setVisible(true);
+		
+		c.setFocusable(true);
+		c.requestFocus();
+		
+	}
+	
+	class MyItemListener implements ItemListener{
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			
+			if(e.getStateChange() == ItemEvent.DESELECTED)
+				return;
+			
+			
+			
+		}
+		
+				
+	}
+	
+	class MyKeyListener extends KeyAdapter{
+		public void keyPressed(KeyEvent e) {
+			int keyCode = e.getKeyCode();
+			
+			
+			switch(keyCode) {
+			
+			case KeyEvent.VK_LEFT:
+				index--;
+				break;
+			case KeyEvent.VK_RIGHT:
+				index++;
+				break;
+			}
+			imageLabel.setIcon(image[index]);
+			
+		}
+	}
+	
+}
+
+//Gallery2 Class
+package practice09;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class Gallery2 extends JFrame {
+	
+	private JLabel imageLabel = new JLabel();
+	private ImageIcon[] image = {
+			new ImageIcon("images/apple.jpg"),
+			new ImageIcon("images/pear.jpg"),
+			new ImageIcon("images/cherry.jpg")
+	};
+	public int index =2;
+	
+	public Gallery2(){
+		this.setTitle("Gallelry2");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container c = getContentPane();
+		Container g = getContentPane();
+		
+		c.setLayout(new BorderLayout());
+		
+		JPanel radioPanel = new JPanel();
+		
+		radioPanel.setBackground(Color.GRAY);
+		
+		
+		
+		JButton btn = new JButton("Prev");
+		JButton btn2 = new JButton("Next");
+			
+		g.add(btn);
+		g.add(btn2);
+		
+		radioPanel.add(btn);
+		radioPanel.add(btn2);
+		
+		
+		btn.addActionListener(new MyActionListener());
+		btn2.addActionListener(new MyActionListener());
+		
+		
+		imageLabel.setIcon(image[index]);
+		c.add(radioPanel, BorderLayout.NORTH);
+		c.add(imageLabel, BorderLayout.CENTER);
+		
+		imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		this.setSize(250, 200);
+		this.setVisible(true);
+		
+		c.setFocusable(true);
+		c.requestFocus();
+		
+	}
+	
+	class MyActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton b= (JButton)e.getSource();
+			if(b.getText().equals("Prev"))
+				index--;
+			else if(b.getText().equals("Next"))
+				index++;
+			
+			if(index<0)
+				index = 2;
+			else if(index>2)
+				index = 0;
+			
+			imageLabel.setIcon(image[index]);
+			
+		}	
+	}		
+}
+
+//외부 ActionListener Class
+package practice09;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+class MyActionListener1 implements ActionListener{		
+	MainMethod lis;
+	public MyActionListener1(MainMethod lis) {
+		this.lis = lis;
+}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton c= (JButton)e.getSource();
+		if(c.getText().equals("버튼1")) {
+			lis.timeinfo.setText(new TimeInfo().s);
+		}
+		
+	}
+	
+}
+
+
+//MainMethod Class
+package practice09;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+
+
+
+	
+public class MainMethod extends JFrame implements ActionListener{
+	JLabel timeinfo;
+	public JLabel ti = new JLabel();
+	public int index =1;
+	
+	public MainMethod() {
+		timeinfo = new JLabel();
+		MyActionListener1 lis = new MyActionListener1(this);
+		
+		this.setTitle("시간 출력");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//1.화면에 현재 시간을 출력하는 Label 제작
+		//각 버튼 클릭하면 중앙 Label에 시간 출력
+		
+		Container selBox = getContentPane();
+		Container c  = getContentPane();
+		
+		JPanel selPanel = new JPanel();
+				 
+		JButton btn1 = new JButton("버튼1");
+		btn1.addActionListener(lis);
+		selBox.add(btn1);
+	
+		
+		JButton btn2 = new JButton("버튼2");
+		btn2.addActionListener(new ActionListener() {
+				
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton c= (JButton)e.getSource();
+				if(c.getText().equals("버튼2")) {
+					timeinfo.setText(new TimeInfo().s);
+					index = 1;
+				}
+				
+			}
+
+		});
+		selBox.add(btn2);
+		
+		
+		JButton btn3 = new JButton("버튼3");
+		btn3.addActionListener(new MyActionListener3());
+		selBox.add(btn3);
+		
+		JButton btn4 = new JButton("버튼4");
+		btn4.addActionListener(this);
+		selBox.add(btn4);
+		
+		
+		
+		
+		
+		
+		selPanel.add(btn1);
+		selPanel.add(btn2);
+		selPanel.add(btn3);
+		selPanel.add(btn4);
+				
+		
+		//2.현재 시간 구해서 인사 Label로 표기하기
+		TimeInfo time = new TimeInfo();		
+		
+		c.setLayout(new BorderLayout());
+		
+		if(time.t < 12)
+			ti = new JLabel("Good Morning");
+		else if(time.t >= 12 && time.t <18)
+			ti = new JLabel("Good Afternoon");
+		else if(time.t >= 18)
+			ti = new JLabel("Good Evening");
+		else
+			ti = new JLabel("Error");
+		
+
+		
+		
+		timeinfo.setText("정보 없음");	
+		
+		
+		c.add(timeinfo, BorderLayout.NORTH);
+		c.add(ti,BorderLayout.CENTER);
+		c.add(selPanel,BorderLayout.SOUTH);
+		ti.setHorizontalAlignment(SwingConstants.CENTER);
+		timeinfo.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		
+		
+		
+		this.setSize(350,200);
+		this.setVisible(true);
+		
+		c.setFocusable(true);
+		c.requestFocus();
+		
+	}
+	
+	class MyActionListener3 implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+						
+				timeinfo.setText(new TimeInfo().s);
+				index =1;
+					
+		}
+		
+	}
+		
+	
+	public static void main(String[] args) {
+		new MainMethod();
+		//잘못 이해해서 만든 코딩-키보드 방향키로 이미지 전환(미완성)
+		new Gallery();
+		new Gallery2();
+		
+		
+
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		TimeInfo time4 = new TimeInfo();
+		JButton c= (JButton)e.getSource();
+		if(c.getText().equals("버튼4")) {
+			timeinfo.setText(time4.s);
+			index =1;
+		}
+		
+	}
+
+}

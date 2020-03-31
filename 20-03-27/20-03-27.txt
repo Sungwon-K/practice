@@ -1,0 +1,41 @@
+java에서 이벤트 처리 방법
+
+1.외부
+
+2.내부
+
+3.익명
+
+4.클래스자신
+
+
+이벤트		리스너(인터페이스)		적용메소드
+Action		ActionListener		addActionListener(    )
+		        ↑				           ↑
+		class MyAction		MyAction 인스턴스 호출
+		오버라이딩(actionPerformed)
+
+
+*actionPerformed(ActionEvent e)
+-e에 모든 ActioneEvent 정보가 담겨있다. e는 오브젝트 타입
+
+※버튼이 많을 경우 e.getSource로 e에서 ActionEvent정보를 받아서 if처리하여
+하나의 클래스에서 모든 버튼의 반응을 코딩할 수 있다.
+
+
+*Listener->Adapter로 변환가능
+오버라이딩 해야할 추상메소드가 많은 리스너들을 사용할때 ,
+사용하지 않는 추상메소드까지 오버라이딩 해야하는 불편함이 있다.
+그래서 인터페이스인 리스너 대신 어댑터를 사용하여 필요한 추상메소드만 오버라이딩할 수 있다.
+
+
+*e.getClickCount() ==2
+더블클릭이라는 의미
+
+
+*if(e.getWheelRotation()<0){
+	위로 올렸을때
+}
+else{
+	밑으로 내렸을때
+}
