@@ -1,0 +1,29 @@
+*Java는 Thread로 멀티태스킹 구현 가능
+-Thread는 Process의 Subset 개념
+
+
+*자바 SW는 기본적으로 Main Thread가 만들어져 실행됨
+-main method는 main thread에서 동작
+
+사용자가 Thread를 추가 생성 가능
+
+*Multi Thread
+-동시에 2개이상의 Thread가 동작
+-Thread가 각각 일을 처리
+-멀티쓰레드가 효과적으로 처리되려면 cpu가 2개 이상이 좋다
+예)채팅프로그램에서 수신,송신 동시 처리
+    파일다운로드 시간이 오래 걸릴 경우 쓰레드 처리
+
+*Thread 만드는 2가지 방법
+java.lang.Thread Class를 이용
+java.lang.Runnable interface 이용
+
+
+*A.setPriority(int @);
+우선순위 지정
+
+
+*쓰레드 동기화(Thread Synchronization) -순서대로
+-쓰레드는 기본이 비동기(Asynchronous)
+-쓰레드간 공유데이터가 있을때 공유 데이터 접근시 순서대로 진입
+

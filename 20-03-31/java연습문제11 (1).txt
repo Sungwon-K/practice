@@ -1,0 +1,97 @@
+1. 쓰레드를 사용해서 디지털시계를 작성하시오.
+
+//Calendar Class
+package practice11;
+
+import java.util.Calendar;
+
+public class TimeInfo {
+	private String slash = new String(" : ");
+	public String s = new String();
+	public int t =0;
+	
+	public TimeInfo() {
+		Calendar now = Calendar.getInstance();
+		
+		int t = now.get(Calendar.HOUR_OF_DAY);
+		
+		this.t = t;
+		
+				
+		String hour = Integer.toString(now.get(Calendar.HOUR_OF_DAY));
+		String min = Integer.toString(now.get(Calendar.MINUTE));
+		String sec = Integer.toString(now.get(Calendar.SECOND));
+		
+		this.s = hour.concat(slash.concat(min.concat(slash.concat(sec))));
+		
+	}
+}
+
+//MainMethod Class
+package practice11;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+class TimerRunnable implements Runnable{
+	private JLabel timerLabel;
+	
+	
+	public TimerRunnable(JLabel timerLabel) {
+		this.timerLabel = timerLabel;
+	}
+	@Override
+	public void run() {
+		
+		while(true) {
+			TimeInfo time = new TimeInfo();
+			timerLabel.setText(time.s);
+			try {
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException e) {
+				return;
+			}
+		}
+		
+	}
+}
+
+public class MM0331 extends JFrame{
+	public MM0331() {
+		this.setTitle("Runnable을 구현한 타이머 스레드 예제");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container c = getContentPane();
+		
+		c.setLayout(new FlowLayout());
+		
+		JLabel timerLabel = new JLabel();
+		
+		timerLabel.setFont(new Font("Gothic",Font.ITALIC,80));
+		
+		c.add(timerLabel);
+		
+		
+		TimerRunnable runnable = new TimerRunnable(timerLabel);
+		
+		Thread th = new Thread(runnable);
+		
+		this.setSize(550,200);
+		this.setVisible(true);
+		th.start();
+		
+		
+	}
+
+
+
+	public static void main(String[] args) {
+		new MM0331();
+
+	}	
+}
