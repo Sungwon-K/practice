@@ -1,0 +1,81 @@
+1. student 테이블을 생성하시오. 모든 항목 not null.
+
+id varchar(10)
+name varchar(20)
+department varchar(30)
+address varchar(50)
+
+2. student 테이블에 데이터를 입력하시오.
+
+20160001 홍길동 컴퓨터공학과 서울시 영등포구
+20162233 이순신 멀티미디어학과 부산시 남구
+20161177 왕건 멀티미디어학과 강원도 삼척시
+
+
+3. 학번,이름,학과를 출력하시오.
+
+4. 컴퓨터공학과 학생만 출력하시오.
+
+5. 서울시에 사는 학생만 출력하시오.
+
+6. 학번순으로 정렬해서 출력하시오. 오름차순
+
+7. 이름순으로 정렬해서 출력하시오. 내림차순
+
+8. 학과별, 학번별로 정렬해서 출력하시오. 모두 오름차순.
+
+order by department, id
+
+9. 멀티미디어학과 학생들만 검색해서 student_MultiMedia
+테이블을 생성하시오.
+
+
+
+1.
+CREATE TABLE student(
+    id varchar(10) primary key,
+    name varchar(20) not null,
+    department varchar(30),
+    address varchar(50)
+);
+
+2.
+insert  into student values('20160001','홍길동','컴퓨터공학과','서울시 영등포구');
+insert  into student values('20162233','이순신','멀티미디어학과','부산시 남구');
+insert  into student values('20161177','왕건','멀티미디어학과','강원도 삼척시');
+
+
+3.
+select id,name,department from student;
+
+
+4.
+select * from student where department = '컴퓨터공학과';
+
+
+5.
+select * from student where address = '서울시 영등포구';
+
+
+6.
+select * from student order by id;
+
+
+7.
+select * from student order by name asc;
+
+
+8.
+select * from student order by department,id;
+
+
+9.
+CREATE TABLE student_MultiMedia
+as
+select * from student where department = '멀티미디어학과';
+
+
+ 
+
+
+

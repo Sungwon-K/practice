@@ -1,0 +1,67 @@
+TCP/IP
+
+패킷(Packet)
+-인터네쇼에서 데이터를 전송하는 단위
+
+패킷 교환방식
+
+TCP는 데이터를 주고 받을 양단 간에 먼저 연결을 설정하고 설정된 연결을 통
+
+신뢰성 - TCP는 메시지 수신을 확인하지만 UDP는 수신자가 메시지를 수신했는지
+
+
+UDP를 사용하면 데이터 신뢰도는 떨어지지만 속도는 빠르다.
+
+
+SQL(Structured Query Language)
+-구조화 질의 언어
+-RDB에서 사용하는 언어.
+-Oracle,MySQL,MS-SQLServer,MariaDB,PostgreSQL 등등
+
+PL/SQL
+-Oracle에서 사용하는 확장된 SQL
+-변수,조건문,반복문,함수 등 프로그래밍언어의 요소가 확장되어 있음
+
+DB(DataBase)
+-데이터를 저장하는 물리적 공간(파일)
+
+DBMS(DataBase Management System)
+-DB를 관리하는 프로그램(시스템)
+
+
+
+현재는 DataBase == DB + DBMS
+
+SQL Developer는 GUI기반의 개발도구
+-이클립스와 비슷한 역할
+
+
+*1.DB설치
+
+*2.DB생성
+
+*3.사용자생성-권한설정.
+
+*4.테이블생성
+
+*5.데이터입력
+
+*6.조회
+
+
+-------------
+스키마(schema)
+-DB 구조를 나타내는 표현
+
+
+CRUD
+
+1.Create - insert
+2.Read   - select
+3.Update - update
+4.Delete  - delete
+
+
+DCL(Data Control Language)
+-권한설정, 권한해제
+ex) grant
