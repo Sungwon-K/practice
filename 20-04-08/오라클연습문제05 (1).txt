@@ -1,0 +1,199 @@
+1. 상품테이블(재고)을 생성하시오.
+	상품번호, 상품명, 가격, 재고량
+
+2. 입고테이블을 생성하시오.
+	입고번호, 상품번호, 입고량, 입고날짜
+
+3. 출고테이블을 생성하시오.
+	출고번호, 상품번호, 출고량, 출고날짜
+
+4. 1번테이블에 데이터를 5건이상 입력하시오.
+
+5. 2번테이블에 데이터가 입력되면 1번 테이블을 업데이트 하시오.
+	insert into 입고 ....
+	update 재고 set 재고량=재고량+입고량 ...
+	update jego set jegoea=jegoea+inputea
+        where ...
+
+
+6. 3번테이블에 데이터가 입력되면 1번 테이블을 업데이트 하시오.
+	insert into 출고 ....
+	update 재고 set 재고량=재고량-출고량 ...
+
+7. 5~6번 처리를 할 때 중요한 점은?
+
+8. 가장 재고량이 많은 상품을 구하시오.
+	상품명, 재고량
+
+9. 입고횟수가 가장 많은 상품을 구하시오.
+	상품명, 총입고횟수
+
+10. 2017년에 입고된 상품목록을 구하시오.
+
+11. 연도,상품별 출고량의 합을 구하시오. 다음 형식으로 출력.
+
+2018 mp3 1000
+2018 car 50
+
+12. employees테이블의 manager_id를 매개변수로 사용해서
+상사의 이름을 리턴하는 함수를 생성하시오.
+
+
+select emp_name, manager_name(manager_id)
+from employees;
+
+13. employees테이블을 데이터 없이 복사해서 
+employees2테이블을
+생성하시오.
+
+14. employees에서 salary가 3000이 넘는 사람을 조회해서
+1번에서 만든 employees2테이블에 insert하는 
+stored procedure를
+생성하고 실행하시오.
+
+
+--1.상품테이블을 생성하시오.
+create table product_stock(
+    pNo number primary key,
+    pro_name varchar2(20) not null,
+    price varchar2(20) not null,
+    pro_stock varchar2(20) not null
+);
+
+
+
+--2.입고테이블을 생성하시오.
+create table product_in(
+    iNo number primary key,
+    pNo number not null,
+    in_amount varchar(20) not null,
+    in_date date not null,
+    CONSTRAINT fk_product_in foreign key(pNo)
+    REFERENCES product_stock(pNo) on delete cascade
+);
+
+
+
+--3.출고테이블을 생성하시오.
+create table product_out(
+    oNo number primary key,
+    pNo number not null,
+    out_amount varchar(20) not null,
+    out_date date not null,
+    CONSTRAINT fk_product_out foreign key(pNo)
+    REFERENCES product_stock(pNo) on delete cascade
+);
+
+
+
+
+--4.1번 테이블에 데이터를 5건 이상 입력하시오.
+insert into product_stock values('001','A','1000','10');
+insert into product_stock values('002','B','2000','20');
+insert into product_stock values('003','C','3000','30');
+insert into product_stock values('004','D','4000','40');
+insert into product_stock values('005','E','5000','50');
+
+
+
+--5.2번 테이블에 데이터가 입력되면 1번 테이블을 업데이트 하시오.
+create or replace procedure product_input(
+    p_iNo in product_in.ino%type,
+    p_pNo in product_in.pno%type,
+    p_in_amount in product_in.in_amount%type
+)
+is
+begin
+    insert into product_in (iNo,pNo,in_amount,in_date) values ( p_iNo, p_pNo, p_in_amount, sysdate); 
+   
+    update product_stock set pro_stock = pro_stock + p_in_amount
+    where p_pno = product_stock.pno;
+    commit;
+end;
+
+
+
+--6.3번 테이블에 데이터가 입력되면 1번 테이블을 업데이트 하시오.
+create or replace procedure product_output(
+    p_oNo in product_out.ono%type,
+    p_pNo in product_out.pno%type,
+    p_out_amount in product_out.out_amount%type
+)
+is
+begin
+    insert into product_out (oNo,pNo,out_amount,out_date) values ( p_oNo, p_pNo, p_out_amount, sysdate); 
+   
+    update product_stock set pro_stock = pro_stock - p_out_amount
+    where p_pno = product_stock.pno;
+    commit;
+end;
+
+
+
+--7.5~6번 처리를 할 때 중요한 점은?
+--프로시저 연산이 잘못되면 테이블에 영향을 끼치므로 조심해야한다.
+--프로시저 속성값과 대응하는 테이블의 속성값을 제대로 연결하지 않으면 예상치 못한 오류가 발생할 수 있다.
+
+
+
+--8.가장 재고량이 많은 상품을 구하시오.
+select pro_name,pro_stock from product_stock where pro_stock = ( select max(pro_stock) from product_stock);
+
+
+
+--9.입고 횟수가 가장 많은 상품을 구하시오.
+select b.pro_name,count(a.pno)
+from  product_in a, product_stock b
+where a.pno = b.pno
+group by b.pro_name
+having count(a.pno) = (select max(count(a.pno)) from product_in group by pno);
+
+
+
+--10.2017년에 입고된 상품목록을 구하시오.
+select * from product_in where to_char(in_date,'YYYY') like '2017%';
+
+
+
+--11.연도,상품별 출고량의 합을 구하시오. 다음 형식으로 출력.
+select to_char(a.out_date,'YYYY') ,b.pro_name, sum(a.out_amount)
+from product_out a, product_stock b
+where a.pno = b.pno
+group by to_char(a.out_date,'YYYY'), b.pro_name;
+
+
+--12.employees테이블의 manager_id를 매개변수로 사용해서 상사의 이름을 리턴하는 함수를 생성하시오.
+create or replace function manager_name( f_manager_id number)
+    return VARCHAR2
+is
+    vs_emp_name employees.emp_name%type;
+    
+begin
+    select emp_name
+    into vs_emp_name
+    from employees
+    where employee_id = f_manager_id;
+    
+    return  vs_emp_name;
+end;
+
+select emp_name,manager_name(manager_id) from employees;
+
+
+
+--13.employees테이블을 데이터 없이 복사해서 employees2테이블을 생성하시오.
+create table employees2 as select * from employees where 1!=1;
+
+
+
+--14.employees에서 salary가 3000이 넘는 사람을 조회해서 1번에서 만든 employees2테이블에
+--insert하는 stored procedure를 생성하고 실행하시오.
+create or replace procedure employees_search
+is
+begin
+    insert into employees2 select * from employees where salary >= 3000;
+end;
+
+exec employees_search;
+
+

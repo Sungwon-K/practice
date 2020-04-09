@@ -1,0 +1,167 @@
+1. 동아리(Dongari) 테이블을 생성하시오.
+	
+	동아리ID, 동아리이름
+
+
+2. 동아리(DongariJoin) 가입현황 테이블을 생성하시오.
+   => 한 명의 학생이 여러 동아리에 복 수로 가입할 수 있음.
+		
+	번호, 학생ID, 동아리ID
+
+
+3. 동아리 가입현황 목록을 출력하시오.
+	
+	동아리이름, 학생명, 학생ID
+
+
+4. 동아리에 가입하지 않은 학생목록을 출력하시오.
+
+	학생이름
+
+
+5. 한 명의 학생도 가입하지 않은 동아리목록을 출력하시오.
+=> 있다고 가정
+
+	동아리이름
+
+
+6. Book테이블을 생성하고, bid를 pk로 설정하고,데이터를 입력하시오.
+
+bid varchar(10) -- 책번호
+title varchar(20) -- 책제목
+
+0001 자바
+0002 Oracle
+0003 HTML
+0004 JSP
+
+7. bookRent 테이블을 생성하시오. id,bid를 참조키로 설정하시오.
+no는 pk.
+
+no number -- 대출번호
+id varchar(10) -- 학번
+bid varchar(10) -- 책번호
+rdate date -- 대출일
+
+
+8. 7번 테이블에 다음 데이터를 입력하시오.
+
+1 20160001 0001 2016-12-01
+2 20162233 0002 2016-12-02
+
+
+9. 학번,학생명,대출한 책이름, 대출일을 출력하시오.
+
+10. 한번도 대출되지 않은 책의 목록을 출력하시오.
+
+
+--1.동아리 테이블을 생성
+create table dongari(
+    dong_id varchar2(20) primary key,
+    dong_name varchar2(20) not null
+);
+
+insert into dongari values('001','추욱구우');
+insert into dongari values('002','노옹구우');
+insert into dongari values('003','야아구우');
+insert into dongari values('004','고올프으');
+insert into dongari values('005','노오래애');
+insert into dongari values('006','배앤드으');
+insert into dongari values('007','하악수울');
+insert into dongari values('008','디자아이인');
+insert into dongari values('009','으응워언');
+
+--2.동아리 가입현황 테이블을 생성
+create table dongari_join(
+    dong_num number primary key,
+    dong_id varchar2(20) not null,
+    id varchar2(20) not null,
+    constraint fk_dongari_join foreign key(dong_id)
+    references dongari(dong_id) on delete cascade,
+    constraint fk_dongari_join2 foreign key(id)
+    references student(id) on delete cascade    
+);
+
+create SEQUENCE seq_dongari_join;
+
+insert into dongari_join values(seq_dongari_join.nextval,'001','20160001');
+insert into dongari_join values(seq_dongari_join.nextval,'003','20160001');
+insert into dongari_join values(seq_dongari_join.nextval,'008','20160001');
+insert into dongari_join values(seq_dongari_join.nextval,'009','20160001');
+insert into dongari_join values(seq_dongari_join.nextval,'002','20161177');
+insert into dongari_join values(seq_dongari_join.nextval,'005','20161177');
+insert into dongari_join values(seq_dongari_join.nextval,'006','20161177');
+insert into dongari_join values(seq_dongari_join.nextval,'008','20161177');
+insert into dongari_join values(seq_dongari_join.nextval,'009','20161177');
+
+
+
+--3.동아리 가입현환 목록을 출력하세요
+select a.dong_name, b.name, b.id
+from dongari a, student b, dongari_join c
+where a.dong_id = c.dong_id and b.id = c.id
+order by b.id;
+
+
+
+--4.동아리에 가입하지 않은 학생목록을 출력하세요
+select a.name
+from student a, dongari_join b
+where a.id = b.id(+)
+and b.dong_id is null;
+
+
+
+--5.한명의 학생도 가입하지 않은 동아리 목록을 출력하시오.
+select dong_name
+from dongari a, dongari_join b
+where a.dong_id = b.dong_id(+)
+and b.dong_num is null;
+
+
+
+--6.book테이블을 생성하고, bid를 pk로 설정하고, 데이터를 입력하시오.
+create table book(
+    bid varchar(10) primary key,
+    title varchar(20) not null
+);
+
+insert into  book values('0001','자바');
+insert into  book values('0002','Oracle');
+insert into  book values('0003','html');
+insert into  book values('0004','jsp');
+
+
+
+--7.bookRent 테이블 생성하시오. id,bid를 참조키로 설정하시오
+create table bookRent(
+    no number primary key,
+    id varchar(10) not null,
+    bid varchar(10) not null,
+    rdate date not null,
+    constraint fk_bookRent foreign key(id)
+    references student(id) on delete cascade,
+    constraint fk_bookRent2 foreign key(bid)
+    references book(bid) on delete cascade    
+    
+);
+
+create SEQUENCE seq_bookRent;
+
+
+--8.7번 테이블에 다음 데이터를 입력하세요
+insert into bookRent values(seq_bookRent.nextval,'20160001','0001','2016-12-01');
+insert into bookRent values(seq_bookRent.nextval,'20162233','0002','2016-12-02');
+
+
+--9.학번, 학생명, 대출한 책이름, 대출일을 출력하세요
+select a.id, a.name, b.title, c.rdate
+from student a, book b, bookrent c
+where a.id = c.id and b.bid = c.bid;
+
+
+-10.한번도 대출되지 않은 책의 목록을 출력하시오.
+select title
+from book a, bookrent b
+where a.bid = b.bid(+)
+and b.no is null;

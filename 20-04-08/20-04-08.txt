@@ -1,0 +1,241 @@
+RDB
+
+*모든 테이블에 PK가 있는게 권장
+-ACCESS에서는 테이블에 PK칼럼을 안 만들면 자동생성
+-PK와 나머지 컬럼을 어떻게 설정(생성)할 것인가?
+ PK와 나머지 종속적인 컬럼을 어떻게 구성할 것인가?
+
+
+제1정규화
+속성 중 여러개의 중복된 속성값을 가질경우 각 1개의 개별 속성을 가지도록 분리
+
+제2정규화
+슈퍼키가 있을 경우, 슈퍼키에 종속적이지 않는 속성을 분리
+
+제3정규화
+기본키 이외에 속성에 종속된 속성을 제거
+
+제4정규화
+-다 대 다 관계를 1 : 다, 다 : 1로 분리
+-중간에 관계테이블을 생성해서 구현
+
+회원과 상품 => 주문
+학생과 도서 => 대여
+
+DeNormalization 비정규화
+=>성능향상을 위해서 일부러 Normalization을 역행하는것.
+ex)join에 참여하는 테이블이 너무 많아서 join속도가 느려지면 일부러 테이블을 합쳐서 숫자를 줄임
+
+
+
+*set serveroutput on;
+-pl/sql전에 실행해줘야한다.
+
+
+*pl/sql문
+-익명 블록(익명 프로시저)
+declare
+    vs_emp_name varchar(80);
+    vs_dep_name varchar(80);
+    --vs_emp_name employees.emp_name%type;
+    --vs_dep_name departments.department_name%type; 
+begin
+    select a.emp_name, b.department_name 
+    into vs_emp_name, vs_dep_name
+    from employees a, department b
+    where a.department_id=b.depart
+    and a.employee_id = 100;
+    
+    dbms_output.put_line(vs_emp_name || '-' || vs_dep_name);
+end;
+
+declare - begin - end 로 엮어진 한세트
+begin 다음에 계속해서 내용이 추가된다.
+
+
+
+PL/SQL의 주요 Object
+
+1.함수
+2.저장프로시져
+3.트리거
+
+PL/SQL은 oracle에서 사용
+MS-SQLServer에서는 T-SQL이라고함
+
+
+stored procedure(저장프로시저)
+
+oracle에서는 sp안에서 select한 결과를 응용프로그램에서 사용할 수 없다.
+->select한 결과를 테이블에 insert해서 사용
+
+ms-sqlserver는 가능.
+
+
+
+
+--1. in 매개변수 사용해서 대용량 테이블의 행 수 입력하는 프로시저 만들기
+create or replace procedure proc1(
+    p_year char
+)
+is
+    v_count number;
+begin
+    select count(*) into v_count
+    from sales
+    where substr(sales_month,1,4)=p_year;
+    
+    insert into yearcount values(p_year, v_count);
+    commit;
+      
+    dbms_output.put_line(v_count);
+end;
+
+exec proc1('1998');
+exec proc1('1999');
+
+create table yearcount(
+    year char(4) primary key,
+    counts number not null
+);
+select * from yearcount;
+
+
+
+--2. out 매개변수 사용해서 테이블의 행 수 출력(print x, 변수에 저장)하는 프로시저 만들기
+
+create or replace procedure proc2(
+    p_year char, 
+    p_count out number
+)
+is
+    v_count number;
+begin
+    select count(*) into v_count
+    from sales
+    where substr(sales_month,1,4)=p_year;      
+    dbms_output.put_line(v_count);
+    
+    p_count:=v_count; -- output, auto return (print x)
+end;
+
+--2-1. 익명블록에서 저장된 출력값 return하게 만들기
+declare
+    r_count number; --return value saving point
+begin
+    proc2('1998', r_count);--return value saved at r_count
+    dbms_output.put_line(r_count);
+    insert into yearcount values(2000, r_count);
+    commit;
+end;
+
+--2-2. 익명블록 대신 프로시저 사용해서 테이블에 return값 입력하기 
+create or replace procedure proc3(
+    p_year in char
+)
+is
+    r_count number; --return value saving point
+begin
+    proc2(p_year, r_count);--return value saved at r_count
+    dbms_output.put_line(r_count);
+    insert into yearcount values(p_year, r_count);
+    commit;
+end;
+
+exec proc3(2001);
+
+
+index 만들기
+1.select 문의 where 절에 나오는 column으로 인덱스 생성
+
+2.primary key를 만들면 index가 자동생성
+
+
+--1.상품테이블을 생성하시오.
+create table product_stock(
+    pNo number primary key,
+    pro_name varchar2(20) not null,
+    price varchar2(20) not null,
+    pro_stock varchar2(20) not null
+);
+
+
+--2.입고테이블을 생성하시오.
+create table product_in(
+    iNo number primary key,
+    pNo number not null,
+    in_amount varchar(20) not null,
+    in_date date not null,
+    CONSTRAINT fk_product_in foreign key(pNo)
+    REFERENCES product_stock(pNo) on delete cascade
+);
+
+
+--3.출고테이블을 생성하시오.
+create table product_out(
+    oNo number primary key,
+    pNo number not null,
+    out_amount varchar(20) not null,
+    out_date date not null,
+    CONSTRAINT fk_product_out foreign key(pNo)
+    REFERENCES product_stock(pNo) on delete cascade
+);
+
+
+--4.1번 테이블에 데이터를 5건 이상 입력하시오.
+insert into product_stock values('001','A','1000','10');
+insert into product_stock values('002','B','2000','20');
+insert into product_stock values('003','C','3000','30');
+insert into product_stock values('004','D','4000','40');
+insert into product_stock values('005','E','5000','50');
+
+
+--5.2번 테이블에 데이터가 입력되면 1번 테이블을 업데이트 하시오.
+create or replace procedure product_input(
+    p_iNo in product_in.ino%type,
+    p_pNo in product_in.pno%type,
+    p_in_amount in product_in.in_amount%type
+)
+is
+begin
+    insert into product_in (iNo,pNo,in_amount,in_date) values ( p_iNo, p_pNo, p_in_amount, sysdate); 
+   
+    update product_stock set pro_stock = pro_stock + p_in_amount
+    where p_pno = product_stock.pno;
+    commit;
+end;
+
+
+--6.3번 테이블에 데이터가 입력되면 1번 테이블을 업데이트 하시오.
+create or replace procedure product_output(
+    p_oNo in product_out.ono%type,
+    p_pNo in product_out.pno%type,
+    p_out_amount in product_out.out_amount%type
+)
+is
+begin
+    insert into product_out (oNo,pNo,out_amount,out_date) values ( p_oNo, p_pNo, p_out_amount, sysdate); 
+   
+    update product_stock set pro_stock = pro_stock - p_out_amount
+    where p_pno = product_stock.pno;
+    commit;
+end;
+
+
+
+--7.5~6번 처리를 할 때 중요한 점은?
+--프로시저 연산이 잘못되면 테이블에 영향을 끼치므로 조심해야한다.
+--프로시저 속성값과 대응하는 테이블의 속성값을 제대로 연결하지 않으면 예상치 못한 오류가 발생할 수 있다.
+
+
+--8.가장 재고량이 많은 상품을 구하시오.
+select pro_name,pro_stock from product_stock where pro_stock = ( select max(pro_stock) from product_stock);
+
+
+
+--9.입고 횟수가 가장 많은 상품을 구하시오.
+select b.pro_name,count(a.pno)
+from product_in a, product_stock b
+where a.pno = b.pno
+      and b.pno = (select max(pno) from product_in )
+group by b.pro_name;

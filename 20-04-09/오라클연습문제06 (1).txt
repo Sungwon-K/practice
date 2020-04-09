@@ -1,0 +1,82 @@
+1. 재고테이블 생성
+	상품코드, 상품명, 재고량
+
+2. 입고테이블 생성
+	입고번호, 상품코드, 입고량, 입고일
+
+3. 출고테이블 생성
+	출고번호, 상품코드, 출고량, 출고일
+
+오라클연습문제05에서 만든 테이블 그대로 사용
+----------------------------------------------------------------------------
+
+4. 입고테이블에 insert되면 재고테이블을 update하는 트리거 생성.
+	after insert on 입고
+
+	:new 사용
+
+5. 출고테이블에 insert되면 재고테이블을 update하는 트리거 생성.
+	after insert on 출고
+
+	:new 사용
+
+
+
+--1.상품테이블을 생성하시오.
+create table product_stock(
+    pNo number primary key,
+    pro_name varchar2(20) not null,
+    price varchar2(20) not null,
+    pro_stock varchar2(20) not null
+);
+
+
+
+--2.입고테이블을 생성하시오.
+create table product_in(
+    iNo number primary key,
+    pNo number not null,
+    in_amount varchar(20) not null,
+    in_date date not null,
+    CONSTRAINT fk_product_in foreign key(pNo)
+    REFERENCES product_stock(pNo) on delete cascade
+);
+
+
+
+--3.출고테이블을 생성하시오.
+create table product_out(
+    oNo number primary key,
+    pNo number not null,
+    out_amount varchar(20) not null,
+    out_date date not null,
+    CONSTRAINT fk_product_out foreign key(pNo)
+    REFERENCES product_stock(pNo) on delete cascade
+);
+
+
+--4. 입고테이블에 insert되면 재고테이블을 update하는 트리거 생성.
+create or replace trigger product_in_tr
+after insert on product_in
+for each row 
+begin
+    update product_stock 
+    set product_stock.pro_stock = (product_stock.pro_stock + :new.in_amount)
+    where product_stock.pno = :new.pno;
+end;
+
+
+--5.출고테이블에 insert되면 재고테이블을 update하는 트리거 생성.
+create or replace trigger product_out_tr
+after insert on product_out
+for each row -- : new, :old 사용하기 위해서 필요(행단위로 작업 - 행단위 트리거)
+begin
+    update product_stock 
+    set product_stock.pro_stock = (product_stock.pro_stock - :new.out_amount)
+    where product_stock.pno = :new.pno;
+end;
+
+
+
+
+

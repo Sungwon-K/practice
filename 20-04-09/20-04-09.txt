@@ -1,0 +1,121 @@
+*index만들기
+
+1.select문의 where 절에 나오는 column으로 인덱스생성
+
+2.primary key를 만들면 index가 자동생성
+
+3.index를 만든 칼럼의 데이터분포가 계속 유동적인지 모니터링 필요.
+ex)select * from employees where department_id = 100;
+
+create index idx_employees_department_id on employees(departmen_id);
+
+ex)department_id값이 100인 행의 분포가 15%(잠정치)를 넘으면 index를 사용하는것이 더 느릴 수 있다.
+=>Query Optimizer가 판단해서 index를 사용하는것보다 사용하지 않는 것이 더 효과적이면
+    사용하지 않고 실행
+
+*Execution Plan(실행계획)
+=> sql컴파일러가 쿼리를 컴파일 할 때 Query Optimizer가 가장 효과적인 방법을 찾아서 실행계획을
+    만들고 이 실행계획에 따라 실행됨.
+=> index는 개발자와 관리자의 협업이 필요.
+
+
+4.index는 insert, update, delete 속도는 저하됨
+=>데이터 변화가 심한 경우는 index생성으로 얻는 이익과 비교해서 결정.
+
+
+-------------------------------------------------------------
+system tuning
+
+1. DB Tuning
+=> index,sql튜닝, table설계튜닝
+
+2. Application Tuning
+=> java코드에서 로직 개선
+
+3.H/W Tuning
+=> cpu, memory, hdd교체, 서버증설
+
+4.N/W Tuning
+=> N/W장비 교체,증설,회선속도 증설
+
+
+------------------------------------------
+Trigger
+-자동 실행 프로시져
+=>특정 테이블에서 이벤트(insert, update, delete)가 발생했을 때 자동 실행됨.
+=>에러가 발생하면 전체 작업 자동 rollback, 데이터의 일관성 유지
+=>:old : 이전 행으로 테이블이 자동생성됨
+    :new: 새로운 행으로 테이블이 자동생성됨
+    *트리거 내부에서만 사용가능
+
+
+*set serveroutput on;
+dbms_output 사용하려면 필요
+
+
+*예외처리 - exception
+ex)
+declare
+    vi_num number:=0;
+begin
+
+    vi_num := 10/0;
+    dbms_output.put_line('success!');
+    
+exception when othes then
+    dbms_output.put_line('오류가 발생했습니다'); --보통 여기에 roll back이 들어간다
+end;
+
+
+-raise_application_error(-20555,'에러발생');
+에러 발생처리
+강재로 에러가 발생했다는 처리를 한다
+
+
+
+*savepoint
+롤백시 특정 지점에서 트랜잭션을 취소시킬 수 있는데 이 지점을 savepoint로 지정
+
+-rollback to savepoint; --savepoint까지만 rollback
+-comit; 		    --savepoint 이전까지는 commit
+
+
+트랜잭션 처리시 고려사항
+1.트랜잭션 처리시 commit이나 rollback이 실행되기 전에는 아직 데이터변경은
+어떻게 될지 미정
+
+
+
+2.다른 사용자가 미확정인 데이터에 접근할 때 데이터를 보여주지 않고 잠금(locking)
+=>isolation level을 변경할 수 있음.
+=>아직 확정되지 않은 데이터가 나타나는 것을 ghost라고 함.
+=>오라클 11g는 아직 확정된 데이터를 보여줌. READ COMMITTED가 기본값
+ 
+3.commit이나 rollback하기까지 시간이 너무 많이 지체되면 다른사용자의 locking시간이
+ 계속 길어짐
+=>트랜잭션처리 시간을 가능한 짧게 처리
+=>하나의 프로시져에서 여러개의 작업을 수행해서 트랜잭션처리 시간이 길어지는것 보다는
+    짧은 프로시져를 여러개로 가져가는 것을 고려.
+
+----------------------------------------------------------------------------------------
+cursor
+-select한 결과에서 특정행을 가리키는 객체
+=> select한 결과가 여러행일 때, 한 행씩 처리할 때 필요.
+ex) select id, name into v_id, v_name from member; =>이 구문을 반복문으로 처리해야할때
+
+fetch
+-cursor를 이용해서 한 행에서 원하는 컬럼의 값을 읽어오는 작업
+
+cursos가 생성되는 위치에 따른 분류
+1.서버측 cursor
+=>PL/SQL에서 cursor로 구현
+
+
+2.클라이언트측 cursor
+=>java, c# 등 클라이언트 언어에서 클래스로 구현
+ex)java : ResultSet 클래스가 Cursor 역할
+
+동적SQL
+-실행시에 sql이 변경되어서 여러 형태로 실행가능
+=>jsp에서 주로 구현
+=>
