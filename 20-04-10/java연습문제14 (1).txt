@@ -1,0 +1,189 @@
+1. Haksa프로젝트에서 등록시 이름,학과,학번,주소
+입력 체크. 메시지띄우기
+
+if(idTxt.getText().equals(""))
+
+if(idTxt.getText().length()==0)
+
+2. 예제 16-2 코딩해보기
+
+//1. Haksa프로젝트에서 등록시 이름,학과,학번,주소 입력 체크. 메시지띄우기
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.sql.CommonDataSource;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class Haksa extends JFrame{
+	
+	JTextField tfId = null;
+	JTextField tfName = null;
+	JTextField tfDepartment = null;
+	JTextField tfAddress = null;
+	JTextArea taList = null;
+	
+	JButton btnList = null;
+	JButton btnInsert = null;
+	JButton btnUpdate = null;
+	JButton btnDelete = null;
+	
+	public static String comStringbox = new String();
+	
+	
+	public Haksa() {
+		this.setTitle("학사관리");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container c = this.getContentPane();
+		c.setLayout(new FlowLayout());
+		
+		c.add(new JLabel("학번"));
+		this.tfId= new JTextField(20);
+		c.add(tfId);
+	
+		c.add(new JLabel("이름"));
+		this.tfName= new JTextField(20);
+		c.add(tfName);
+
+		c.add(new JLabel("학과"));
+		this.tfDepartment= new JTextField(20);
+		c.add(tfDepartment);
+		
+		c.add(new JLabel("주소"));
+		this.tfAddress= new JTextField(20);
+		c.add(tfAddress);
+		
+		this.taList = new JTextArea(10,23);
+		c.add(new JScrollPane(this.taList));
+		
+		
+		btnList = new JButton("목록");
+		btnInsert = new JButton("입력");
+		   
+	    this.btnInsert.addActionListener(new ActionListener() {
+	   
+
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
+	            
+
+	            if(tfId.getText().equals("")) {
+	            	tfId.setText(JOptionPane.showInputDialog("Id를 입력받지 못했습니다. Id를 입력하세요"));
+	            	
+	            	if(tfId.getText().length() == 0)
+	            		tfId.setText("없음");
+	            }
+	            
+	            if(tfName.getText().equals("")) {
+	            	tfName.setText(JOptionPane.showInputDialog("이름을 입력받지 못했습니다. 이름을 입력하세요"));
+	            	
+	            	if(tfName.getText().length() == 0)
+	            		tfName.setText("없음");
+	            }
+	            
+	            if(tfDepartment.getText().equals("")) {
+	            	tfDepartment.setText(JOptionPane.showInputDialog("학과를 입력받지 못했습니다. 학과를 입력하세요"));
+	            	
+	            	if(tfDepartment.getText().length() == 0)
+	            		tfDepartment.setText("없음");
+	            }
+	            
+	            if(tfAddress.getText().equals("")) {
+	            	tfAddress.setText(JOptionPane.showInputDialog("주소를 입력받지 못했습니다. 주소를 입력하세요"));
+	            	
+	            	if(tfAddress.getText().length() == 0)
+	            		tfAddress.setText("없음");
+	            }
+	         }
+	    });
+		
+		
+		btnUpdate = new JButton("수정");
+		btnDelete = new JButton("삭제");
+		this.btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(null,"삭제하시겠습니까?","삭제",JOptionPane.YES_NO_OPTION);
+				if(result == JOptionPane.YES_OPTION) {
+					//삭제처리. DB연동해서 삭제
+					System.out.println("삭제처리....");
+					
+					JOptionPane.showMessageDialog(null, "삭제되었습니다");
+				}
+				
+			}
+		});
+		
+		c.add(this.btnList);
+		c.add(this.btnInsert);
+		c.add(this.btnUpdate);
+		c.add(this.btnDelete);
+		
+		this.setSize(300, 500);
+		this.setVisible(true);
+	}
+	public static void main(String[] args) {
+		new Haksa();
+
+	}
+
+}
+
+
+//2. 예제 16-2 코딩해보기
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JDBC01 {
+
+   public static void main(String[] args) {
+	   Connection conn;
+	   Statement stmt = null;
+	   
+      try {
+         Class.forName("com.mysql.jdbc.Driver");
+         conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sampledb", "root","1234");
+         System.out.println("DB 연결 완료");
+         
+         stmt = conn.createStatement();
+         
+         ResultSet srs = stmt.executeQuery("select * from student");
+         printData(srs,"name","id","dept");
+         
+         srs = stmt.executeQuery("select name, id, dept from student where name='이기자'");
+         
+         printData(srs,"name","id","dept");
+      } catch (ClassNotFoundException e) {
+         System.out.println("JDBC 드라이버 로드 에러");
+      } catch (SQLException e) {
+         System.out.println("SQL 실행 에러");
+      }
+
+   }
+   
+   private static void printData(ResultSet srs, String col1, String col2, String col3) throws SQLException{
+	   
+	   	while (srs.next()) {
+	   		if (col1 != "")
+	   			System.out.println(new String(srs.getString("name")));
+	   		if (col2 != "")
+	   			System.out.println("\t\t"+ srs.getString("id"));
+	   		if (col3 != "")
+	   			System.out.println("\t\t" + new String(srs.getString("dept")));
+	   		else
+	   			System.out.println();
+	   		
+	   	}
+   }
