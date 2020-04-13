@@ -1,0 +1,11 @@
+*executeupdate에는 boolean값이 들어간다
+여러줄을 손댈 경우
+
+int result = executeupdate절 후
+
+if(result != 0)식으로 사용
+
+
+DB Connection
+: DB연결 작업은 서버에 로드가 걸리는 작접중 하나임
+자주 Connection과 Close를 반복하는 것은 성능에 좋지 않음
