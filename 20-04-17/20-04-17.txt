@@ -1,0 +1,109 @@
+절대경로
+: root directory 를 기준으로 표기
+
+http://www.naver.com/ => root directory를 가리킴
+
+localhost
+/=> rood directory
+
+
+상대경로
+: 현재 directory를 기준으로 표기
+
+./ => 현재 directory.   './'생략가능
+
+<a href="./content.html">
+<a href="content.html">
+
+../ => 상위 directory.
+
+========================================
+Semantic Element
+:시각적인 효과보다는 의미를 전달하는 태그
+
+ex)	<h1> => 제목
+	<p>   => 문단
+	<table> => 테이블
+	<header> => 컨텐츠의 머릿말
+	<nav> => 컨텐츠의 네비게이션(메뉴)
+
+html5에서는 semantic tag가 많이 추가됨.
+사람뿐만 아니라 다른 Device(s/w,h/w)도 컨텐츠의
+ 의미를 잘 파악하는데 도움을줌
+
+*주소 넘기기
+<meta http-equiv="refresh" content="0; url=http://www.naver.com/">
+
+======================================================
+form의 전송방식
+
+1.get(기본값)
+:전송하는 데이터가 주소창에 보임
+
+2.post
+:전송하는 데이터가 주소창에 안보임
+
+======================================================
+브라우저 전쟁
+
+1.Netscape Navigator
+:초창기 웹브라우저 시장 거의 장악
+
+2.internet Explorer
+:초기에는 설치형이었으나, NN을 잡기위해서
+윈도우즈에 기본으로 탑재.
+=> 브라우저관련 전문가 대거 스카웃.
+
+3.Safari
+:Mac에서는 중요도가 미비하였으나,iphone이
+대중화되면서 중요도가 커짐
+=> plug-in을 이용한 비표준 기술 배제.
+     ex) flash지원 안함.
+
+4.크롬
+:구글에서 javascript v8 엔진을 탑재하면서
+크게 주목받음. v8은 javascript 실행 속도를 대폭향상
+=> node.js 탄생
+
+=====================================
+CSS
+:Web page의 Style을 담당
+=> html은 구조(와 데이터를)를 담당
+
+
+Selectors
+1.Tag Selector
+:html tag
+
+	h1{color:red}
+
+
+2.ID Selector
+:id찾음
+=> id는 한 페이지에서 unique해야함. 중복되면 안됨
+
+	#title{color:red;};
+
+3.Class Selector
+:class를 찾음
+=> class는 중복가능.
+	.title{color:red;}
+	p.title{color:red;} /* p태그에 있는 title클래스 */
+
+-----------------------------------------------
+4.Universal Selector
+:모든 element에 적용
+
+	*{padding:0; margin:0}
+
+5.Grouping Selector
+:몇개의 선택자를 동시 사용
+
+	h1,h2,p{ color:red}
+
+6.Descendant Selector
+: 자식 태그를 선택
+
+	p h1{color:red; }
+
+

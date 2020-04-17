@@ -1,0 +1,127 @@
+1. 이름,주소,취미를 목록태그(ul)를 사용하여 출력하시오.
+<ul>
+        <li>이름</li>
+        <li>주소</li>
+        <li>취미</li>
+</ul>
+
+
+2. 에디터에서 emmet 플러그인의 역할을 간단히 적으시오.
+=> 단축키,단축코드로 html,css를 빠르게 코딩
+
+
+3. utf-8로 인코딩하기 위한 meta 태그를 적으시오.
+<meta charset="UTF-8">
+
+
+4. div와 span의 차이를 적으시오.
+div     Block Level Element - 한 줄 전체를 영역으로 설정. 줄이 바뀜 width height 설정가능
+span   Inline Level Element - 컨텐츠의 길이만큼만 영역으로 설정. 줄이 안 바뀜
+
+
+
+5. 제시한 형태의 테이블을 작성하시오.
+<table border = "1" width = "50%">
+          <tr>
+              <td colspan ="3">교육과정</td>
+          </tr>
+          <tr>
+              <td width = "80" height = "80" rowspan="2">재취업과정</td>
+              <td width = "80">응용SW</td>
+              <td>Java, HTML5, 오라클</td>
+          </tr>
+          <tr>
+              <td>웹퍼블리셔</td>
+              <td>HTML5, CSS3, JQuery</td>
+          </tr>
+          <tr>
+              <td height = "80" rowspan = "2">재직자과정</td>
+              <td>프론트엔드<br>개발</td>
+              <td>Vue,Js,React.js</td>
+          </tr>
+          <tr>
+              <td>빅데이터</td>
+              <td>R.python,빅데이터분석</td>
+          </tr>
+      </table>
+
+
+
+6. get 방식과 post방식의 차이점을 적으시오.
+get은 내가 입력한 정보가 표시되고
+post는 내가 입력한 정보가 보이지 않는다.
+get이 디폴트 값으로 지정되어있지만 필요에 따라 post를 사용해야한다.
+
+
+
+7.css 코드를 작성하는 방식 3가지를 설명하시오.
+ 1) internal
+-style태그 안에 선언하는 방법
+ex)
+<style>
+	p{color : red;}
+</style>
+....
+<p>TIS</p>
+
+
+ 2) external
+-별도의 css파일을 작성하여 link태그로 포함시키는 방법
+ex)
+<link rel = "stylesheet" type = "text/css" href = "주소/css파일명.css">
+
+
+ 3) inline
+-태그 안에 같이 선언하는 방법
+ex)
+<p style = "color:red;">TIS</p>
+
+
+8. 배경색을 빨강색으로 변경하는 id 선택자
+ bg1을 작성하시오.
+#bg1{background-color: red;}
+<p id="bg1">TIS</p>
+
+9. 글자색을 파랑색으로 변경하는 class 선택자 bg2를 작성하시오.
+.bg2{color:blue}
+<p class="bg2">TIS</p>
+
+
+10. id선택자와 class선택자의 차이점을 적으시오.
+id선택자가 class선택자보다 우선순위를 가진다.
+대신 여러번 선언할 수 있는 class 선택자와 달리(css에서 가장 나중에 명령된 효과가 우선 반영)
+id선택자는 한번만 사용할 수 있다.
+
+<10번~11번 참고소스코드>
+     <style>
+         #redtag{color:red;}
+         .bluetag{background-color:blue;}
+     .....
+
+    <p id = "redtag">HTML5</p>
+    <p class = "bluetag">HTML5</p>
+    <div>
+        <h1>HTML5</h1>
+        <h2>HTML5 is a standard language for modern web.</h2>
+        <h2>HTML5 is a standard language for modern web.</h2>
+    </div>
+
+11. 위코드에서 첫번째 p태그의 글자색을 빨강색으로 변경하시오.
+(id 사용)
+
+12. 위코드에서 첫번째, 두번째 p태그의 배경색을 파랑색으로 변경하시오.
+(class사용)
+
+13. my.css를 사용하기 위한 link태그를 작성하시오.
+<link rel = "stylesheet" type = "text/css" href = "주소/my.css">
+
+
+
+
+
+
+
+
+
+
+

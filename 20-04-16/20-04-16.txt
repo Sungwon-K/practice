@@ -1,0 +1,83 @@
+Tim Berners - html의 아버지
+
+MS는 Active-X, Plug-in 등 
+표준기술이 아닌 외부기술을 사용하고 싶어함.
+ex)Flash를 이용해서 Rich Contents 개발
+
+Apple의 잡스는 Flash를 싫어해서,
+ Safari 브라우저에서 사용불가.
+
+
+아이폰이 모바일 표준이 되면서 Safari에서 
+Flash가 동작하지 않는 것이 큰 이슈가됨
+=>MS를 필두로 전문가들이 Safari에서 flash도입 권유
+=>잡스가 끝내 거부
+
+XHTML
+=>HTML에 XML의 문법 도입
+=>html4, html5에 흡수됨
+XML(eXtensible Markup Language)은 대소문자 구분있음, 시작태그와 끝태그 항상 존재.
+----------------------------------------------------------------
+hyml5에서는 문서에 heading이 꼭 있는것이 권장사항.
+
+emmit 플로그인
+=> 단축키,단축코드로 html,css를 빠르게 코딩
+
+
+127.0.0.1 - local/host ip
+http://localhost
+http://127.0.0.1
+
+
+*Screen Reader기
+:시각장애인들을 위해서 화면을 읽어주는 장치
+웹페이지를 읽어주는 장치
+
+
+Web is for Everything.
+
+
+*의미가 있는 태그 - symantic tag 시멘틱 태그
+
+-------------------------------------------------------------
+HTML5의 철학?
+
+HTML is for Everything.
+=>웹은 사람, Device 모든 것을 위해 존재한다.
+
+Internet Of Things
+=>사물인터넷
+
+HTML5에서는 Symantic Tag가 많이 추가됨.
+
+
+*Modern Web에서 사용하지 않는 태그
+1. <br>
+: 한줄 띄울때만 사용
+=> 여러줄을 띄울 때는 css로
+
+2.<table>
+:표형태로 출력 할 때만 사용
+=>Layout을 설정할 때는 사용하지 않음
+=> <div>,시멘틱태그와 css로 작성
+
+3.<font>
+:폐지
+=> font와 관련된 부분은 css로 작성
+
+4.<frame>
+:폐지
+=>화면분할을 더 이상 사용하지 않음. <iframe>만 존재.
+
+5.&nbsp; =>(non breaking space)
+:한칸만 띄울 때 사용. 여러칸을 띄울때는 css로
+
+
+*Block Level Element
+:한 줄 전체를 영역으로 설정. 줄이 바뀜. with height 설정가능
+ex) <h1>,<p>,<div> 등등
+
+*Inline Level Element
+: 컨텐츠(글자 or image)의 길이 만큼만 영역으로 설정. 줄이 안바뀜.
+width, height 설정불가
+ex) <i>,<b>,<span> 등등
