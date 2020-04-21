@@ -1,0 +1,127 @@
+1. font awesome아이콘 중 달력모양 아이콘을 출력하시오.
+
+
+2. 다음 코드에서 p태그의 center클래스에만 글자색이 빨간색,
+글자가 가운데 정렬 되도록 css를 작성하시오.
+===>h1.center, p.center, .center의 차이 
+
+<h1 class="center">html5</h1>
+<p class="center">html5</p> 
+
+
+3. 다음 글씨가 가운데 정렬되도록 하시오.
+<h1>html5</h1>
+
+
+4. 박스(div)가 가운데 정렬되도록 하시오.박스크기 300px.
+<div>html5</div>
+
+
+5. 링크를 이용해서 빨간색 '등록' 버튼을 만들어서 마우스오버시 배경색이 
+녹색이 되게 하시오.
+
+
+6. 다음 두개의 박스를 그룹핑해서 부모가 움직이면 자식도 움직이게 하시오.
+
+
+<div id="box1">
+	box1
+
+	<div id="box2">
+		box2
+	</div>
+</div>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice0420</title>
+    /*1.달력아이콘 fontawesome출력*/
+    <script src="https://kit.fontawesome.com/33d00f3eca.js" crossorigin="anonymous"></script>
+    <style>
+        /*2.p태그 클래스만 style*/
+        p.center{
+            color:red;
+            text-align: center;
+        }
+     
+        /*3. 다음 글씨가 가운데 정렬*/
+        #num1{
+            text-align: center;
+        }
+
+
+        /*4. 박스(div)가 가운데 정렬되도록 하시오.박스크기 300px.*/
+        #num4{
+            background-color: red;
+            width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /*5. 빨간색 링크,오버레이 배경색 초록
+        a:link{
+            color:red;
+        }
+        a:visited{
+            color:red;
+        }
+        a:hover{
+            background-color:green;
+        }
+
+
+        /*6.2개의 박스 그룹핑*/
+        #box1{
+            position: relative;
+            left: 300px;
+            width:  200px;
+            height: 200px;
+            background-color: rgb(153, 41, 228);
+        }
+        #box2{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(248, 153, 64);
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    /*1.달력아이콘 fontawesome출력*/
+    <i class="far fa-calendar-alt"></i>
+
+    
+    /*2.p태그 클래스만 style*/
+    <p class="center">html5</p> 
+
+
+    /*3. 다음 글씨가 가운데 정렬*/
+    <h1 id="num1">html5</h1>
+
+
+    /*4. 박스(div)가 가운데 정렬되도록 하시오.박스크기 300px.*/    
+    <div id="num4">html5</div>
+
+
+    /*5. 빨간색 링크,오버레이 배경색 초록
+    <a href="http://www.naver.com">등록</a>
+
+
+    /*6.2개의 박스 그룹핑*/
+    <div id="box1">
+        box1    
+        <div id="box2">
+            box2
+        </div>
+    </div>
+</body>
+</html>

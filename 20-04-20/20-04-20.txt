@@ -1,0 +1,85 @@
+1em = 16px
+
+2em = 32px
+
+1.5em = 24px
+
+0.5em = 8px
+
+==========================
+CDN(Contents Delivery Network)
+:fontawesome,jQuery,Bootstrap 등
+라이브러리 소스를 로컬에 다운로드 하지않고
+원격서버에서 제공
+
+==========================
+링크의 기본색은 파란색
+링크의 visited color는 자주색
+
+
+=========================
+*display : none;
+-해당 태그를 보여주지 않는다
+
+*display : block;
+인라인 태그를 블럭처럼(줄 바뀜)
+*display: inline;
+블럭 태그를 인라인처럼(줄 안 바뀜)
+
+*visibility : hidden;
+해당 태그 안 보이게 만든다.
+
+display none VS visibility hidden
+-display는 해당 태그의 영역 자체가 사라진다. visibility는 보이지만 않을뿐
+태그가 사용하는 공간은 여백으로 남는다.
+
+==========================
+vendor prefix
+:브라우저 제조사(vendor) 별로 prefix가 존재.
+특정브라우저에서 동작하기 위해 필요.
+
+*오버플로우
+visible - 디폴트. 값이 모두 보인다
+hidden - 오버플로우된 값이 안보인다
+scroll - 오버플로우된 값을 스크롤로 표시
+auto - 자동조정 오버플로우 될때만 스크롤이 생성된다
+
+
+*display : Inline-block;
+:Inline Element처럼 줄이 안 바뀐다. width, height를 설정할 수 있음.
+=>Inline Element를 박스처럼 만들때 사용
+
+===============================
+block level element를 배치하는법
+1.float:left or right
+2.display:inline-block
+
+
+*descendant selector
+:자손 태그를 모두 선택. 자식, 손자, 증손자 모두 검색됨.
+
+*child selector
+:바로 아래 단계 child만 검색. 손자, 증손자 등은 검색 안됨
+	p>h1{color:red;}
+
+*Adjacent Sibling Selector
+:형제 element중 자신의 다음 순서만 검색
+	p+h1{color:red;}
+
+*General Sibling Selector
+:모든 형제 element검색
+	p~h1{color:red;}
+
+web Agency
+:기업의 웹페이지를 만들어주는 전문회사
+=>디자이너가 중심이 되는 회사
+
+1.분석
+
+2.설계
+
+	1)포토샵으로 시안(template)을 작성
+
+3.구현
+	2)1)번 시안을 사용해서 html,css,javascript로 1)번 시안과
+	   똑같은 웹페이지를 제작 => web publisher

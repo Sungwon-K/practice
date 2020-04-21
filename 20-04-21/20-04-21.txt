@@ -1,0 +1,33 @@
+Pseudo code 의사 코드
+:실제코드와 유사한 코드. 대략적인 설명을
+위해서 사용. 논문에서 많이 사용
+
+ex)
+if(로그인정보가 일치){
+	목록으로 이동;
+}
+
+*Pseudo Class Selector
+:의사 클래스.	선택자:의사 클래스명   형식
+
+	p:hover{background:blue;}
+
+*Pseudo Element Selector
+:의사 엘리먼트. 	선택자::의사 클래스명   형식
+
+
+*first-child
+:부모를 기준으로 가장 첫 태그
+
+
+
+#555;  ==  #555555;
+:2글자 단위로 동일한 문자면 약식으로 줄인다
+ex)
+#fff;    ==   #ffffff;
+#cde;  ==   #ccddee;
+
+
+*Attribute Selector
+:Attribute를 검색.
+	a[target=_blank]{ background:red}
