@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin-left: 200px;
+            margin-top: 200px;
+            padding-left: 20px;
+            padding-top: 20px;
+        }  
+        #box2{
+            width:200px;
+            height:200px;
+            background:blue;
+            margin: auto;
+            padding: auto;
+        }     
+        a:link{color:red; text-decoration: none;}
+        a:visited{color:red}
+        a:hover{color:hotpink}
+        a:active{color:red}
+
+        span a:link, a:visited {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        span a:hover, a:active{
+            background-color: red;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="box1">box1</div>
+    <div id="box2">box2</div>
+
+    <a href="http://www.naver.com">네이버</a>
+
+    <br>
+
+    <span>
+        <a id = "google" href="http://www.google.com">구글</a>
+    </span>
+    
+</body>
+</html>

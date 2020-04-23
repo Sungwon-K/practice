@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p:nth-child(1){color:red;}
+        #bigger{
+            opacity: 0.7;
+            transition: 2s;
+        }
+        #bigger:hover{
+            opacity: 1;
+        }
+        #list li {
+            font-size:50px;
+            transition: 2s;
+            text-decoration: 2s;
+            list-style-type: none;           
+        }
+        #list li:hover{
+            font-size:60px;
+            background-color: chartreuse;
+        }
+        #ani{
+            animation: slidein 3s infinite;
+        }
+        @keyframes slidein{
+           from{margin-left:-10%;}
+        }
+        #loader{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border:10px solid white;
+            border-top:10px solid skyblue;
+            animation: spin 3s infinite linear;
+        }
+        @keyframes spin{
+            0%{
+                transform: rotate(0deg);
+            }
+
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        #hos{
+            margin:auto;
+            
+            animation: spin 0.3s infinite linear;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <p>html5</p>
+        <p>html5</p>
+        <img id="bigger" src="/img/img01.jpg" alt="아이콘1">    
+    </div>
+    
+    <h1 id = "ani">HTML5</h1>
+    
+    <ui id ="list">
+        <li>목록</li>
+    </ui>
+    <img id = "hos" src="/img/hos.png" alt="히오스">
+    <p id = "loader">loading box</p>
+    
+</body>
+</html>
