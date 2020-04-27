@@ -1,0 +1,13 @@
+1. movie의 index.html에서 이미지를 포토라마로 변경하기
+indicator는 dot로
+
+2. movie에서 등장인물페이지 완성하기
+
+3. movie에서 header, footer, active등 색상변경하기
+
+=> url주소로 제출해주세요!
+
+4. www.startbootstrap.com에서 'Stylish Portfolio' 테마에 적용된
+메뉴를 왼쪽으로 옮기기.
+
+

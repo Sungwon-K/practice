@@ -1,0 +1,47 @@
+bs3 panel => bs4 card로 변경됨
+
+
+*카드 부트스트랩으로 포트폴리오 제작 가능
+<div class="card" style="width:400px">
+    <img class="card-img-top" src="/img/pic.jpg" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <h4 class="card-title">John Doe</h4>
+      <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+      <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+    </div>
+  </div>
+이미지란에 포트폴리오 작품 이미지 넣고 see profile 클릭시 유튜브나 블로그 나오게
+
+
+*<input class = "form-group"...>
+다음줄로, 여백 추가
+단, 한줄에 여러개 표시할 필요가 있을땐 <form class="form-inline"> 추가
+
+*<div class = "modal fade"...
+modal fade 애니매이션 삽입
+
+*placeholder
+텍스트창에 기본적으로 나오는 문구
+텍스트창에 문구 기입과 동시에 사라짐
+ex)
+placeholder="Email Address"
+
+*required
+텍스트 검색시 기입이 안 되어있으면 경고창
+
+
+*grid의 합친 숫자는 12가 되야한다.
+ex)
+div class="col-sm-8"
+먼저 먹고 있다면 나머지는
+div class = "col-sm-4"
+
+*pjs.dothome.co.kr.movie/map.html ->페이지 소스 보기 67~111번 라인
+키가 없어도 되는 구글맵 코드
+
+*tel: 프로토콜
+스마트폰에서는 전화앱 실행(소문자 구분)
+
+
+*카카오 자바스크립트
+51f7f814ab2ed2199f7e3728d6a7ca6d

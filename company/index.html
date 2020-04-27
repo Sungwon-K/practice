@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIS.Edu</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- fontawesome 사용-------------------------------------->
+    <script src="https://kit.fontawesome.com/33d00f3eca.js" crossorigin="anonymous"></script>
+    <!-- fontawesome 사용-->
+
+    <script>
+    $(document).ready(function(){
+        $('.navbar a').on('click', function(){
+                var width=$(window).width();
+                if(width<=768){
+                    $('.btn-navbar').click(); //bootstrap 2.x
+                    $('.navbar-toggle').click(); //bootstrap 3.x     
+                    $('.navbar-toggler').click(); //bootstrap 4.x     
+                }
+            }
+        );
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+      
+         // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+      
+          // Prevent default anchor click behavior
+          event.preventDefault();
+      
+          // Store hash
+          var hash = this.hash;
+      
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function(){
+      
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+            });
+          } // End if
+        });
+      })
+    </script>
+
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Monoton);
+        .navbar{
+            background-color: #2cb882;
+            font-family: 'Monoton';
+            width: 100%;
+        }
+        .jumbotron {
+            background-color: #2cb882;
+            /* Orange */
+            color: #ffffff;
+            padding: 100px 25px;
+            font-family: 'Monoton'
+        }
+
+        .container-fluid {
+            padding-top: 160px;
+            padding-bottom: 60px;
+            font-family: 'Monoton'
+        }
+
+        .bg-grey {
+            background-color: #f6f6f6;
+
+        }
+
+        .logo {
+            font-size: 200px;
+            color: #2cb882;
+        }
+
+        .logo-small {
+            font-size: 50px;
+            color: #2cb882;
+        }
+
+        .h2padd {
+            padding-bottom: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            
+            .jumbotron {
+                padding: 200px 25px;
+            }           
+
+            .input-group {
+                padding-left: 35px;
+            }
+             
+            .col-sm-4 {
+                text-align: center;
+                margin: 25px 0;
+            }
+
+            #wide{
+                 width:300px !important;
+            }
+
+        }
+        
+        
+
+       
+    </style>
+</head>
+
+<body id="myPage">
+    <!-- 네비게이션 --------------------------------------------->
+    <div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#myPage">TIS.Edu</a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#vision">Vision</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#curriculumn">Curriculumn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#map">Map</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!-- 네비게이션 -->
+
+    <div class="jumbotron text-center" style="margin-top:50px;">
+        <h1>TIS정보기술교육센터</h1>
+        <p>- 정부지원 IT전문 훈련기관-</p>
+        <div id="wide" style="width:500px; margin:auto">
+            <form class="form-inline">
+                <div class="input-group">
+                    <input type="text" class="form-control" size="50" placeholder="검색어를 입력하세요." id="text-search" required>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-danger">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+</div>
+    
+
+    <!-- 교육센터소개 --------------------------------------->
+    <div class="container-fluid" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h2>교육센터소개</h2>
+                    <p>TIS정보기술교육센터는 정부지원 IT전문교육기관입니다.</p>
+                </div>
+                <div class="col-sm-4 ">
+                    <i class="fas fa-signal logo"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 교육센터소개 -->
+
+    <!-- 교육센터비전 --------------------------------------->
+    <div class="container-fluid bg-grey" id="vision">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 logo">
+                    <i class="fas fa-globe-asia"></i>
+                </div>
+                <div class="col-sm-8">
+                    <h2>교육센터비전</h2>
+                    <p>TIS정보기술교육센터는 4차산업혁명시대에 필요한 IT전문인력 양성을 위해 노력하고 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 교육센터비전 -->
+
+    <!-- 교육과목---------------------------------------------->
+    <div class="container-fluid text-center"id="curriculumn">
+        <div class="container">
+            <h2 class="h2padd">교육과목</h2>
+            <div class="row">
+                <div class="col-sm-4">
+                    <i class="fab fa-java logo-small"></i>
+                    <h4>Java</h4>
+                    <p>Object Oriented Programming Language</p>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fab fa-html5 logo-small"></i>
+                    <h4>HTML5</h4>
+                    <p>Hyper Text Markup Language</p>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fab fa-css3-alt logo-small"></i>
+                    <h4>CSS3</h4>
+                    <p>Cascade Style Sheet</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <i class="fab fa-js-square logo-small"></i>
+                    <h4>Javascript</h4>
+                    <p>Front End Programming Language</p>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fab fa-android logo-small"></i>
+                    <h4>Android</h4>
+                    <p>Mobile App Programming Language</p>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fab fa-node logo-small"></i>
+                    <h4>Node.js</h4>
+                    <p>Back End Run Time Environment Based By Javascript</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 교육과목 -->
+
+    <!-- 연락처----------------------------------------------->
+    <div class="container-fluid bg-grey"id= "contact">
+        <div class="container">
+            <h2 class="text-center h2padd">CONTACT</h2>
+            <div class="row">
+                <div class="col-sm-5">
+                    <p>연락처</p>
+                    <i class="fas fa-map-marker-alt"></i> 서울시 영등포구 당산동</p>
+                    <i class="fas fa-mobile-alt"></i> +82 1515151515</p>
+                    <i class="fas fa-envelope-open-text"></i> myemail@something.com</p>
+                </div>
+                <div class="col-sm-7">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                                required>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="comments" name="comments" placeholder="Comment"
+                        rows="5"></textarea><br>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button class="btn btn-danger float-right" type="submit">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 연락처 -->
+
+    <!-- 교육센터 오시는길 ------------------------------------>
+    <div class="container-fluid"id="map">
+        <div class="container">
+            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+            
+            <h2 class="text-center h2padd">오시는길</h2>
+            <div id="googleMap" style="width: 100%; height:300px"></div>
+            <!-- Add Google Maps -->
+            <script src="http://maps.googleapis.com/maps/api/js"></script>
+            <script>
+                var myCenter = new google.maps.LatLng(37.534484, 126.898566);
+                //var myCenter2 = new google.maps.LatLng(37.524321, 127.029361);
+
+                function initialize() {
+                    var mapProp = {
+                        center: myCenter,
+                        zoom: 16,
+                        scrollwheel: true,
+                        draggable: true,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+                    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                    var marker = new google.maps.Marker({
+                        position: myCenter,
+                    });
+                    /*
+                    var marker2 = new google.maps.Marker({
+                    position:myCenter2,
+                    });    
+                    */
+
+                    marker.setMap(map);
+                    //marker2.setMap(map);
+
+                    var content = "TIS정보기술교육센터<br><a href='tel:02-2069-1931'>02-2069-1931</a>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: content
+                    });
+
+                    infowindow.open(map, marker);
+
+                    /*
+                    var content2="CGV압구정<br><a href='tel:1544-1122'>1544-1122</a>";    
+                    var infowindow2 = new google.maps.InfoWindow({
+                            content: content2
+                    });
+                      
+                    infowindow2.open(map, marker2);*/
+                }
+
+                google.maps.event.addDomListener(window, 'load', initialize);
+            </script>
+        </div>
+    </div>
+
+    <!-- footer ----------------------------------------------------->
+    <footer class="container-fluid text-center">
+        <a href="#myPage" title="To Top">
+            <i class="fas fa-chevron-circle-up"></i>
+        </a>
+        <p>&copy;TIS정보기술 교육센터 All rights reserved.</p>
+    </footer>
+    <!-- footer -->
+
+</body>
+
+</html>
