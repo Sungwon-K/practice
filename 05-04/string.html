@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <script>
+        var fileName= new String("a.b.c.txt");
+        document.write(fileName+"<br>");
+        document.write(fileName.lastIndexOf(".")+"<br>");
+        var lastDotPosition=fileName.lastIndexOf(".");
+        document.write(fileName.substr(lastDotPosition+1)+"<br>");
+        var arr=fileName.split(".");
+        for(var i=0;i<arr.length;i++){
+            document.write(arr[i]+"<br>");
+        }
+        document.write(arr[arr.length-1]+"<br>")
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

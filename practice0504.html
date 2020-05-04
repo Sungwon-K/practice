@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+    <script>
+        var score = new Array();
+        var avg = 0;
+        var id = "honkildong";
+
+        //5번 문제 답안
+        document.write("id의 길이는" + id.length + "입니다.<br>");
+
+        /*1~2번 답안
+        score[0] = prompt("국어점수를 입력하세요");
+        score[1] = prompt("수학점수를 입력하세요");
+        score[2] = prompt("영어점수를 입력하세요");
+
+        for (var i = 0; i < score.length; i++) {
+            document.write(score[i], "<br>");
+            avg = avg + Number(score[i]);
+        }
+
+        avg = avg / score.length;
+
+        document.write(avg, "<br>");
+        */
+
+        function aver() {
+            score[0] = prompt("국어점수를 입력하세요");
+            score[1] = prompt("수학점수를 입력하세요ㅁ");
+            score[2] = prompt("영어점수를 입력하세요");
+            avg = 0;
+
+            for (var i = 0; i < score.length; i++) {
+                avg = avg + Number(score[i]);
+            }
+            avg = avg / score.length;
+            document.write(avg, "<br>");
+        }
+
+        function ymd() {
+            var num0 = prompt("주민등록번호를 입력하세요");
+            var ymdinfo = num0.substr(0, 6);
+            document.write(ymdinfo, "<br>");
+        }
+
+        function callnum1() {
+            var num1 = "010-1234-5678";
+            var result1 = num1.split("-");
+            document.write(result1, "<br>");
+        }
+
+        function callnum2() {
+            num1 = "010-1234-5678";
+            result1 = num1.replace(/\-/g, "");
+            document.write(result1, "<br>");
+        }
+
+        function logininfo() {
+            var id = prompt("id를 입력하세요");
+            var pw = prompt("pw를 입력하세요ㅁ");
+            var name = prompt("name을 입력하세요");
+
+            var info = id + "," + pw + "," + name;
+            info = info.split(",");
+            document.write(info, "<br>");
+        }
+
+        function browser() {
+            var agent = navigator.userAgent.toLowerCase();
+            if ((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
+                alert("인터넷 익스플로러 브라우저 입니다.");
+            }
+            else {
+                alert("인터넷 익스플로러 브라우저가 아닙니다.");
+            }
+        }
+
+        function sitemove() {
+            var time = new Date();
+            if (time.getHours() <= 19) {
+                location.href = "http://www.naver.com";
+            } else {
+                location.href = "http://www.google.com";
+            }
+
+        }
+
+        function booksearch() {
+            var suburl = document.form1.search.value;
+            document.write(suburl);
+            location.href = "https://book.naver.com/search/search.nhn?sm=sta_hty.book&sug=&where=nexearch&query="+suburl;
+            document.form1.submit(); //form 전송
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="3~4번 문제 평균" onclick="aver();"><br>
+    <input type="button" value="6번 문제 생년월일" onclick="ymd();"><br>
+    <input type="button" value="7번 문제 전화번호" onclick="callnum1();"><br>
+    <input type="button" value="8번 문제 전화번호" onclick="callnum2();"><br>
+    <input type="button" value="9번 문제 회원정보" onclick="logininfo();"><br>
+    <input type="button" value="10번 문제 브라우저체크" onclick="browser();"><br>
+    <input type="button" value="11번 문제 시간별 사이트이동" onclick="sitemove();"><br><br>
+    <form name="form1" action="join.jsp" method="post">
+        search <input type="text" name="search"><br>
+        <input type="button" value="12번 문제 네이버북 검색" onclick="booksearch();"><br>
+    </form>
+
+</body>
+
+</html>

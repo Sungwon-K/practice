@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval</title>
+    <script>
+        function func1(){
+            //document.write("hello"+"<br>");
+            console.log("hello");
+        }
+        var si1 = setInterval(func1, 3000);
+
+        var si2 = setInterval(function(){
+            //document.write("world"+"<br>");
+            console.log("world");
+        },3000);
+    </script>
+</head>
+<body>
+    <button type="button" onclick="clearInterval(si1)">s1중지</button>
+    <button type="button" onclick="clearInterval(si2)">s2중지</button>
+</body>
+</html>
