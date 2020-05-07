@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        var sw = 0;
+
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $("#box1").css("background", "green");
+                $("#box1").html("박스1");
+                $("#box1").removeClass("on");
+            });
+            $("#btn2").click(function () {
+                $("#box2").addClass("box2");
+            });
+            $("#btn3").click(function () {
+                $("#box2").removeClass("box2");
+            });
+            $("#btn100").click(function () {
+                if (sw == 0) {
+                    $("#box2").addClass("box2");
+                    sw = 1;
+                }
+                else if (sw == 1) {
+                    $("#box2").removeClass("box2");
+                    sw = 0;
+                }
+            });
+
+            $("#btn4").click(function () {
+                $("img").attr("src", "img/math_img_2.jpg");
+            });
+
+            $("#btn5").click(function () {
+                $("#box1").addClass("on");
+                $("#box1").css("background", "red");
+            });
+            $("#btn6").on("click", function () {
+                $("#box3").addClass("box3");
+            });
+            $(".btn1").click(function () {
+                $(".btn1").parent().next()
+                    .css({ "color": "#f00" });
+            });
+
+            $(".btn2").on({
+                "mouseover focus": function () {
+                    $(".btn2").parent().next()
+                        .css({ "color": "#0f0" });
+                }
+            });
+
+            $(".btn1").click();//click이벤트함수 호출
+            $(".btn2").trigger("mouseover");//triger함수호출.
+
+            $("#btn7").on("click",function(e){
+                e.preventDefault();//다른페이지로 이동을 막는다.
+                $("txt").css("color","red");
+                //return false;
+            });
+
+            $(window).on("scroll",function(){
+                console.log($(this).scrollTop());
+
+                if($(this).scrollTop() >700){
+                    $("#box3").addClass("bounceInLeft animated");
+                }
+            });
+                
+        });
+    </script>
+    <link rel="stylesheet" href="/css/animate.css">
+    <style>
+        #box1 {
+            width: 300px;
+            height: 300px;
+            background: red;
+            position: relative;
+            transition: 1s;
+            left: 0;
+        }
+
+        body{
+            height: 10000px;
+        }
+
+        #box1.on {
+            left: 50px;
+        }
+
+        #box2 {
+            width: 300px;
+            height: 300px;
+            background: blue;
+        }
+
+        .box2 {
+            background: orange !important;
+        }
+
+        #box3 {
+            width: 300px;
+            height: 300px;
+            background: orange;
+            left: 0;
+        }
+
+        .box3 {
+            opacity: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">box1</div>
+    <button type="button" id="btn1">클릭1</button>
+    <button type="button" id="btn5">클릭5</button>
+    <div id="box2">box2</div>
+    <button type="button" id="btn2">클릭2</button>
+    <button type="button" id="btn3">클릭3</button>
+    <button type="button" id="btn100">클릭100</button>
+    <div>
+        <img src="img/math_img_1.jpg" alt="">
+    </div>
+    <button type="button" id="btn4">클릭4</button>
+    <div id="box3">box3</div>
+    <button type="button" id="btn6">클릭6</button>
+
+    <p>
+        <button class="btn1">버튼1</button>
+    </p>
+    <p>내용1</p>
+    <p>
+        <button class="btn2">버튼2</button>
+    </p>
+    <p>내용2</p>
+    <a href="http://www.naver.com" id="btn7">클릭</a>
+    <div id="txt">Text</div>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+1. join2.html에서 textarea에 150자 이상입력되면
+더이상 입력되지 않게하기.
+
+2. https://www.jaguar.com/build-yours/index.html처럼 
+일정양을 scroll할 때 메뉴가 상단에 고정되도록 구현하시오.
+
+1) menuTop1을 안보이게.
+2) menuTop2은 상단에 고정. position:fixed 사용
+
+<div id="menuTop1">facebook twitter google++</div>
+<div id="menuTop2">product | contact | map </div>
+
+3. 두개의 박스가 스크롤시 하나는 왼쪽, 다른 하나는 오른쪽에서
+나타나게 하시오. 카카오 오븐 참고. animate.css 사용.
+
+4. slider에서 < , > 기능 구현하기
+
+5. slider에서 active기능 구현하기
+
+//1번 150자 이상 입력되면 더 이상 입력되지 않게하기.
+<script>
+                $("#textarea").keydown(function () {
+                var inputLength = $(this).val().length;
+                var remainLength = 150 - inputLength;
+
+                if(remainLength<0){
+                    $(this).val($(this).val().substr(0,150));
+                }
+                
+            });
+</script>
+
+
+
+
+//2번~3번 문제
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice0507</title>
+</head>
+<script src="js/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        //2번 스크롤 반응 내비
+        $(window).on("scroll", function () {
+            if ($(this).scrollTop() > 300) {
+                $("#container").removeClass("container");
+                $("#menuTop1").addClass("menuTop1");
+                $("#menuTop2").addClass("menuTop2");
+            } else {
+                $("#container").addClass("container");
+                $("#menuTop1").removeClass("menuTop1");
+                $("#menuTop2").removeClass("menuTop2");
+            }
+        });
+
+
+        //3번 스크롤 반응 박스
+        $(window).on("scroll", function () {
+            if ($(this).scrollTop() > 250) {
+                $("#lfbox").removeClass("lfbox");
+                $("#lfbox").addClass("bounceInLeft animated");
+                
+            }
+
+            if ($(this).scrollTop() >1000){
+                $("#rtbox").removeClass("rtbox");
+                $("#rtbox").addClass("bounceInRight animated");
+            }
+        });
+    });
+</script>
+<link rel="stylesheet" href="/css/animate.css">
+<style>
+
+
+    /*2번 스크롤 반응 내비*/
+    #container {
+        width: 100%;
+    }
+
+    .container {
+        position: fixed;
+    }
+
+    #menuTop1 {
+        width: 100%;
+        height: 60px;
+        border-bottom: 1px solid gray;
+    }
+
+    #menuTop2 {
+        width: 100%;
+        height: 40px;
+        border-bottom: 1px solid gray;
+
+    }
+
+    .menuTop1 {
+        display: none;
+    }
+
+    .menuTop2 {
+        position: fixed;
+    }
+
+
+
+    /*3번 스크롤 반응 박스*/
+    #lfbox {
+        top: 500px;
+        margin-left: 30%;
+        width: 500px;
+        height: 500px;
+        background: rgb(1, 255, 44);
+        position: relative;
+        z-index: -50;
+        transition: 0.5s;
+    }
+
+    .lfbox {
+        
+        opacity: 0;
+    }
+
+    #rtbox {
+        top: 1000px;
+        margin-left: 40%;
+        margin-bottom:50px;
+        width: 500px;
+        height: 500px;
+        background: blueviolet;
+        position: relative;
+        z-index: -55;
+        transition: 0.5s;
+
+    }
+
+    .rtbox {
+       opacity:0;
+
+    }
+</style>
+
+<body>
+
+
+    <!--2번 스크롤 반응 내비 -------------------------------------->
+    <div id="container" class="container">
+        <div id="menuTop1">facebook twitter google++</div>
+        <div id="menuTop2">product | contact | map </div>
+    </div>
+    <!--2번 스크롤 반응 내비 -->
+
+
+
+    <!--3번 스크롤 반응 박스 -------------------------------------->
+    <div id="lfbox" class="lfbox">box</div>
+    <div id="rtbox" class="rtbox">box</div>
+    <!--3번 스크롤 반응 박스 -->
+</body>
+
+</html>

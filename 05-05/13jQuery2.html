@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src = "js/jquery.js"></script>
+    <script>
+        //약식
+        $(function(){});
+
+        //정식
+        $(document).ready(function(){
+            //$("div p").css("color","red");
+            //$("div>p").css)("color","red");
+            //$("div").find("p").css("color","red");
+            $("p").closest("div").css("color","red");
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <p>jQuery</p>
+    </div>
+    <p>jQuery</p>
+    <div>
+        <p>jQuery</p>
+    </div>
+</body>
+</html>

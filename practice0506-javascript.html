@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javaScript</title>
+    <script>
+        var Student = {
+            name: "홍길동",
+            kr: 90,
+            en: 95,
+            ma: 90,
+            showInfo: function() {
+                if((this.kr+this.en+this.ma)/3 > 90){
+                    console.log(this.name +":A학점");
+                }
+                else if((this.kr+this.en+this.ma)/3 > 80){
+                    console.log(this.name +":B학점");
+                }
+                else if((this.kr+this.en+this.ma)/3 > 70){
+                    console.log(this.name +":C학점");
+                }
+                else if((this.kr+this.en+this.ma)/3 > 60){
+                    console.log(this.name +":D학점");
+                }
+                else{
+                    console.log(this.name +":F학점");
+                }
+                
+            }
+        };
+        Student.showInfo();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

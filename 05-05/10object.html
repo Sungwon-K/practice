@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+    <script>
+        //객체생성자함수
+        //클래스와 생성자를 동시에 정의하는 것과 비슷.
+        function Student(name, age) {
+            this.name = name;
+            this.age = age;
+            this.showInfo = function () {
+                console.log(this.name);
+                console.log(this.age);
+            };
+        }
+
+        var hkd = new Student("홍길동", 10);
+        hkd.showInfo();
+
+        var lss = {
+            name: "홍길동",
+            age: 10,
+            showInfo: function() {
+                console.log(this.name);
+                console.log(this.age);
+            }
+        };
+        lss.showInfo();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

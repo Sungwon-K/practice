@@ -1,0 +1,228 @@
+1.버튼을 누르면 웹페이지 배경색이 녹색이 되도록
+변경하시오.
+
+2.다음 테이블태그에서 짝수행 배경색이 orange색이
+되도록 하시오.
+<table border="1" width="50%">
+	<tr><td>이름</td><td>주소</td></tr>
+	<tr><td>홍길동</td><td>서울시</td></tr>
+	<tr><td>이순신</td><td>제주시</td></tr>
+	<tr><td>왕건</td><td>경기도</td></tr>
+</table>
+
+3.버튼을 누르면 다음 이미지에 그림자가 생기게
+하시오.
+
+<img src="img/pic01.jpg">
+
+4.버튼을 누르면 2번 테이블에서 첫번째 행의 배경색을 검은색,
+글자를 흰색으로 설정하시오.
+
+5.버튼을 누르면 3번이미지가 오른쪽으로 이동하도록
+하시오.
+
+6.https://www.w3schools.com/howto/howto_js_accordion.asp
+위주소의 accordion기능을 jQuery로 구현하시오.
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            //1번 문제 웹페이지 배경색 녹색
+            $("#btn1").click(function () {
+                $("#screen").addClass("screen");
+            });
+            $("#btn2").click(function () {
+                $("#screen").removeClass("screen");
+            });
+
+            //2번 테이블 태그 짝수행 배경색이 오랜지색
+            $.each($("#table tr"), function (i, o) {
+                if (i % 2 == 1) {
+                    $(document.getElementsByTagName("tr")[i]).addClass("tr");
+                }
+            });
+
+            //3번 이미지에 그림자 넣기
+            $("#btn3").click(function () {
+                $("#shadow").addClass("shadow");
+            });
+            $("#btn4").click(function () {
+                $("#shadow").removeClass("shadow");
+            });
+
+            //4번 첫행 배경색 검은색,글자 흰색
+            $("#btn5").click(function () {
+                $("#table tr").eq(0).addClass("trline");
+            });
+            $("#btn6").click(function () {
+                $("#table tr").eq(0).removeClass("trline");
+            });
+
+            //5번 이미지가 오른쪽으로 이동
+            $("#btn7").click(function () {
+                $("#shadow").addClass("move");
+            });
+            $("#btn8").click(function () {
+                $("#shadow").removeClass("move");
+            });
+
+            //6번 아코디언 구현
+            $("#acbtn1").click(function(){
+                $("#panel1").css("display","block")
+                $("#panel2").css("display","none")
+                $("#panel3").css("display","none")
+            });
+            $("#acbtn2").click(function(){
+                $("#panel1").css("display","none")
+                $("#panel2").css("display","block")
+                $("#panel3").css("display","none")
+            });
+            $("#acbtn3").click(function(){
+                $("#panel1").css("display","none")
+                $("#panel2").css("display","none")
+                $("#panel3").css("display","block")
+            });
+
+
+        });
+    </script>
+    <style>
+        /*1번*/
+        .screen {
+            background-color: green;
+        }
+
+        /*2번*/
+        .tr {
+            background: orange;
+        }
+
+        /*3번*/
+        .shadow {
+            filter: drop-shadow(5px 5px 5px #000);
+        }
+
+        /*4번*/
+        .trline {
+            background: black;
+            color: white;
+        }
+
+        /*5번*/
+        #shadow {
+            position: relative;
+            transition: 1s;
+            left: 0px;
+        }
+        .move {
+            left: 100px !important;
+        }
+
+        /*6번*/
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body id="screen">
+    <!--1번-->
+    <button type="button" id="btn1">바탕변경</button>
+    <button type="button" id="btn2">원래대로</button>
+    <!--1번-->
+
+    <!--2번-->
+    <table border="1" width="50%" id="table">
+        <tr>
+            <td>이름</td>
+            <td>주소</td>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>서울시</td>
+        </tr>
+        <tr>
+            <td>이순신</td>
+            <td>제주시</td>
+        </tr>
+        <tr>
+            <td>왕건</td>
+            <td>경기도</td>
+        </tr>
+    </table>
+    <!--2번-->
+
+    <!--4번-->
+    <button type="button" id="btn5">테이블 디자인 변경</button>
+    <button type="button" id="btn6">테이블 디자인 복구</button><br>
+    <!--4번-->
+
+
+    <!--3번-->
+    <img src="img/math_img_1.jpg" alt="가위" id="shadow"><br>
+    <button type="button" id="btn3">이미지그림자</button>
+    <button type="button" id="btn4">그림자삭제</button>
+    <!--3번-->
+
+    <!--5번-->
+    <button type="button" id="btn7">이미지이동</button>
+    <button type="button" id="btn8">이동복구</button>
+    <!--5번-->
+
+
+    <!--6번-->
+    <button id="acbtn1" class="accordion">Section 1</button>
+    <div id = "panel1" class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex
+            ea commodo consequat.</p>
+    </div>
+
+    <button id="acbtn2" class="accordion">Section 2</button>
+    <div id = "panel2"  class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex
+            ea commodo consequat.</p>
+    </div>
+
+    <button id="acbtn3" class="accordion">Section 3</button>
+    <div id = "panel3"  class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex
+            ea commodo consequat.</p>
+    </div>
+    <!--6번-->
+
+</body>
+
+</html>

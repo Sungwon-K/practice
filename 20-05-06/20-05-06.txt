@@ -1,0 +1,23 @@
+*객체로 css를 지정할때
+자바스크립트의 css표기법-카멜 표기법을 사용
+ex)
+background-color => backgroundColor
+
+
+*<a>,<form> 태그에 클릭 이벤트 적용시 기본이벤트 차단
+-앵커태그와 폼태그는 기본적으로 링크로 이동(기본이벤트)
+차단할때는
+feturn false; 혹은 e.preventDefault(); 사용
+
+//href에 주소 대신 "#"을 넣는 방법도 있다.
+
+
+*Event Delegate
+:Event처리를 부모에게 위임한다
+=> 이벤트 처리할 엘리먼트가 아직 존재하지 않을 때
+     처음에 로딩시에는 존재하지 않다가,
+     동적으로 생성된 엘리먼트에 이벤트를 걸 때 사용
+
+======================================
+
+Ajax(Asynchronous Javascript And XML)

@@ -1,0 +1,48 @@
+1. 학생 객체를 생성하고 평균학점을 구하시오.
+학생{
+	이름,국어,영어,수학,학점()
+}
+홍길동:A학점
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+    <script>
+        var Student = {
+            name: "홍길동",
+            kr: 90,
+            en: 95,
+            ma: 90,
+            showInfo: function() {
+                if((this.kr+this.en+this.ma)/3 > 90){
+                    console.log(this.name +":A학점");
+                }
+                else if((this.kr+this.en+this.ma)/3 > 80){
+                    console.log(this.name +":B학점");
+                }
+                else if((this.kr+this.en+this.ma)/3 > 70){
+                    console.log(this.name +":C학점");
+                }
+                else if((this.kr+this.en+this.ma)/3 > 60){
+                    console.log(this.name +":D학점");
+                }
+                else{
+                    console.log(this.name +":F학점");
+                }
+                
+            }
+        };
+        Student.showInfo();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

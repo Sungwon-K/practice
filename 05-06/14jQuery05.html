@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function(){
+                $("#box1").show();
+            });
+            $("#btn2").click(function(){
+                $("#box1").hide();
+            });
+            $("#btn3").click(function(){
+                $("#box1").fadeIn();
+            });
+            $("#btn4").click(function(){
+                $("#box1").fadeOut();
+            });
+            $("#btn5").click(function(){
+                $("#box1").slideUp();
+            });
+            $("#btn6").click(function(){
+                $("#box1").slideDown();
+            });
+            $("#btn7").click(function(){
+                $("#box1").toggle();
+            });
+            $("#btn8").click(function(){
+                $("#box1").fadeToggle();
+            });
+            $("#btn9").click(function(){
+                $("#box1").slideToggle();
+            });
+            // animate 사용.(chaining)
+            $("#box2").animate({marginLeft:"500px"},2000)
+            .animate({marginTop:"500px"},2000)
+            .animate({marginLeft:0},2000)
+            .animate({marginTop:0},2000);
+            
+            $("#btn10").click(function () {
+                $("#box2").stop();
+            });
+
+            $("#btn11").click(function () {
+                $("#box2").stop(true, false);
+            });
+
+            $("#btn12").click(function(){
+                $("#box2").stop(true,true);
+            });
+            
+            $("#btn13").click(function(){
+                $("#box2").stop(false,true);
+            });
+            //.stop()과 동일. 즉 기본값
+            $("#btn14").click(function(){
+                $("#box2").stop(false,false);
+            });
+        });
+        
+    </script>
+    <style>
+        #box1{width:300px;height: 300px; background: rgb(255, 18, 1);}
+        #box2{width: 300px;height: 300px;background: rgb(1, 59, 250);}
+    </style>
+</head>
+<body>
+    <button id="btn1">show</button>
+    <button id="btn2">hide</button>
+    <button id="btn3">fadeIn</button>
+    <button id="btn4">fadeOut</button>
+    <button id="btn5">slideUp</button>
+    <button id="btn6">slideDown</button>
+    <button id="btn7">toggle</button>
+    <button id="btn8">fadeToggle</button>
+    <button id="btn9">slideToggle</button>
+    <div id="box1">box1</div>
+
+    <button id="btn10">stop()</button>
+    <button id="btn11">stop(true,false)</button>
+
+    <button id="btn12">stop(true,true)</button>
+    <button id="btn13">stop(false,true)</button>
+    <button id="btn14">stop(false,false)</button>
+    <div id="box2">box2</div>
+    
+
+</body>
+</html>
