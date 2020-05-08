@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <record>
+        <id>1</id>
+        <first_name>Mariele</first_name>
+        <last_name>Thornewill</last_name>
+        <email>aaa@aaa.com</email>
+        <gender>Female</gender>
+    </record>
+
+    <record>
+        <id>2</id>
+        <first_name>Kissiah</first_name>
+        <last_name>genty</last_name>
+        <email>bbb@bbb.com</email>
+        <gender>Female</gender>
+    </record>
+</dataset>

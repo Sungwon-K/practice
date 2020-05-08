@@ -1,0 +1,44 @@
+AJAX는 Cross Domain 불가(기본
+=>client의 도메인주소와 server의 도메인주소가 다르게 처리할 수 없다.
+
+XML(eXtensible Markup Language)
+-확장가능한 마크업 언어
+=> HTML의 한계를 보완하기 위해서 개발자가 태그를 직접 정의해서 사용할 수 있다.
+=> 태그를 element라고 함
+=> 대소문자 구분있음
+=> 시작태그와 끝태그가 반드시 존재해야함
+     ex) <br> => <br />
+=> encoding="UTF-8" 이면 xml을 저장할 때도 UTF-8로 저장필수
+=> XML은 Tree구조로 데이터가 설계됨
+=> 서로 다른 플랫폼 간의 데이터를 전송할 때 사용하는 표준언어
+=========================================
+csv, xml, json (나온 순서)
+csv:콤마로 구분,가볍고 빠르다, 데이터의 의미전달이 안됨
+xml:태그로 구분,무겁고 느리다, 데이터의 의미전달이 명확
+
+
+
+ASP-Microsoft
+PHP-Open Source
+JSP-Oracle
+
+carrotrd.dothome.co.kr
+
+carrotrd: ftp아이디&db아이디&db명
+
+
+*php에서 + 는 .으로 표현
+a + b  =>  a. b
+a += b => a.= b
+
+--------------------------------------------------------------------
+Ajax에서 Backend에서 하는일
+
+1. DB Server에서 데이터 조회
+2. 1번의 결과를 xml or json으로 출력(print)
+
+--------------------------------------------------------------------
+phpMyAdmin
+: 온라인 mysql 관리 도구 .php로 작성됨
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                url:"js/dataset.json",
+                dataType:"json",
+                success:function(data){
+                    if(data.length>0){
+                        var tb=$("<table />");//table생성
+                        $.each(data,function(index,item){
+                            var $id=item.id;
+                            var $first_name=item.first_name;
+                            var $last_name=item.last_name;
+                            var $email=item.email;
+                            var $gender=item.gender;
+                        
+                            
+                            //tr생성.td추가
+                            var row=$("<tr/>").append(
+                                $("<td/>").text($id),
+                                $("<td/>").text($first_name),
+                                $("<td/>").text($last_name),
+                                $("<td/>").text($email),
+                                $("<td/>").text($gender)
+                            );
+
+                            //table에 row추가
+                            tb.append(row);
+                        });
+                        //wrap에 table추가
+                        $(".wrap").append(tb);
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap"></div>
+</body>
+</html>

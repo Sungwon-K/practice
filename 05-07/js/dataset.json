@@ -1,0 +1,15 @@
+[
+    {   "id":1,
+        "first_name":"Mariele",
+        "last_name":"Thornewill",
+        "emial":"aaa@aaa.com",
+        "gender":"female"
+    },    
+    
+    {   "id":2,
+        "first_name":"Kissiah",
+        "last_name":"genty",
+        "emial":"bbb@bbb.com",
+        "gender":"female"
+    }    
+]

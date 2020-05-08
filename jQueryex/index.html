@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>slider</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .animation_canvas {
+            overflow: hidden;
+            position: relative;
+            width: 600px;
+            height: 400px;
+        }
+
+
+        /* Slider Panel */
+        .slider_panel {
+            width: 3000px;
+            position: relative;
+        }
+
+        .slider_image {
+            float: left;
+            width: 600px;
+            height: 400px;
+        }
+
+
+        /* Control Panel */
+        .control_panel {
+            position: absolute;
+            bottom: 10px;
+            ;
+            left: 270px;
+            overflow: hidden;
+            color: white;
+        }
+
+
+        .dot {
+            cursor:pointer;
+          height: 7px;
+          width: 7px;
+          margin: 0 2px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+        }
+
+        .dot:hover{
+            background-color: rgb(77, 77, 77);
+        }
+
+        #auto:hover{
+            color: rgb(77, 77, 77);
+        }
+
+        .active{
+            background-color: black;
+        }
+
+        a.prev,
+        a.next {
+            position: absolute;
+            top: 40%;
+            z-index: 999;
+            padding: 15px 10px;
+            color: #eeeeee;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        a.prev {
+            border-radius: 0 2px 2px 0;
+        }
+
+        a.next {
+            right: 0;
+            border-radius: 2px 0 0 2px;
+        }
+
+        a.prev:hover,
+        a.next:hover {
+            background: #2a2a2a;
+            opacity: 1;
+            -webkit-transition: all 0.2s ease;
+
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            var moveindex = 0;
+            // 슬라이더를 움직여주는 함수
+            function moveSlider(index) {
+                moveindex = -(index * 600);
+                $('.slider_panel').animate({ left: moveindex }, 'slow');
+                $(".dot").removeClass("active");
+                $(".dot").eq(-moveindex/600).addClass("active");
+            };
+
+            function leftMove() {
+                if (moveindex == -2400) {
+                    moveindex = 0;
+                }
+                else {
+                    moveindex = moveindex - 600;
+                }
+                $('.slider_panel').animate({ left: moveindex }, 'slow');
+                $(".dot").removeClass("active");
+                $(".dot").eq(-moveindex/600).addClass("active");
+            };
+
+            function rightMove() {
+                if (moveindex == 0) {
+                    moveindex = -2400;
+                } else {
+                    moveindex = moveindex + 600;
+                }
+                $('.slider_panel').animate({ left: moveindex }, 'slow');
+                $(".dot").removeClass("active");
+                $(".dot").eq(-moveindex/600).addClass("active");
+            };
+
+            $(".dot").click(function () {
+                moveSlider($(this).index()-1);
+            });
+
+            $(".next").click(function () {
+                leftMove($(this));
+            })
+            $(".prev").click(function () {
+                rightMove($(this));
+            })
+
+            var id=0;  
+        var chk=0;
+        function auto(){
+            id=setInterval(function () {
+                leftMove();
+                }, 5000); 
+             $("#auto").addClass("active2");
+             $("#auto").removeClass("fa-play-circle");
+             $("#auto").addClass("fa-pause-circle");
+             chk=1;
+        }
+        function stop(){
+            clearInterval(id);
+            $("#auto").removeClass("active2");
+               
+            $("#auto").removeClass("fa-pause-circle");
+            $("#auto").addClass("fa-play-circle"); 
+            chk=0;
+        }
+        
+        auto();//자동시작
+        
+      $('#auto').click(function(){
+        if(chk==1){
+            stop();
+        }else{
+           auto();
+        }  
+
+      });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="animation_canvas">
+        <a href="#" class="next"><i class="fa fa-chevron-right"></i> </a>
+        <a href="#" class="prev"><i class="fa fa-chevron-left"></i> </a>
+        <div class="slider_panel">
+            <img src="img/pic1.jpg" class="slider_image" />
+            <img src="img/pic2.jpg" class="slider_image" />
+            <img src="img/pic3.jpg" class="slider_image" />
+            <img src="img/pic4.jpg" class="slider_image" />
+            <img src="img/pic5.jpg" class="slider_image" />
+        </div>
+
+        <div class="control_panel" style="text-align:center">
+            <i id="auto" class="fa fa-pause-circle"></i>  
+             <span class="dot active"></span> 
+             <span class="dot"></span> 
+             <span class="dot"></span> 
+             <span class="dot"></span>
+             <span class="dot"></span>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
