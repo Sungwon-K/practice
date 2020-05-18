@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https//unpkg.com/vue"></script>
+    <script>
+        window.onload=function(){
+            var app = new Vue({
+                el:'#app',
+                data:{
+                    message: '안녕하세요 Vue!',
+                    name: '홍길동'
+                }
+            });
+            
+            var app2 = new Vue({
+                el:'#app',
+                data:{
+                    message: '안녕하세요 Vue!',
+                    name: '홍길동'
+                }
+            });
+
+        };
+    </script>
+</head>
+<body>
+    <div id="app">
+        {{message}}{{name}}
+    </div>
+    <div id="app2">
+        {{message}}{{name}}
+    </div>
+    
+</body>
+</html>

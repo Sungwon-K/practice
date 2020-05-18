@@ -1,0 +1,29 @@
+1)post테이블 생성
+address주소
+zipcode우편번호
+
+2)영등포를 입력하면 "영등포가"포함된 주소 검색
+
+1)테이블 생성
+create table post(
+   address varchar(100) not null primary key,
+   zipcode varchar(100) not null
+);
+
+
+insert into post values('영등포구 가마산로311','07378');
+insert into post values('영등포구 가마산로312','07411');
+insert into post values('영등포구 가마산로313','07378');
+insert into post values('영등포구 가마산로315','07378');
+insert into post values('영등포구 가마산로317','07411');
+insert into post values('관악구 관악로 1','08826');
+insert into post values('관악구 관악산나들길 1-2','08825');
+insert into post values('관악구 관악산나들길 2','08825');
+insert into post values('관악구 관악산나들길 3-2','08825');
+
+
+2)http://carrotrd.dothome.co.kr/post.html
+
+
+
+

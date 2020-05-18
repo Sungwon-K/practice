@@ -1,0 +1,54 @@
+Ajax에서는 Cross Domain 불허
+1)서버에서 허용하면 가능
+헤더에서 "access-control-allow-origin: *"기록
+
+2)우회기술. JSONP
+dataType: "jsonp"
+
+
+Cookie
+:사용자의 어떤 정보를 사용자 컴퓨터에 저장해서 활용.
+보안적 취약(ex:공공장소에서의 쿠키사용)
+=>공지사항,자동로그인
+javascript,jQuery or JSP,PHP,ASP로 구현(프론트&백엔드 모두 구현)
+
+Session
+: 사용자의 어떤 정보를 서버에 저장해서 활용.
+정보가 많아질수록 서버에 부담감 상승
+=>중요한것만(ex:로그인처리)
+JSP,PHP,ASP로 구현(백엔드로만)
+
+*Front End 개발 언어,프레임워크 발전
+
+1.javascript
+
+2.jQuery
+
+3.Angular.js
+=>google에서 개발
+
+4.React.js
+=>Facebook에서 개발
+Virtual DOM도입.속도향상
+
+5.Angular.js 2 => Angular
+=>google에서 개발
+=> Anghular.js와 전혀 다른 새로운 언어. 이름만 비슷
+
+6.vue.js
+=>angular.js의 문법 벤치마킹 + react.js의 Vitual DOM 도입
+=>중국의 개인 개발자가 개발
+
+
+최근 Front End 기술의 발전이 많아지는 이유
+
+1.javascript의 발전
+=>구글 크롬브라우저의 v8엔진 발표로 속도 향상.
+=>node.js의 출현. Back End 개발도 javascript로 가능
+
+2.개발 패러다임의 변화.
+=> 기존 웹디자이너들이 html,css,javascript,jQuery 등을
+     직접 손코딩
+=> Ajax기술사용의 증가. Front End쪽에서 처리할 일이 많아짐
+=> Javascript로 Rich Contents 개발의 필요성 대두.(플래시 대체)
+=> Front End개발과 Back End개발의 분리
