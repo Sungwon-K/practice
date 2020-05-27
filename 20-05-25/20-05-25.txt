@@ -1,0 +1,19 @@
+*public List<productVO> ~~~~~~
+리턴값이 목록(List)
+List가 ArrayList의 부모
+
+Select 후 무조건 Vo에 담아서 사용!
+ex)
+ProductVO pVo = new ProductVO();
+pVo.setCode(rs.getInt("code");
+pVo.setName(rs.getString("name");
+pVo.setPrice(rs.getInt("price");
+....
+add.list(pVo);
+
+isNaN() - is not a number?
+=>숫자가 아니면 true  , 숫자라면 false
+
+
+MultipartRequest( request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
+=> 업로드 메소드(request객체. 경로, 사이즈제한, 인코딩방식, 동일이름파일 처리);

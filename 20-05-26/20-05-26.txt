@@ -1,0 +1,12 @@
+ASP - Visual Basic
+=> CBD (컴포넌트 스타일)
+
+JSP
+=> Class로 개발. Java Bean => VO
+
+JSP를 활용한 MVC패턴이 많이 사용됨.
+
+insert,update 후 주소가 변경되지 않은 상황에서 새로고침하면
+=> 또 실행됨
+
+=>insert, update, delete 후에는 주소를 변경.

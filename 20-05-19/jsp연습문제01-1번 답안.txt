@@ -1,0 +1,126 @@
+1. join.html에 입력한 값을 출력하는 jsp페이지
+작성하기.
+
+//join.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<h3>회원가입</h3>
+	<form name="form1" action="JoinServlet" method="post"
+		onsubmit="return check();">
+		id <input type="text" name="id"><br> 
+		name <input	type="text" name="name"><br> 
+		pw <input type="password" name="pw"><br>
+		email<input type="text" name="email"><br>
+		
+		email수신<input type="radio" value="예" name="emailYN">예 
+		<input type="radio" value="아니오" name="emailYN">아니오<br>
+		 
+		 취미
+		  <input type="checkbox" value="운동" name="hobby"> 운동 
+		  <input type="checkbox" value="독서" name="hobby"> 독서 
+		  <input type="checkbox" value="등산" name="hobby"> 등산 
+		  <input type="checkbox" value="낚시" name="hobby"> 낚시 <br>
+		   
+		  직업<select	name="job">
+			<option value="학생">학생</option>
+			<option value="직장인">직장인</option>
+			<option value="군인">군인</option>
+			<option value="기타">기타</option>
+		</select>
+		
+		<br> 자기소개<br>
+		<textarea name="introduce" cols="50" rows="10"></textarea>
+		<br> 사진 <input type="file" name="picture"><br> 
+		<input type="submit" value="등록">
+	</form>
+</body>
+</html>
+
+
+//JoinServlet.java
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class JoinServlet
+ */
+@WebServlet("/JoinServlet")
+public class JoinServlet extends HttpServlet {	
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public JoinServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String pw = request.getParameter("pw");
+		String email = request.getParameter("email");
+		String emailYN = request.getParameter("emailYN");
+		String job = request.getParameter("job");
+		String introduce = request.getParameter("introduce");
+		String picture = request.getParameter("picture");
+		
+		PrintWriter out = response.getWriter();
+		out.println("id : "+id);
+		out.println("<br>name : "+name);
+		out.println("<br>pw : "+pw);
+		out.println("<br>email : "+email);
+		if(emailYN==null) {
+			out.println("<br>이메일 수신 여부 : 선택사항 없음");
+		}else {
+			out.println("<br>이메일 수신 여부 : "+emailYN);
+		}
+		
+		String hobbys[] = request.getParameterValues("hobby");
+		out.print("<br>취미 : ");
+		if(hobbys==null) {
+			out.println("선택사항 없음");
+		}else {
+			for(String hobby : hobbys) {
+				out.println(hobby + " ");
+			}
+		}		
+	
+		out.println("<br>직업 : "+job);		
+		out.println("<br>자기소개 : "+ introduce);
+		
+		
+		
+		out.println("<br><a href = 'javascript:history.back()'>이전</a>");
+	}
+
+}

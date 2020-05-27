@@ -1,0 +1,47 @@
+1. product 삭제페이지에서 삭제버튼클릭시 '삭제하시겠습니까?'처리.
+
+2. 금칙어 기능 구현하기
+
+금칙어 10개 정도 등록 - table or array
+
+글등록시 제목, 내용에 금칙어 사용하면
+alert()로 메시지 띄우기.
+--------------------------------------------
+javascript로 구현해도 됩니다.
+
+function productCheck(){
+	var nameWord = document.frm.name.value;
+	var descWord = document.frm.description.value;
+	
+	var wrongword_arr = new Array("나쁜말","심한말","못된말");
+	var i = wrongword_arr.length;
+
+	if(document.frm.name.value.length == 0){...}
+	
+	if(document.frm.price.value.length == 0){...}
+	
+	if (isNaN(document.frm.price.value)){...}
+		
+	while(i-- > 0){
+		if(nameWord.indexOf(wrongword_arr[i]) >= 0){
+			alert(wrongword_arr[i] + "은(는) 금칙어입니다.")
+			return false;
+		}
+		if(descWord.indexOf(wrongword_arr[i]) >= 0){
+			alert(wrongword_arr[i] + "은(는) 금칙어입니다.")
+			return false;
+		}
+	}
+	return true;
+}
+
+function deleteCheck(){
+	var result;
+	result = confirm("정말 삭제하시겠습니까?");
+	
+	if(result){
+		return true;
+	}else{
+		return false;
+	}
+}

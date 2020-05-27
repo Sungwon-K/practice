@@ -1,0 +1,51 @@
+1. 게시판 삭제시 '삭제하시겠습니까?' 처리하기
+
+2. 게시판의 모든 버튼을 bootstrap 버튼으로 변경하기
+
+//1.삭제하시겠습니까? 처리(checkSuccess.jsp)
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	if(window.name == "update"){
+		opener.location.href = "BoardServlet?command=board_update_form&num=${param.num}";		
+	}else if(window.name == 'delete'){
+		//삭제 처리 코드 추가
+		var result = confirm("정말 삭제하시겠습니까?")
+		if(result){
+			alert('삭제되었습니다.');
+			opener.location.href = "BoardServlet?command=board_delete&num=${param.num}";	
+		}else{
+			window.close();	
+		}		
+	}
+	window.close();
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+//2. 게시판 버튼을 bootstrap 버튼으로 변경하기
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 입장</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<button type="button" class="btn btn-primary" onclick="location.href = '/Board/BoardServlet?command=board_list'">게시판</button>
+</body>
+</html>
