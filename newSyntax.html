@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript New Syntax</title>
+</head>
+<script>
+    let arr=[1,2,3,4,5];
+    let arrCopy=[...arr];//전개 연산자
+    console.log(arrCopy);
+    [a,b,c,d,e]=[...arr];//구조분해 할당
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
+    console.log(e);
+
+    let obj={name:'홍길동',address:'서울'};
+    let dbjCopy={...obj};//전개 연산자
+    console.log(dbjCopy);
+    let{name, address}=obj;//구조분해 할당
+    console.log(name);
+    console.log(address);
+
+    const func1 = (name)=>{console.log(name)};
+    func1('홍길동');
+
+    //자동호출함수
+    (function(){
+        console.log('이순신');}
+    )();
+
+</script>
+<body>
+
+</body>
+</html>

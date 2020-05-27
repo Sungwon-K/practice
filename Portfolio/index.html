@@ -8,127 +8,316 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Heroic Features - Start Bootstrap Template</title>
+  <title>SeongWon's Portfolio</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
   <!-- Custom styles for this template -->
-  <link href="css/heroic-features.css" rel="stylesheet">
+  <link href="css/grayscale.min.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body id="page-top">
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="#">Portfolio</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Portfolio</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">Skills</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link js-scroll-trigger" href="#projects">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link js-scroll-trigger" href="#products">projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <div class="container">
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">Seong Won's<br>Portfolio</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">Front End, Back End Programming</h2>
+        <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <h1 class="display-3">Seong Won's Portfolio</h1>
-      <p class="lead">프론트엔드 / 백엔드 프로그래밍 포트폴리오</p>
-    </header>
+  <!-- About Section -->
+  <section id="about" class="about-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">Built with</h2>
+          <div class="row text-white">
+            <div class="col-sm-4">
+                <i class="fab fa-java logo-small" ></i>
+                <h4>Java</h4>
+                <p>Object Oriented Programming Language</p>
+            </div>
+            <div class="col-sm-4">
+                <i class="fab fa-html5 logo-small"></i>
+                <h4>HTML5</h4>
+                <p>Hyper Text Markup Language</p>
+            </div>
+            <div class="col-sm-4">
+                <i class="fab fa-css3-alt logo-small"></i>
+                <h4>CSS3</h4>
+                <p>Cascade Style Sheet</p>
+            </div>
+        </div>
+        <div class="row text-white">
+            <div class="col-sm-4">
+                <i class="fab fa-js-square logo-small"></i>
+                <h4>Javascript</h4>
+                <p>Front End Programming Language</p>
+            </div>
+            <div class="col-sm-4">
+                <i class="fab fa-android logo-small"></i>
+                <h4>Android</h4>
+                <p>Mobile App Programming Language</p>
+            </div>
+            <div class="col-sm-4">
+                <i class="fab fa-node logo-small"></i>
+                <h4>Node.js</h4>
+                <p>Back End Run Time Environment Based By Javascript</p>
+            </div>
+        </div>          
+          <p class="text-white-50">
+            I am a junior web developer using these skills.</p>
+        </div>
+        <img src="img/pad.png" class="img-fluid" alt="">
+      </div>
+    </div>
+  </section>
 
-    <!-- Page Features -->
-    <div class="row text-center">
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section bg-light">
+    <div class="container">
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="img/p01.png" alt="포트폴리오 이미지1">
-          <div class="card-body">
-            <h4 class="card-title">학사관리 프로그램</h4>
-            <p class="card-text">Java, Swing, Oracle, 윈도우어플리케이션</p>
-          </div>
-          <div class="card-footer">
-            <a href="https://youtu.be/DnCNlPe-lDY?list=PLYIa4TXmuKbNVXoZ_t0dpEyBqXwNNMOlb" class="btn btn-primary" target="_blank">More!</a>
+      <!-- Featured Project Row -->
+      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+        <div class="col-xl-8 col-lg-7">
+          <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <h4>SeongWon Kim</h4>
+            <p class="text-black-50 mb-0">대충 자기소개 블라블라블라블라블라 어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구 이래서저래서요래서그래서이래서저래서요래서그래서</p>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="img/p02.png" alt="포트폴리오 이미지2">
-          <div class="card-body">
-            <h4 class="card-title">영화홍보 모바일웹</h4>
-            <p class="card-text">HTML5, CSS3, jQueryMobile, 모바일웹</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" onclick="window.open('http://carrotrd.dothome.co.kr/movie/','movie','width=768px,height:800px');" class="btn btn-primary" target="_blank">More!</a>
+      <!-- Project One Row -->
+      <div id = "products" class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/project01.png" alt="학사관리프로그램">
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">학사 관리 프로그램</h4>
+                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                <a href="https://youtu.be/DnCNlPe-lDY">자세히보기</a>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters  mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/project02.png" alt="영화사이트">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="text-white">영화 안내사이트</h4>
+                <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                <a href="http://carrotrd.dothome.co.kr/movie/">자세히보기</a>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
+      <!-- Project Three Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/project03.png" alt="기업 안내사이트">
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">기업 안내사이트</h4>
+                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                <a href="http://carrotrd.dothome.co.kr/company/">자세히보기</a>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
           </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+        </div>
+      </div>
+
+         <!-- Project Four Row -->
+         <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div class="col-lg-6">
+            <img class="img-fluid" src="img/project04.png" alt="영상배경사이트">
+          </div>
+          <div class="col-lg-6 order-lg-first">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                  <h4 class="text-white">영상 배경사이트</h4>
+                  <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                  <a href="http://carrotrd.dothome.co.kr/IUsite/">자세히보기</a>
+                  <hr class="d-none d-lg-block mb-0 mr-0">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <!-- Project Five Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/project05.png" alt="벤치마킹사이트">
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">기업 벤치마킹 사이트</h4>
+                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                <a href="http://carrotrd.dothome.co.kr/samsung/">자세히보기</a>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
-    <!-- /.row -->
+  </section>
 
-  </div>
-  <!-- /.container -->
+  <!-- Signup Section -->
+  <section id="signup" class="signup-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+
+          <form class="form-inline d-flex">
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
+            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section bg-black">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Address</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Email</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a href="#">lunell513@naver.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-mobile-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Phone</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">+82) 010-9324-6807</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="bg-black small text-center text-white-50">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      Copyright &copy; SeongWon's Website 2020
     </div>
-    <!-- /.container -->
   </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
 
 </body>
 

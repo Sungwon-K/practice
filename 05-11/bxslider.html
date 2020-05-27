@@ -1,0 +1,38 @@
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+        $('.slider').bxSlider({
+  auto: true,
+  autoControls: true,
+  stopAutoOnClick: true,
+  pager: true,
+  slideWidth: 600
+});
+    });
+  </script>
+  <style>
+      .slider img{
+          width:100% !important;
+          height: 300px !important;
+      }
+  </style>
+
+</head>
+<body>
+
+  <div class="slider">
+    <div><img src="img/pic1.jpg"></div>
+    <div><img src="img/pic2.jpg"></div>
+    <div><img src="img/pic3.jpg"></div>
+    <div><img src="img/pic4.jpg"></div>
+    <div><img src="img/pic5.jpg"></div>
+  </div>
+
+</body>
+</html>

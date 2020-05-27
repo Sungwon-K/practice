@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+        function setKeyword(address) {
+            //검색 작업 코딩....
+            document.form1.address.value = address;
+            document.getElementById("txtHint").style.display = "none";
+        }
+
+        function showHint(str) {
+            console.log(str.length);
+            if (str.length == 0) {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            } else {
+                var output = "<ul>";
+                var address;
+                var zipcode;
+
+                $.getJSON("post.php?q=" + encodeURI(str), function (data) {
+                    console.log("test");
+                    $.each(data, function (key, value) {
+                        if (key % 2 == 0) {
+                            address = value.address;
+                        }
+                        if (key % 2 == 1) {
+                            zipcode = value.zipcode;
+
+                            output += "<li><a href='#' onClick='setKeyword(\"" + address + "\")'>" + address + "</a><a href='#' onClick='setKeyword(\"" + zipcode + "\")'>" + "    " + zipcode + "</a></li>";
+                        }
+                    });
+
+                    output += "</ul>";
+
+                    $("#txtHint").show();
+                    $("#txtHint").html(output);
+                });
+
+            }
+        }
+
+        $(document).ready(function () {
+            $("#post").keyup(function () {
+                showHint($(this).val());
+            });
+        });
+
+
+    </script>
+</head>
+
+<body>
+
+
+    <form name="form1">
+        <input type="text" id="post" name="address" placeholder="주소를 입력하세요" onkeyup="showHint(this.value)">
+    </form>
+    <div id="txtHint" style="display:none;"></div>
+</body>
+
+</html>

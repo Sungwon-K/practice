@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript Destructuring Assignment</title>
+    <script>
+        //배열을 구조 분해 할당
+        let a,b,rest;
+        [a,b]=[10,20];
+
+        console.log(a);
+        console.log(b);
+
+        //...rest는 spread syntax 전개 구문
+        [a, b, ...rest] = [10, 20, 30, 40, 50];
+        console.log(rest);
+
+        //객체를 구조분해 할당
+        var o = {p: 42, q: true};
+        var {p,q} =0;
+
+        console.log(p); //42
+        console.log(q); //true
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

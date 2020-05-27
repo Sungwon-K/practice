@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> Plugin </title>
+<style>
+	*{margin: 0;padding: 0;}
+	body{font-size: 12px;}
+	input{vertical-align: middle;}
+	#notice_wrap{
+		width: 300px;
+		position: absolute;
+		left: 30px;
+		top: 30px;
+		box-shadow:0 0 8px #000;
+	}
+	.closeWrap{
+		background-color: #000;
+		color:#fff;
+		text-align: right;
+		padding:5px 10px;
+	}
+	.closeWrap button{
+		margin-left: 20px;
+		cursor:pointer;
+	}
+</style>
+<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha256-1A78rJEdiWTzco6qdn3igTBv9VupN3Q1ozZNTR4WE/Y=" crossorigin="anonymous"></script>
+<script>
+$(function() {
+	//정해진 기간동안 창 띄우지 않기
+	if($.cookie("popup") == "none") {
+			$("#notice_wrap").hide();
+	}
+
+	var $expChk = $("#expiresChk");//탐색을 한번만. 중복탐색방지
+	$(".closeBtn").on("click", closePop);
+	
+	//창 종료&기간 정의
+	function closePop() {
+		if($expChk.is(":checked")) {
+			$.cookie("popup","none",{expires:3, path:"/"});
+		}
+		$("#notice_wrap").fadeOut("fast");
+	}    
+});
+</script>
+</head>
+<body>
+	<div id="notice_wrap">
+		<img src="img/pic1.jpg" width="100%" alt="공지사항">
+		<p class="closeWrap">
+			<input type="checkbox" name="expiresChk" id="expiresChk">
+			<label for="expiresChk">3일 동안 이 창 열지않기</label>
+			<button class="closeBtn">닫기</button>
+	</p>
+	</div>  
+</body>
+</html>

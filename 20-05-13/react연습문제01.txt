@@ -1,0 +1,41 @@
+1. StudentApp 프로젝트를 생성하시오.
+
+2. Student Component를 생성하시오.
+   state => id, name, address
+
+3. id, name, address를 출력하시오.
+
+import 이름 from './이름.js';
+
+//index.js
+import Student from './Student.js';
+...
+<React.StrictMode>
+    <Student />
+</React.StrictMode>,
+...
+
+
+//Student.js
+import React from 'react';
+
+class Student extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { id: "hkd", name: "홍길동", address: "서울" };
+  }
+  render() {
+    return (
+      <div>
+        <h1>Student</h1>
+        <p>
+          ID: {this.state.id}<br/>
+          Name: {this.state.name}<br/>
+          Address: {this.state.address}
+        </p>
+      </div>
+    );
+  }
+}
+
+export default Student;
