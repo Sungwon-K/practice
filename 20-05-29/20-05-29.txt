@@ -1,0 +1,30 @@
+Express Module에서는 router을 이용해서 url설정을 한다.
+=>Servlet에서 url설정하는 것과 같은 역할
+
+router는 network에서 접속사를 분배하는 장치
+-----------------------------------------------------------
+전송방식
+
+Rest or Restful 방식
+
+
+get	-select
+post	-insert
+put	-update
+delete	-delete
+
+app.get('/user/:id', function (request, response) { });
+<a href='/user/20'>클릭</a>
+=>id에 20 들어감
+
+app.get('/user/:id/:pageno', function (request, response) { });
+<a href='/user/hkd/10'>클릭</a>
+=>id에 hkd, pageno 10 들어감
+
+<a href='/user?id=20>클릭</a>
+
+--------------------------------------------------------------------
+삼성의 OS
+
+1.bada - 독자 OS
+=> apple의 ios와 같은 역할
