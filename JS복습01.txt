@@ -1,0 +1,53 @@
+알트L, 알트O => 런 웹서버
+
+var : 변수 선언
+
+JS는 <head> 혹은 <body> 사이에 선언(보통 <head>에 선언)
+
+JS의 주석처리 : // 또는 /*  */
+
+*변수의 초기값은 더 뒤에 나온 데이터가 입력된다.
+
+문자형: ""로 구분,태그를 포함하여 출력하면 태그로 인식한다.
+숫자형: 숫자 그대로,Number("문자로 표현된 숫자")
+논리형:true,false,Boolean(데이터)
+
+*Boolean(데이터)
+숫자0,null,defined,빈문자를 제외한 나머지 데이터를 ture로 반환
+
+prompt("질문","기본 응답");
+
+*confirm();
+확인/취소창
+
+location.href="http://주소";
+
+*객체의 종류
+내장 객체
+브라우저 객체 모델(BOM, Browser Object Model)
+문서 객체 모델(DOM, Document Object Model)
+
+*BOM -브라우저 계층구조 객체
+window,screen,location,history,navigator 등
+window는 document와 location의 상위객체
+
+*DOM -HTML 문서 객체
+최상위 객체 html => head,body
+
+
+*배열
+1.
+var d = new Array();
+d[0]=30;
+d[1]="따르릉";
+d[2]=true;
+
+2.
+var d=new Array(30,"따르릉",true);
+
+3.
+var d=[30,"따르릉",true];
+
+
+
+
