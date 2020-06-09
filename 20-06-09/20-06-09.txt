@@ -1,0 +1,5 @@
+encode:원본을 인코딩해서 새로운 타입을 만듬
+
+decode:원래대로 되돌림
+
+bitmap을 인코딩 => gif,jpg,png
