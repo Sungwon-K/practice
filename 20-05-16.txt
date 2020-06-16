@@ -1,0 +1,67 @@
+Spring Tool Suites(STS)
+-Eclipse 기반의 Spring 개발 도구
+-https://spring.io/tools(최신버전)
+-https://github.com/spring-projects/toolsuite-distribution/wiki/Spring-Tool-Suite-3(우리가 쓸 버전)
+
+1gmail에서 다운
+2.자체 서버 삭제
+3.톰캣9.0서버 연결
+4.pom.xml(10번라인)
+<properties>
+		<java-version>1.6</java-version>
+		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+</properties>
+버전 5.0.7로 변경
+5.자바 버전 1.8로 변경(가장 아래 위치)
+6.롬복 1.18.2버전 다운
+7.pom.xml119라인
+<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+<dependency>
+	<groupId>org.projectlombok</groupId>
+    	<artifactId>lombok</artifactId>
+    	<version>1.18.0</version>
+    	<scope>provided</scope>
+</dependency>		        
+추가
+8.그 바로 위에 junit 버전을 4.7->4.12
+
+
+MVC : 규모가 큰 프로젝트에 어울림
+스프링 부트 : 규모가 작은 프로젝트에 어울림
+
+Maven : 라이브러리 관련 도구
+Spring : JSP MVC패턴을 쉽게 구현하게 도와주는 프레임워크
+MyBatis : SQL 관리, XML
+
+
+스프링의 특징
+ 
+POJO 기반 : 일반적인 Java를 이용하여 스프링 사용 가능
+의존성 주입 : 외부에서 객체를 주입 XML이나 어노테이션 이용
+AOP(관점 지향 프로그래밍) : 공통적으로 필요한 로직을 분리
+
+
+CBD
+=>무겁다
+=>plain java가 아닌 추가된 API가 많다.
+
+Spring
+=>가볍다
+=>POJO(Plain Old Java Object)
+	:기본적인 주로 java api를 사용
+
+
+*Lombox
+-흔하게 작성하는 기능들을 완성해주는 라이브러리
+-setter&getter메서드를 만들어주는 역할
+-필수가 아닌 옵션(장단점에 대한 논란이 있음)
+
+
+전자정보 프레임워크
+메이븐 + 스프링 + 마이바티스
+
+메이븐
+-라이브러리 관리
+-형상관리
