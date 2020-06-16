@@ -1,0 +1,47 @@
+1.ojdbc6.jar파일 구하기(카톡)
+2.ex00 properties
+3.java build path에 libraries탭
+4.add external JARs 해서 등록
+5.deployment assembly->java build path entries->ojdbc6 클릭 finish
+6.
+		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<dependency>
+    		<groupId>com.zaxxer</groupId>
+    		<artifactId>HikariCP</artifactId>
+    		<version>2.7.4</version>
+		</dependency>
+				       
+추가
+
+7.src>main>webapp>WEB-INF>spring>root-content.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
+			<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property> -->
+
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl"
+			value="jdbc:oracle:thin:@localhost:1521:myoracle"></property>
+
+		<property name="username" value="ora_user"></property>
+		<property name="password" value="hong"></property>
+	</bean>
+
+	<!-- HikariCP configuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+</beans>
+
