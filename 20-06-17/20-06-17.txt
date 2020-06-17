@@ -1,0 +1,45 @@
+@ModelAttribute("")
+-강력수집.
+수집에서 끝나지 않고 jsp까지 자동으로 넘겨준다
+
+ex)
+public String ex04(SampleDTO dto, @ModelAttribute("page") int page)
+
+public String ex04(SampleDTO dto, int page)
+
+둘다 dto와 page에 데이터가 수집은 되지만 위쪽 ModelAttribute는
+따로 어트리뷰트를 넘겨줄필요 없이 바로 jsp로 데이터가 넘어가지만
+
+아래쪽은 따로 어트리뷰트를 넘겨주지 않으면 jsp로 데이터가 넘어가지 않는다.
+
+
+*ModelAttribute("page")의 page가 jsp에서 데이터를 받는 이름이다
+ex)
+@ModelAttribute("page")	=>jsp	log.info(page);
+@ModelAttribute("p")	=>jsp	log.info(p);
+(원본 데이터는 같다 이름만 바뀐다)
+
+=>SampleDTO 앞에 @ModelAttribute("sampleDTO")가 생략되어있다.
+따라서 DTO는 @ModelAttribute 없이도 데이터가 jsp로 자동으로 넘어가며
+jsp에서 데이터를 받는 이름이 SampleDTO가 아닌 sampleDTO로 되어있다.
+
+
+*Code Convention 코딩 규칙
+=> 팀프로젝트를 위해서 코딩하는 스타일의 기준점을 미리 정함.
+=>단위 테스트 후 통합할 때 중요
+
+Naming Rule 명명 규칙
+-패키지
+-클래스
+-메서드
+-상수
+-변수
+-컴포넌트
+-etc
+
+MVC패턴
+Table생성
+->VO(모델)생성
+->DAO생성(+DBManager)
+->Controller(JSP:서블릿, Spring:@컨트롤러 포함된 클래스)생성
+->View생성(~~.jsp)
