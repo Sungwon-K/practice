@@ -9,5 +9,32 @@
   		select * from tbl_board where bno > 0
   	]]>
   	</select>
+  	
+  	<insert id = "insert">
+  	<![CDATA[
+  		insert into tbl_board(bno,title,content,writer)
+  		values(seq_board.nextval,#{title},#{content},#{writer})
+  	]]>
+  	</insert>
+  	
+  	<!-- bno가 sequence에 의해 자동생성된 후 BoardVO의 bno에 저장됨.  -->
+  	<!-- sequence에 의해 생성된 값을 알아낼때 사용  -->
+  	<insert id="insertSelectKey">
+  		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+  		<![CDATA[
+  			select seq_board.nextval from dual
+  		]]>
+  		</selectKey>
+  	<![CDATA[
+	  	insert into tbl_board(bno,title,content,writer)
+  		values(#{bno},#{title},#{content},#{writer})
+  	]]>
+  	</insert>
+  	
+  	<select id="read" resultType="org.zerock.domain.BoardVO">
+  	<![CDATA[
+  		select * from tbl_board where bno =#{bno}
+  	]]>
+  	</select>
 </mapper>
  

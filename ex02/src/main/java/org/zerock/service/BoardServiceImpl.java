@@ -21,8 +21,8 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public BoardVO get(Long bno) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("get...............");
+		return mapper.read(bno);
 	}
 
 	@Override
@@ -40,7 +40,8 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void register(BoardVO board) {
-		// TODO Auto-generated method stub
+		log.info("register...........");
+		mapper.insertSelectKey(board);
 		
 	}
 	
