@@ -1,0 +1,10 @@
+title => T
+content => C
+writer => W
+
+TC => title과 content에서 검색
+
+or title like '%spring%' or content like '%spring%'
+
+
+TCW => title,content,writer에서 검색

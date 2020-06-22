@@ -1,0 +1,45 @@
+1. 삭제시 '삭제하시겠습니까?' confirm받기
+
+//삭제처리 전 confirm받기
+if(operation==="remove"){			
+				
+	var res = confirm("정말 삭제하시겠습니까?");				
+				
+	if(res){
+		formObj.attr("action","/board/remove");//form의 action값을 변경		
+	}
+			
+}
+
+
+
+2. list에서 amount양을 변경하는 콤보박스를 만들어서
+ 한페이지에 보여지는 글의 갯수 변경하기
+
+
+//select box값 변경시 자동으로 amount값 변경
+$(".amountbox").on("change",function(e){
+	e.preventDefault(); //전송방지
+	searchForm.submit();
+})
+
+<style>
+.selectbox{
+  width: 15%;
+  height: 20px;
+
+  border: 1px;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+ }
+ 
+ .amountbox{
+ 	width: 8%;
+ }
+
+<select name="amount" class="selectbox amountbox">
+	<option value="5" <c:out value="${pageMaker.cri.amount eq '5'?'selected':''}"/>>5</option>
+	<option value="10" <c:out value="${pageMaker.cri.amount eq '10'?'selected':''}"/>>10</option>
+	<option value="15" <c:out value="${pageMaker.cri.amount eq '15'?'selected':''}"/>>15</option>
+	<option value="20" <c:out value="${pageMaker.cri.amount eq '20'?'selected':''}"/>>20</option>
+</select>
