@@ -8,6 +8,7 @@
 <%@ include file="../includes/header.jsp" %>
 
 <script type="text/javascript">
+	
 	$(document).ready(function(){
 		
 		var result = '<c:out value="${result}"/>';
@@ -60,6 +61,7 @@
 			searchForm.submit();
 		})
 		
+		
 		$("#searchForm button").on("click",function(e){
 			e.preventDefault(); //전송방지
 			
@@ -77,7 +79,7 @@
 		
 		searchForm.submit();
 		
-		});
+		});		
 	});
 </script>
 <style>

@@ -6,6 +6,9 @@
 <html lang="en">
 
 <%@ include file="../includes/header.jsp" %>
+
+<script src="/resources/js/reply.js"></script>
+
 <script>
 $(document).ready(function() {
     var operForm=$("#operForm");
@@ -18,7 +21,30 @@ $(document).ready(function() {
        operForm.attr("action", "/board/list");
        operForm.submit();
     })
- })
+    
+    console.log("======================");
+	console.log("JS TEST");
+	
+	var bnoValue = "<c:out value='${board.bno}'/>";
+	
+	//replyService add 테스트
+	replyService.add(
+		{reply:"JS TEST", replyer:"tester", bno:bnoValue},
+		//callback처리
+		function(result){
+			alert("Result: " + result);
+		}
+		//error생략
+	);
+	
+	replyService.getList({bno:bnoValue, page:1}, 
+						function(list){
+							for(var i=0, len = list.length || 0; i < len; i++){
+								console.log(list[i]);
+						 	}
+						}
+	);
+})
 </script>
 
 		<!-- 컨텐츠 ----------------------->
