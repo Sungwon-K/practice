@@ -34,5 +34,23 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.getListWithPaging(cri,bno);
 	}
 
+	@Override
+	public ReplyVO get(Long rno) {
+		log.info("get......."+rno);
+		return mapper.read(rno);
+	}
+
+	@Override
+	public int modify(ReplyVO vo) {
+		log.info("modify......."+vo);
+		return mapper.update(vo);
+	}
+
+	@Override
+	public int remove(Long rno) {
+		log.info("remove......"+rno);
+		return mapper.delete(rno);
+	}
+
 
 }

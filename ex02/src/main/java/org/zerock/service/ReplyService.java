@@ -10,4 +10,10 @@ public interface ReplyService {
 	public int register(ReplyVO vo);
 	//목록
 	public List<ReplyVO> getList(Criteria cri, Long bno);
+	//상세보기
+	public ReplyVO get(Long rno);
+	//수정하기
+	public int modify(ReplyVO vo);
+	//삭제하기
+	public int remove(Long rno);
 }

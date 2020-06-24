@@ -14,4 +14,10 @@ public interface ReplyMapper {
 			@Param("cri") Criteria cri,
 			@Param("bno") Long bno			
 	);
+	//상세보기
+	public ReplyVO read(Long bno);
+	//삭제
+	public int delete(Long bno);
+	//수정
+	public int update(ReplyVO reply);
 }

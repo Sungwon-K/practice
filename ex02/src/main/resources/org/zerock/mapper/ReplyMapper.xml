@@ -17,5 +17,20 @@
 		where bno = #{bno}
 		order by rno desc
 	</select>
+	
+	<!-- 상세보기 -->
+	<select id="read" resultType="org.zerock.domain.ReplyVO">
+		select * from tbl_reply where rno = #{rno}
+	</select>
+	
+	<!-- 삭제하기 -->
+	<select id="delete">
+		delete from tbl_reply where rno = #{rno}
+	</select>
+	
+	<!-- 수정하기 -->
+	<select id="update">
+		update tbl_reply set reply = #{reply}, updatedate = sysdate where rno = #{rno}
+	</select>
 </mapper>
  
