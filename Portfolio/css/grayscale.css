@@ -84,6 +84,58 @@
   }
 }
 
+.javaicon{
+  background: rgb(0, 102, 255);
+  width:38px;
+}
+
+
+.oracleicon{
+    background: rgb(162, 0, 255);
+    width:55px;
+}
+
+.skicon{
+  color: white;
+  padding-left:6px;
+  border-radius: 10px 0;
+}
+
+.rticon{
+  float:right;
+  margin-left: 8px;
+}
+
+.lficon{
+  float:left;
+  margin-right: 8px;
+}
+
+.jqueryicon{
+  background: rgb(3, 182, 3);
+  width:59px;
+}
+
+.cssicon{
+  background: rgb(255, 145, 0);
+  width:47px;
+}
+
+.htmlicon{
+  background: rgb(0, 163, 122);
+  width:60px;
+}
+
+.bsicon{
+  background: rgb(199, 23, 11);
+  width:80px;
+}
+
+.jspicon{
+  background: rgb(99, 97, 97);
+  width:35px;
+}
+
 .masthead {
   position: relative;
   width: 100%;
@@ -280,6 +332,10 @@ a:focus, a:hover {
   color: #3c6360;
 }
 
+.bg-light {
+  background-color: #fffff0 !important;
+}
+
 .bg-black {
   background-color: #161616 !important;
 }
@@ -295,3 +351,4 @@ a:focus, a:hover {
 footer {
   padding: 5rem 0;
 }
+

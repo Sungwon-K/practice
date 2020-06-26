@@ -29,6 +29,7 @@
 			$("#myModal").modal("show");
 		}
 		
+		
 		//등록화면으로 이동
 		$("#regBtn").on("click", function(){
 			self.location = "/board/register";
@@ -80,6 +81,8 @@
 		searchForm.submit();
 		
 		});		
+		
+		
 	});
 </script>
 <style>
@@ -133,8 +136,9 @@
                                					<c:out value="${board.title}"/>
                                				</a> --%>
                                				<a class="move" href="<c:out value='${board.bno}'/>">
-                               					<c:out value="${board.title }"/>
-                               				</a>
+                               					<c:out value="${board.title }"/>                               					
+                               				</a>                               	
+                               				<span class="badge"><b><c:out value="${board.replyCnt }"/></b></span>                                			
                                			</td>
                                			<td><c:out value="${board.writer}"/></td>
                                			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}"/></td>

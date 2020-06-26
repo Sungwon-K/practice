@@ -39,7 +39,7 @@ public class BoardController {
 	  @GetMapping("/list")
 	   public void list (Criteria cri,Model model) {
 	      
-	      log.info("list");
+	      log.info("/list");
 	      //model을 사용해서 list라는 이름으로 jsp에 목록을 표시하게됨. jsp에서는 list로 모든 attribute전달받게되어, 리스트로 쭉- 나오게 됨.
 	      model.addAttribute("list",service.getList(cri));
 	      model.addAttribute("pageMaker",new PageDTO(cri,service.getTotal(cri)));
@@ -61,18 +61,18 @@ public class BoardController {
 	}
 	
 	// 상세보기
-		@GetMapping("/get")
-		public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri,Model model) {
-			log.info("/get");
-			model.addAttribute("board", service.get(bno));
-		}
+	@GetMapping("/get")
+	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri,Model model) {
+		log.info("/get");
+		model.addAttribute("board", service.get(bno));
+	}
 		
-		//수정화면
-		@GetMapping("/modify")
-		public void modify(@RequestParam("bno") Long bno,@ModelAttribute("cri") Criteria cri, Model model) {
-			log.info("/modify");
-			model.addAttribute("board", service.get(bno));
-		}
+	//수정화면
+	@GetMapping("/modify")
+	public void modify(@RequestParam("bno") Long bno,@ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("/modify");
+		model.addAttribute("board", service.get(bno));
+	}
 	
 	//수정처리
 	@PostMapping("/modify")
@@ -106,4 +106,6 @@ public class BoardController {
 		 */
 		return "redirect:/board/list"+cri.getListLink();
 	}
+	
+	
 }
