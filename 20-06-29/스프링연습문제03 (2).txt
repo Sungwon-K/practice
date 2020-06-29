@@ -1,0 +1,53 @@
+1. 게시판에 비밀번호 추가하기
+
+ 1) tbl_board에 password컬럼추가
+ 2) 글등록시 password 입력
+ 3) 수정,삭제시 password 입력. 일치하면 처리.
+=> jsp책 참고.
+
+
+1)alter table tbl_board add(password number);
+
+2)
+2-1)BoardVO.java
+
+private String password; //추가
+
+
+2-2)BoardMapper.xml
+
+<insert id = "insert">
+	insert into tbl_board(bno,title,content,writer,password)
+	values(seq_board.nextval,#{title},#{content},#{writer},#{password})
+</insert>
+
+<insert id="insertSelectKey">
+  	<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+  	<![CDATA[
+  		select seq_board.nextval from dual
+  	]]>
+  	</selectKey>
+  	insert into tbl_board(bno,title,content,writer,password)
+	values(#{bno},#{title},#{content},#{writer},#{password})
+</insert>
+
+
+2-3)
+
+<div class="form-group">
+	<label>password</label>
+	<input class="form-control" name='password'>
+</div>
+
+
+3)
+get.jsp
+modify.jsp
+
+
+
+2. replycnt가 0인 경우는 출력하지 않게 하기.
+
+<c:if test="${board.replyCnt ne 0}"><span class="badge"><b><c:out value="${board.replyCnt }"/></b></span></c:if>
+
+6/30까지
