@@ -352,3 +352,48 @@ footer {
   padding: 5rem 0;
 }
 
+
+.haksabox{
+  width:110px;
+}
+
+.moviebox{
+  width:190px;
+  float: right;
+}
+
+.videobox{
+  width:190px;
+  float: right;
+}
+
+.companybox{
+  width:130px;
+}
+
+.samsungbox{
+  width:280px;
+}
+
+.coupangbox{
+  width:170px;
+  float: right;
+}
+
+@media (max-width: 992px){
+  .moviebox{
+    float: none;
+  }
+  
+  .videobox{
+    float: none;
+  }
+  
+  .coupangbox{
+    float: none;
+  }
+  
+  .iconbox{
+    margin:0px auto;
+  }
+}

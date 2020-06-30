@@ -10,20 +10,36 @@
 	$(document).ready(function() {
 		
 		var formObj=$("form");//form태그를 찾음
+		var passValue = '<c:out value="${board.password}"/>';
+		
+		$("#pwck").on("focus",function(){
+			$("#pwck").val("");					
+		})
+		
 		
 		$('button').on("click",function(e){
 				
 			e.preventDefault();//전송을 막음
 			
 			var operation=$(this).data("oper");// data-oper 속성값을 구함
-			console.log(operation);
+
 			
 			if(operation==="remove"){			
+								
+								
+				var pwck = $("#pwck").val();
 				
-				var res = confirm("정말 삭제하시겠습니까?");				
+				console.log(pwck);
+				console.log(passValue);
 				
-				if(res){
-					formObj.attr("action","/board/remove");//form의 action값을 변경		
+				if(pwck == passValue){
+					formObj.attr("action","/board/remove");//form의 action값을 변경
+					formObj.submit();
+				}else{
+					alert("비밀번호가 잘못되었습니다.");
+					$("#passModal").modal("hide");
+					
+
 				}
 			
 			}else if(operation === "list"){
@@ -43,12 +59,22 @@
 				formObj.append(pageNumTag);
 				formObj.append(amountTag);
 				formObj.append(keywordTag);
-				formObj.append(typeTag);				
-			}
-			
-			formObj.submit();
-		});
-		
+				formObj.append(typeTag);
+				
+				formObj.submit();
+				
+			}else if(operation == "pwck"){
+				$("#passModal").find("input").val("패스워드를 입력하세요.");//password태그 값 삭제
+				$("#passModal").modal("show");				
+			}else if(operation == "modify"){
+				if(pwck == passValue){
+					formObj.submit();
+				}else{
+					alert("비밀번호가 잘못되었습니다.");
+					$("#passModal").modal("hide");
+				}
+			}			
+		});		
 	});
 </script>
 
@@ -75,6 +101,7 @@
                            		<input type="hidden" name="amount" value="<c:out value='${cri.amount }'/>">
                            		<input type="hidden" name="keyword" value="<c:out value='${cri.keyword }'/>">
                            		<input type="hidden" name="type" value="<c:out value='${cri.type }'/>">
+                           		<input type="hidden" name="password" value='<c:out value="${board.password}"/>'>
                            	
                         		<div class="form-group">
                         			<label>Bno</label>
@@ -107,14 +134,41 @@
                         				value='<fmt:formatDate pattern ="yyyy/MM/dd" value= "${board.updateDate}"/>' readonly="readonly">
                         		</div>
                         		
-                        		<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-                        		<button type="submit" data-oper='remove' class="btn bnt-danger">Remove</button>
-                        		<button type="submit" data-oper='list' class="btn bnt-info">List</button>
+                        		<button type="submit" data-oper='modify' class="btn btn-default">수정</button>
+                        		<button data-oper='pwck' class="btn btn-default">삭제</button>
+                        		<button type="submit" data-oper='list' class="btn bnt-info">목록</button>
                            	</form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
+                    
+                    <!-- 패스워드 모달창 ----------------------------------------->
+					<div id="passModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- 모달 컨테이너 -------------------------------------->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">패스워드 체크</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label>Password</label>
+										<input class="form-control" id="pwck" name="pwck">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" data-oper='remove' class="btn bnt-danger">Remove</button>
+									<button type="button" id="modalCloseBtn" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+								</div>
+							</div>
+							<!-- 모달 컨테이너 -->
+						</div>
+					</div>
+					<!-- 패스워드 모달창 -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>          

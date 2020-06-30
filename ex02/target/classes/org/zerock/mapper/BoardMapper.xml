@@ -55,8 +55,8 @@
   	</select>
   	
   	<insert id = "insert">
-  		insert into tbl_board(bno,title,content,writer)
-  		values(seq_board.nextval,#{title},#{content},#{writer})
+  		insert into tbl_board(bno,title,content,writer,password)
+  		values(seq_board.nextval,#{title},#{content},#{writer},#{password})
   	</insert>
   	
   	<!-- bno가 sequence에 의해 자동생성된 후 BoardVO의 bno에 저장됨.  -->
@@ -67,8 +67,8 @@
   			select seq_board.nextval from dual
   		]]>
   		</selectKey>
-	  	insert into tbl_board(bno,title,content,writer)
-  		values(#{bno},#{title},#{content},#{writer})
+	  	insert into tbl_board(bno,title,content,writer,password)
+  		values(#{bno},#{title},#{content},#{writer},#{password})
   	</insert>
   	
   	<select id="read" resultType="org.zerock.domain.BoardVO">

@@ -12,7 +12,9 @@
 	$(document).ready(function(){
 		
 		var result = '<c:out value="${result}"/>';
-		
+		var cntValue = '<c:out value="${board.replyCnt}"/>';
+		var bnoValue = '<c:out value="${board.bno}"/>';
+				
 		checkModal(result);
 		
 		history.replaceState({},null,null);
@@ -47,6 +49,10 @@
 			actionForm.submit();
 		});		
 		
+		$(".move").on("change",function(){
+			console.log(result);
+		});
+		
 		$(".move").on("click", function(e){
 			
 			e.preventDefault();
@@ -61,6 +67,7 @@
 			e.preventDefault(); //전송방지
 			searchForm.submit();
 		})
+		
 		
 		
 		$("#searchForm button").on("click",function(e){
@@ -129,7 +136,7 @@
                                 </thead>
                                	<tbody>
                                	<c:forEach items="${list }" var="board">
-                               		<tr>
+                               		<tr>                        
                                			<td><c:out value="${board.bno}"/></td>
                                			<td width="200">
                                				<%-- <a href='/board/get?bno=<c:out value="${board.bno}"/>'>
@@ -138,7 +145,7 @@
                                				<a class="move" href="<c:out value='${board.bno}'/>">
                                					<c:out value="${board.title }"/>                               					
                                				</a>                               	
-                               				<span class="badge"><b><c:out value="${board.replyCnt }"/></b></span>                                			
+                               				<c:if test="${board.replyCnt ne 0}"><span class="badge"><b><c:out value="${board.replyCnt }"/></b></span></c:if>                                			
                                			</td>
                                			<td><c:out value="${board.writer}"/></td>
                                			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}"/></td>
