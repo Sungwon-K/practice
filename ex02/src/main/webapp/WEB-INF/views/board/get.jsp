@@ -12,291 +12,328 @@
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 
-						var bnoValue = '<c:out value="${board.bno}"/>';
-						var passValue = '<c:out value="${board.password}"/>';
+		var bnoValue = '<c:out value="${board.bno}"/>';
+		var passValue = '<c:out value="${board.password}"/>';
 				
-						var replyUL = $(".chat");// <ul></ul>태그
+		var replyUL = $(".chat");// <ul></ul>태그
+		
+		(function(){
+			
+			var bno = '<c:out value="${board.bno}"/>';
+			
+			$.getJSON("/board/getAttachList", {bno: bno}, function(arr){
+				
+				console.log(arr);
+				
+				var str= "";
+				
+				$(arr).each(function(i, attach){
+					
+					//image type
+					if(attach.fileType){
 						
-
-						showList(1);
-
-						function showList(page) {
-							console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
-							replyService
-									.getList(
-											{
-												bno : bnoValue,
-												page : page || 1
-											},
-											function(replyCnt, list) {
-												console.log("replyCnt:"
-														+ replyCnt);
-												console.log("list: " + list);
-												console.log(list);
-
-												//page가 -1이면 마지막페이지로 이동.등록후 사용
-												if (page == -1) {
-													pageNum = Math
-															.ceil(replyCnt / 10.0);
-													showList(PageNum);
-													return;
-												}
-
-												var str = "";
-												//목록이 없을 경우
-												if (list == null
-														|| list.length == 0) {
-													replyUL.html("");
-													return;
-												}
-												//목록이 있는 경우								
-												for (var i = 0, len = list.length || 0; i < len; i++) {
-													str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-													str += "<div><div class='header'><strong class='primary-font'>"
-															+ list[i].replyer
-															+ "</strong>";
-													str += "<small class='pull-right text-muted'>"
-															+ replyService
-																	.displayTime(list[i].replyDate)
-															+ "</small></div>";
-													str += "<p>"
-															+ list[i].reply
-															+ "</p></div>";
-													str += "</li>"
-												}
-												console.log(str);
-												replyUL.html(str);
-
-												showReplyPage(replyCnt);//댓글페이징
-											}
-
-									);
-
-						}
-
-						//미리 찾아놓는다.
-						//같은 엘리먼트를 여러번 탐색할 경우, 탐색을 미리해서 레퍼런스를 만들고
-						//레퍼런스를 재활용하는 것이 속도에 도움이됨
-
-						var modal = $("#myModal");
-						var psmodal = $("#passModal");
-						var modalInputReply = modal.find("input[name='reply']");
-						var modalInputReplyer = modal
-								.find("input[name='replyer']");
-						var modalInputReplyDate = modal
-								.find("input[name='replyDate']");
-
-						var modalModBtn = $("#modalModBtn");
-						var modalRemoveBtn = $("#modalRemoveBtn");
-						var modalRegisterBtn = $("#modalRegisterBtn");
-
-						$("#addReplyBtn").on("click", function(e) {
-							console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-							modal.find("input").val("");//input태그 값 삭제
-							modalInputReplyDate.closest("div").hide();//replyDate항목 안보이게
-							modal.find("button[id!='modalCloseBtn']").hide();//닫기번튼만 제외하고 다른버튼들은 안보이게
-							modalRegisterBtn.show();//등록버튼은 보이게				
-
-							$("#myModal").modal("show");
-
-						});
-
-						$("#pwckBtn").on("click", function(e) {
-							$("#passModal").find("input").val("패스워드를 입력하세요.");//password태그 값 삭제
-							$("#passModal").modal("show");
-						});
-
-						modalRegisterBtn.on("click", function(e) {
-							var reply = {
-								reply : modalInputReply.val(),
-								replyer : modalInputReplyer.val(),
-								bno : bnoValue
-							};
-
-							replyService.add(reply, function(result) {
-								alert(result);
-								modal.find("input").val("");//입력항목초기화
-								modal.modal("hide");
-
-								//showList(1);//목록새로고침
-								showList(pageNum);//마지막페이지로 이동
-							});
-
-						});
-
-						var operForm = $("#operForm");
-
-						$("button[data-oper='modify']").on("click",
-								function(e) {
-									operForm.attr("action", "/board/modify");
-									operForm.submit();
-								});
-						$("button[data-oper='list']").on("click", function(e) {
-							//operForm.find("#bno").remove();
-							operForm.attr("action", "/board/list");
-							operForm.submit();
-						});
-
+						var fileCallPath = encodeURIComponent( attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+																		
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'>";
+							str += "<div>";
+								str+= "<img src='/display?fileName="+fileCallPath+"'>";
+							str += "</div>";
+						str += "</li>";
+					
+					}else{
 						
-						$("#pwck").on("focus",function(){
-							$("#pwck").val("");					
-						})
-						
-						$("button[data-oper='remove']").on("click",																
-								function(e) {
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'>";
+							str += "<div>";
+								str += "<span>  "+attach.fileName+"  </span><br>";
+								str += "<img src='/resources/img/attach.png'>";
+							str += "</div>";
+						str += "</li>";
+					}
+				});
+				
+				$(".uploadResult ul").html(str);
+				
+			});//end getjson
+		})();//end function				
+
+		showList(1);
+		
+		function showList(page) {
+			console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+			replyService.getList({bno : bnoValue,
+								page : page || 1},
+								function(replyCnt, list) {
+									console.log("replyCnt:"	+ replyCnt);
+									console.log("list: " + list);
+									console.log(list);
+
+									//page가 -1이면 마지막페이지로 이동.등록후 사용
+									if (page == -1) {
+										pageNum = Math.ceil(replyCnt / 10.0);
+										showList(PageNum);
+										return;
+									}
+
+									var str = "";
+									//목록이 없을 경우
+									if (list == null || list.length == 0) {
+										replyUL.html("");
+										return;
+									}
 									
-									var pwck = $("#pwck").val();
-									if(pwck == passValue){									
+									//목록이 있는 경우
+									for (var i = 0, len = list.length || 0; i < len; i++) {
+										str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+										str += "<div><div class='header'><strong class='primary-font'>"	+ list[i].replyer+ "</strong>";
+										str += "<small class='pull-right text-muted'>"+ replyService.displayTime(list[i].replyDate)	+ "</small></div>";
+										str += "<p>"+ list[i].reply+ "</p></div>";
+										str += "</li>"
+									}
 									
-										operForm.attr("action", "/board/remove");
-										operForm.attr("method", "post")
-										operForm.submit();	
-									}else{
-										alert("비밀번호가 잘못되었습니다.");
-										$("#passModal").modal("hide");
-									}		
-								
-						});
+									console.log(str);
+									replyUL.html(str);
+									showReplyPage(replyCnt);//댓글페이징
+									}
 
-						$(".chat")
-								.on(
-										"click",
-										"li",
-										function(e) {
-											var rno = $(this).data("rno");
-											console.log(rno);
+			);
+			
+		}
+		//미리 찾아놓는다.
+		//같은 엘리먼트를 여러번 탐색할 경우, 탐색을 미리해서 레퍼런스를 만들고
+		//레퍼런스를 재활용하는 것이 속도에 도움이됨
 
-											replyService
-													.get(
-															rno,
-															function(reply) {
-																modalInputReply
-																		.val(reply.reply);
-																modalInputReplyer
-																		.val(
-																				reply.replyer)
-																		.attr(
-																				"readonly",
-																				"readony");
-																modalInputReplyDate
-																		.val(
-																				replyService
-																						.displayTime(reply.replyDate))
-																		.attr(
-																				"readonly",
-																				"readony");
-																modal.data(
-																				"rno",
-																				reply.rno)
-																modal
-																		.find(
-																				"button[id!='modalCloseBtn']")
-																		.hide();
-																modalModBtn
-																		.show();
-																modalRemoveBtn
-																		.show();
-																$("#myModal")
-																		.modal(
-																				"show");
-															});
-										});
+		var modal = $("#myModal");
+		var psmodal = $("#passModal");
+		var modalInputReply = modal.find("input[name='reply']");
+		var modalInputReplyer = modal.find("input[name='replyer']");
+		var modalInputReplyDate = modal.find("input[name='replyDate']");
 
-						//댓글수정
-						modalModBtn.on("click", function(e) {
-							console.log("댓글수정");
+		var modalModBtn = $("#modalModBtn");
+		var modalRemoveBtn = $("#modalRemoveBtn");
+		var modalRegisterBtn = $("#modalRegisterBtn");
 
-							var reply = {
-								rno : modal.data("rno"),
-								reply : modalInputReply.val()
-							};
-							replyService.update(reply, function(result) {
-								alert(result);
-								modal.modal("hide");
-								showList(pageNum);
-							});
-						});
+		$("#addReplyBtn").on("click", function(e) {
+			console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			
+			modal.find("input").val("");//input태그 값 삭제
+			modalInputReplyDate.closest("div").hide();//replyDate항목 안보이게
+			modal.find("button[id!='modalCloseBtn']").hide();//닫기번튼만 제외하고 다른버튼들은 안보이게
+			modalRegisterBtn.show();//등록버튼은 보이게				
 
-						//댓글삭제
-						modalRemoveBtn.on("click", function(e) {
-							var ckRemove = confirm("댓글을 삭제하시겠습니까?");
+			$("#myModal").modal("show");			
+		});
 
-							if (ckRemove) {
-								var rno = modal.data("rno");
+		$("#pwckBtn").on("click", function(e) {
+			$("#passModal").find("input").val("패스워드를 입력하세요.");//password태그 값 삭제
+			$("#passModal").modal("show");
+		});
 
-								replyService.remove(rno, function(result) {
-									alert(result);
-									modal.modal("hide");
-									showList(pageNum);
-								});
-							} else {
-								return;
-							}
-						});
+		modalRegisterBtn.on("click", function(e) {
+			var reply = {
+					reply : modalInputReply.val(),
+					replyer : modalInputReplyer.val(),
+					bno : bnoValue
+			};
 
-						//댓글 페이징처리
-						var pageNum = 1;
-						var replyPageFooter = $(".panel-footer");
+			replyService.add(reply, function(result) {
+				alert(result);
+				modal.find("input").val("");//입력항목초기화
+				modal.modal("hide");
 
-						function showReplyPage(replyCnt) {
-							//끝페이지
-							var endNum = Math.ceil(pageNum / 10.0) * 10;
-							//시작페이지
-							var startNum = endNum - 9;
-							//prev필요여부 Flag
-							var prev = startNum != 1;
-							//next필요여부 Flag
-							var next = false;
-							//계산으로 구한 endPage보다 실제페이지가 적으면 보정
-							if (endNum * 10 >= replyCnt) {
-								endNum = Math.ceil(replyCnt / 10.0);
-							}
-							//endPage보다 실제페이지가 많으면 next를 true로 변경
-							if (endNum * 10 < replyCnt) {
-								next = true;
-							}
-							var str = "<ul class='pagination pull-right'>";
+				//showList(1);//목록새로고침
+				showList(pageNum);//마지막페이지로 이동
+				});
+			});
 
-							if (prev) {
-								str += "<li class='page-item'><a class='page-link' href='"
-										+ (startNum - 1) + ">Previous</a></li>";
-							}
+		var operForm = $("#operForm");
+		
+		$("button[data-oper='modify']").on("click",function(e) {
+			
+			operForm.attr("action", "/board/modify");
+			operForm.submit();
+		});
+		
+		
+		$("button[data-oper='list']").on("click", function(e) {
+			//operForm.find("#bno").remove();
+			operForm.attr("action", "/board/list");
+			operForm.submit();
+		});
+		
+		
+		$("#pwck").on("focus",function(){
+			$("#pwck").val("");			
+		});
+		
+				
+		$("button[data-oper='remove']").on("click",function(e) {
+			
+			var pwck = $("#pwck").val();
+			
+			if(pwck == passValue){	
+				
+				operForm.attr("action", "/board/remove");
+				operForm.attr("method", "post");
+				operForm.submit();	
+			
+			}else{
+				alert("비밀번호가 잘못되었습니다.");
+				$("#passModal").modal("hide");
+			}								
+		});
 
-							for (var i = startNum; i <= endNum; i++) {
-								//현재페이지번호이면 active클래스 설정
-								var active = pageNum == i ? "active" : "";
-								str += "<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>"
-										+ i + "</a></li>";
-							}
+		$(".chat").on("click","li",function(e) {
+			
+			var rno = $(this).data("rno");
+			
+			console.log(rno);
+		
+			replyService.get(rno,function(reply) {
+				
+				modalInputReply.val(reply.reply);
+				modalInputReplyer.val(reply.replyer);
+				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly","readony");
+				
+				modal.data("rno",reply.rno);
+				modal.find("button[id!='modalCloseBtn']").hide();
+				modalModBtn.show();
+				
+				modalRemoveBtn.show();
+				
+				$("#myModal").modal("show");
+			});
+		});
 
-							if (next) {
-								str += "<li class='page-item'><a class='page-link' href='"
-										+ (endNum + 1) + ">Next</a></li>";
-							}
+		//댓글수정
+		modalModBtn.on("click", function(e) {
+			console.log("댓글수정");
 
-							str += "</ul>";
-							console.log(str);
-							replyPageFooter.html(str);
+			var reply = {
+					rno : modal.data("rno"),
+					reply : modalInputReply.val()
+			};
+			
+			replyService.update(reply, function(result) {
+				alert(result);
+				modal.modal("hide");
+				showList(pageNum);
+			});
+		});
 
-						}
+		//댓글삭제
+		modalRemoveBtn.on("click", function(e) {
+			var ckRemove = confirm("댓글을 삭제하시겠습니까?");
+			
+			if (ckRemove) {
+				var rno = modal.data("rno");
+				
+				replyService.remove(rno, function(result) {
+					alert(result);
+					modal.modal("hide");
+					showList(pageNum);
+				});
+			} else {
+			
+				return;
+			}
+		});
 
-						//댓글페이지번호를 클릭시 해당페이지로 이동
-						replyPageFooter.on("click", "li a", function(e) {
-							e.preventDefault();
-							console.log("page click");
-							var targetPageNum = $(this).attr("href");
-							console.log("targetPageNum: " + targetPageNum);
-							pageNum = targetPageNum;//pageNum를 클릭한 페이지번호로 변경
-							showList(pageNum);
-						});
+		//댓글 페이징처리
+		var pageNum = 1;
+		var replyPageFooter = $(".panel-footer");
 
-					});
+		function showReplyPage(replyCnt) {
+			//끝페이지
+			var endNum = Math.ceil(pageNum / 10.0) * 10;
+			//시작페이지
+			var startNum = endNum - 9;
+			//prev필요여부 Flag
+			var prev = startNum != 1;
+			//next필요여부 Flag
+			var next = false;
+			//계산으로 구한 endPage보다 실제페이지가 적으면 보정
+			if (endNum * 10 >= replyCnt) {
+				endNum = Math.ceil(replyCnt / 10.0);
+			}
+			//endPage보다 실제페이지가 많으면 next를 true로 변경
+			if (endNum * 10 < replyCnt) {
+				next = true;
+			}
+			
+			var str = "<ul class='pagination pull-right'>";
+
+			if (prev) {
+				str += "<li class='page-item'><a class='page-link' href='"
+					+ (startNum - 1) + ">Previous</a></li>";
+			}
+
+			for (var i = startNum; i <= endNum; i++) {
+				//현재페이지번호이면 active클래스 설정
+				var active = pageNum == i ? "active" : "";
+			
+				str += "<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>"
+					+ i + "</a></li>";
+			}
+
+			if (next) {
+				str += "<li class='page-item'><a class='page-link' href='"
+					+ (endNum + 1) + ">Next</a></li>";
+			}
+
+			str += "</ul>";
+			console.log(str);
+			replyPageFooter.html(str);
+		
+		}
+
+		//댓글페이지번호를 클릭시 해당페이지로 이동
+		replyPageFooter.on("click", "li a", function(e) {
+			e.preventDefault();
+			console.log("page click");
+			var targetPageNum = $(this).attr("href");
+			console.log("targetPageNum: " + targetPageNum);
+			pageNum = targetPageNum;//pageNum를 클릭한 페이지번호로 변경
+			showList(pageNum);
+		
+		});
+		
+		$(".uploadResult").on("click","li",function(e){
+			console.log("view image");
+			
+			var liObj = $(this);
+			
+			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+			
+			if(liObj.data("type")){
+				showImage(path.replace(new RegExp(/\\/g),"/"));
+			}else{
+				//download
+				self.location="/download?fileName="+path;
+			}
+		});
+		
+		function showImage(fileCallPath){
+			
+			alert(fileCallPath);
+			
+			$(".bigPictureWrapper").css("display","flex").show();
+			
+			$(".bigPicture")
+			.html("<img src='/display?fileName="+fileCallPath+"'>")
+			.animate({width:'100%',height:'100%'},1000);
+		}
+		
+		$(".bigPictureWrapper").on("click",function(e){
+			$(".bigPicture").animate({width:'0%',height:'0%'},1000);
+			setTimeout(function(){
+				$('.bigPictureWrapper').hide();
+			}, 1000);
+		});
+
+	});
 </script>
 
 <!--  컨텐츠 ---------------------------------->
@@ -349,8 +386,34 @@
 				<!-- /.panel-body -->
 			</div>
 			<!-- /.panel -->
-
-
+			
+			<!-- 첨부파일 영역 --------------------->
+			<div class='bigPictureWrapper'>
+				<div class='bigPicture'>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class= "panel panel-default">
+						
+						<div class="panel-heading">Files</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+						
+							<div class='uploadResult'>
+								<ul>
+								</ul>
+							</div>
+						</div>
+						<!-- end panel-body -->
+					</div>
+					<!-- end panel-body -->
+				</div>
+				<!-- end panel -->
+			</div>
+			<!-- /.row -->
+			
+			<!-- 첨부파일 영역 -->
 			<div class="row">
 				<div class="col-lg-12">
 					<!-- 댓글목록 -------------------------------------------->
