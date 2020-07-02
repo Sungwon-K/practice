@@ -335,6 +335,14 @@
 
 	});
 </script>
+<style>
+	.bigPictureWrapper{
+		position:fixed;
+		top:0% !important;
+		left:0% !important;
+		z-indeox:1000;
+	}
+</style>
 
 <!--  컨텐츠 ---------------------------------->
 <div id="page-wrapper">

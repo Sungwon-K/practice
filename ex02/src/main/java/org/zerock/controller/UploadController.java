@@ -93,6 +93,7 @@ public class UploadController {
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
+	//파일 등록시에는 atttachFileDTO 사용
 	public ResponseEntity<List<AttachFileDTO>>uploadAjaxPost(MultipartFile[] uploadFile) {
 		
 		List<AttachFileDTO> list = new ArrayList<>();
