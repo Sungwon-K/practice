@@ -138,7 +138,46 @@
 							targetLi.remove();
 						}
 				});	//$.ajax
-		});	
+		});
+		
+		//드래그&드랍을 이용해서 파일 업로드
+		$(".uploadResult").on("dragenter dragover",function(e){
+			e.preventDefault();//파일이 새롭게 열리는 것을 막는다.
+		});
+		
+		$(".uploadResult").on("drop",function(e){
+			e.preventDefault();//파일이 새롭게 열리는 것을 막는다.
+			
+			var files = e.originalEvent.dataTransfer.files;
+			
+			//formData객체에 파일 추가
+			var formData=new FormData();
+		    for (i=0; i<files.length; i++){
+		       if(!checkExtension(files[i].name, files[i].size)){
+		          return false;
+		       }
+		       formData.append("uploadFile",files[i]);
+		    }
+			
+			
+			$.ajax({
+				url:'/uploadAjaxAction',
+				processData:false,
+				contentType:false,
+				data:formData,
+				type:'POST',
+				dataType:'json',
+				success:function(result){
+					console.log(result);
+					
+					//파일 목록
+					showUploadResult(result);
+					
+					//<input type='file'>초기화
+					//$(".uploadDive").html(cloneObj.html());
+				}
+			});
+		});
 	});
 </script>
 		<!-- 컨텐츠 ----------------------->
