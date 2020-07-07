@@ -13,12 +13,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.tika.Tika;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -49,9 +51,17 @@ public class UploadController {
 	
 	private boolean checkImageType(File file) {
 		try {
-			String contentType = Files.probeContentType(file.toPath());
+			/*
+			 * String contentType = Files.probeContentType(file.toPath());
+			 * 
+			 * return contentType.startsWith("image");
+			 */
 			
-			return contentType.startsWith("image");
+			//Apache Tika를 사용해서 파일이 이미지인지 확인
+			String contentType = new Tika().detect(file);
+		    System.out.println(contentType);		    
+		    return contentType.startsWith("image");
+		    
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -91,6 +101,7 @@ public class UploadController {
 		
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	//파일 등록시에는 atttachFileDTO 사용
@@ -224,6 +235,7 @@ public class UploadController {
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){

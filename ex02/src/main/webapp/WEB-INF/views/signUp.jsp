@@ -7,16 +7,12 @@
 <html lang="en">
 
 <link rel="stylesheet" type="text/css" href="/resources/dist/css/pointer.css">
-<%@ include file="../includes/header.jsp" %>
 <script>
 	$(document).ready(function(e){
 		
 		var formObj = $("form[role='form']");
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		var maxSize = 5242880; //5MB
-		//csrf토큰
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
 		
 		function showUploadResult(uploadResultArr){
 			if(!uploadResultArr || uploadResultArr.length == 0){ return; }
@@ -114,9 +110,6 @@
 				url: '/uploadAjaxAction',
 				processData: false,
 				contentType: false,
-				beforeSend: function(xhr){
-					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-				},
 				data: formData,
 				type: 'POST',
 				dataType:'json',
@@ -138,10 +131,7 @@
 				$.ajax({
 					url:'/deleteFile',
 					data:{fileName: targetFile, type:type},
-					beforeSend: function(xhr){
-						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-					},					
-					dataType:'text',
+					datType:'text',
 					type:'POST',
 						success:function(result){
 							alert(result);
@@ -174,9 +164,6 @@
 				url:'/uploadAjaxAction',
 				processData:false,
 				contentType:false,
-				beforeSend: function(xhr){
-					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-				},
 				data:formData,
 				type:'POST',
 				dataType:'json',
@@ -193,11 +180,13 @@
 		});
 	});
 </script>
+<body>
+
 		<!-- 컨텐츠 ----------------------->
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Board Register</h1>
+                    <h1 class="page-header">회원가입</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -214,18 +203,20 @@
                            	<form role="form" action="/board/register" method="post">
                            	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
                         		<div class="form-group">
-                        			<label>제목</label>
-                        			<input class="form-control" name='title'>
+                        			<label>이메일</label>
+                        			<!-- name을 회원정보 이메일 칼럼으로 변경 요망 -->
+                        			<input class="form-control" type="text" name='email'>
                         		</div>
                         		
                         		<div class="form-group">
-                        			<label>Content</label>
-                        			<textarea class="form-control" rows="3" name='content'></textarea>
+                        			<label>이메일 확인</label>
+                        		    <!-- name을 회원정보 이메일 칼럼으로 변경 요망 -->
+                        			<input class="form-control" type="text" name='emailCheck'>
                         		</div>
                         		
                         		<div class="form-group">
-                        			<label>Writer</label>
-                        			<input class="form-control" name='writer' value='<sec:authentication property="principal.username"/>' readonly="readonly">                       
+                        			<label>비밀번호</label>
+                        			<input class="form-control" type="password" name='emailCheck'>                       
                         		</div>
                         		
                         		<div class="form-group">
@@ -271,5 +262,5 @@
             <!-- 새로운 row -->         
         </div>
         <!-- 컨텐츠 -->
-  
-<%@ include file="../includes/footer.jsp" %>
+</body>
+</html>

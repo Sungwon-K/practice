@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +15,9 @@
 		var passValue = '<c:out value="${board.password}"/>';
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		var maxSize = 5242880; //5MB
+		//csrf토큰
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
 		
 		(function(){
 			
@@ -187,6 +191,9 @@
 				url: '/uploadAjaxAction',
 				processData: false,
 				contentType: false,
+				beforeSend: function(xhr){
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
 				data: formData,
 				type: 'POST',
 				dataType:'json',
@@ -266,6 +273,9 @@
 				url:'/uploadAjaxAction',
 				processData:false,
 				contentType:false,
+				beforeSend: function(xhr){
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
 				data:formData,
 				type:'POST',
 				dataType:'json',
@@ -302,6 +312,8 @@
                         <div class="panel-body">
 
                            	<form role="form" action="/board/modify" method="post">
+                           		
+                           		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                            		<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum }'/>">
                            		<input type="hidden" name="amount" value="<c:out value='${cri.amount }'/>">
                            		<input type="hidden" name="keyword" value="<c:out value='${cri.keyword }'/>">
@@ -367,9 +379,13 @@
 									<!-- end panel -->
 								</div>
 								<!-- /.row -->
-								
-                        		<button data-oper='pwck' class="btn btn-default">수정</button>
-                        		<button data-oper='pwck' class="btn btn-default">삭제</button>
+								<sec:authentication property="principal" var="pinfo"/>
+								<sec:authorize access="isAuthenticated()">
+										<c:if test="${pinfo.username eq board.writer }">
+                        					<button data-oper='pwck' class="btn btn-default">수정</button>
+                        					<button data-oper='pwck' class="btn btn-default">삭제</button>
+                        				</c:if>
+								</sec:authorize>
                         		<button type="submit" data-oper='list' class="btn bnt-info">목록</button>
                            	</form>
                         </div>
@@ -394,8 +410,8 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="submit" data-oper='modify' class="btn btn-default">수정</button>
-									<button type="submit" data-oper='remove' class="btn bnt-danger">삭제</button>
+									<button type="submit" data-oper='modify' class="btn btn-default">수정</button>										
+									<button type="submit" data-oper='remove' class="btn bnt-danger">삭제</button>										
 									<button type="button" id="modalCloseBtn" class="btn btn-default"
 										data-dismiss="modal">Close</button>
 								</div>

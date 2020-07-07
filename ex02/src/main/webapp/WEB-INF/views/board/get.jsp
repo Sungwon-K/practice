@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <%@ include file="../includes/header.jsp"%>
 
@@ -114,6 +115,11 @@
 		var modalModBtn = $("#modalModBtn");
 		var modalRemoveBtn = $("#modalRemoveBtn");
 		var modalRegisterBtn = $("#modalRegisterBtn");
+		
+		
+		//csrf토큰
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
 
 		$("#addReplyBtn").on("click", function(e) {
 			console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -127,6 +133,7 @@
 		});
 
 		$("#pwckBtn").on("click", function(e) {
+			e.preventDefault();		
 			$("#passModal").find("input").val("패스워드를 입력하세요.");//password태그 값 삭제
 			$("#passModal").modal("show");
 		});
@@ -172,6 +179,8 @@
 		$("button[data-oper='remove']").on("click",function(e) {
 			
 			var pwck = $("#pwck").val();
+			
+			console.log(pwck);
 			
 			if(pwck == passValue){	
 				
@@ -359,6 +368,16 @@
 				<div class="panel-heading">글내용</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
+						
+				<form id="operForm" action="/board/modify" method="get">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					<input type="hidden" id="bno" name="bno" value="<c:out value='${board.bno}'/>">
+					<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum }'/>">
+					<input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>">
+					<input type="hidden" name="type" value='<c:out value="${cri.type}"/>'>
+					<input type="hidden" name="keyword" value='<c:out value="${cri.keyword}"/>'>
+					<input type="hidden" name="password" value='<c:out value="${board.password}"/>'>
+				
 					<div class="form-group">
 						<label>글번호</label> <input class="form-control" name="bno"
 							value='<c:out value="${board.bno}"/>' readonly>
@@ -376,17 +395,25 @@
 						<label>Writer</label> <input class="form-control" name="writer"
 							value='<c:out value="${board.writer}"/>' readonly>
 					</div>
-					<button data-oper="modify" class="btn btn-default">수정</button>
+					<sec:authentication property="principal" var="pinfo"/>
+					<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.username eq board.writer }">
+						<button data-oper="modify" class="btn btn-default">수정</button>
+						</c:if>
+					</sec:authorize>
+					
 					<button data-oper="list" class="btn btn-default">목록</button>
-					<button id="pwckBtn" class="btn btn-default">삭제</button>
+				
+				
+					<sec:authentication property="principal" var="pinfo"/>
+					<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.username eq board.writer }">
+							<button id="pwckBtn" class="btn btn-default">삭제</button>
+						</c:if>
+					</sec:authorize>
 
-					<form id="operForm" action="/board/modify" method="get">
-						<input type="hidden" id="bno" name="bno" value="<c:out value='${board.bno}'/>">
-						<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum }'/>">
-						<input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>">
-						<input type="hidden" name="type" value='<c:out value="${cri.type}"/>'>
-						<input type="hidden" name="keyword" value='<c:out value="${cri.keyword}"/>'>
-						<input type="hidden" name="password" value='<c:out value="${board.password}"/>'>						
+					
+												
 					</form>
 
 
@@ -428,8 +455,9 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-comments fa-fw"></i> Reply
-							<button id="addReplyBtn"
+							<sec:authorize access="isAuthenticated()">							<button id="addReplyBtn"
 								class="btn btn-primary btn-xs pull-right">New Reply</button>
+							</sec:authorize>
 
 						</div>
 						<!-- /.panel-heading -->
@@ -469,6 +497,7 @@
 							</div>
 						</div>
 						<div class="modal-footer">
+							
 							<button data-oper="remove" class="btn btn-default">삭제</button>
 							<button type="button" id="modalCloseBtn" class="btn btn-default"
 								data-dismiss="modal">Close</button>
