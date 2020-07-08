@@ -6,11 +6,13 @@
 <head>
 	<title>Home</title>
 </head>
+<script>
+	self.location = "/board/list";
+</script>
 <body>
 <h1>
 	게시판
 </h1>
 
-<P><a href="/board/list">게시판</a></P>
 </body>
 </html>

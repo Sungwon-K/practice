@@ -88,15 +88,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/resources/dist/js/sb-admin-2.js"></script>
-    
+   
+   	<%-- <c:if test="${param.logout!=null }">
     <script>
-    	
-    /* $("#loginBtn").on("click",function(e){
-    	e.preventDefault();
-    	$("form").submit();
-    }) */
-    
+    	$(document).ready(function(){
+    		console.log(${param.logout});
+    		alert("로그아웃하였습니다.")
+    	});
     </script>
+    </c:if> --%>
 
 </body>
 
