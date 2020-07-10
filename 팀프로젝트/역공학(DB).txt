@@ -1,0 +1,4 @@
+Reverse Engineering(역공학)
+
+ERD를 먼저 작성 후 Table생성 -> 정상적인 순서
+Table 생성 후 나중에 ERD 작성 -> 역공학

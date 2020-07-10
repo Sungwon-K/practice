@@ -1,0 +1,42 @@
+-들여쓰기 문단 나누기 필수
+
+-클래스,메소드,패러미터,변수명 줄여쓰지 않기
+ex) 댓글 카운트
+repCnt(X) => replyCount(O)
+
+-모든 메소드 앞에는 해당 메소드에 사용된 패러미터의 설명과
+해당 메소드가 어떤 기능을 하는지에 대한 설명 주석 표시
+(그 외에도 사용할 수 있는 모든 곳에 설명을 주석으로 표시하도록 권장)
+/*예시
+작성자 : 김땡땡
+메소드명 : list
+기능 : model을 사용해서 list라는 이름으로 jsp에 목록을 표시하게됨.
+        jsp에서는 list로 모든 attribute전달받게되어, 리스트로 쭉- 나오게 됨.
+*/
+
+<패키지명>
+www.codingclass.com 도메인
+
+com.codingclass.###### 형식으로.
+
+
+com.codingclass.controller - controller
+com.codingclass.service - service,serviceImpl
+com.codingclass.mapper - mapper
+com.codingclass.domain - VO
+
+
+<클래스명>
+파스칼표기법
+예시)MyAddress
+
+<뷰컨트롤명>
+카멜표기법
+예시)myAddress
+
+<css,js 외부파일명>
+소문표기
+공통 - common.css, common.js
+view별 - member.jsp라면 member.css, member.js
+
+
