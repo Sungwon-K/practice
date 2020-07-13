@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codingclass.mapper.AuthAddMapper">
+
+	<!-- 
+		작성자 : 김성원
+	 	메소드명 : authAdd
+	 	기능 : 권한 테이블에 해당 유저의 강사 권한 추가 등록
+	 -->
+	 
+	<insert id="authAdd">
+		insert into authorize (userauth, userno )
+		values ('강사', #{userNo})
+	</insert>
+</mapper>
