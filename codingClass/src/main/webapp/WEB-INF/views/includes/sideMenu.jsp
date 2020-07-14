@@ -5,15 +5,12 @@
 
     <meta charset="utf-8">
     
+       
 </head>
-
-<body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav>
-           
+        <nav>         
 
             <div class="sidebar">
                 <div>
@@ -40,6 +37,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-     </div>
+    
         
         

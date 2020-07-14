@@ -19,8 +19,8 @@
             <!-- /.row -->
         <div class="row">
         	<div class="col-lg-12">				
-				<a href="/studyManager/classManage">클래스 조회</a>
-				<p style="color:skyblue;">수강생 조회</p>
+				<a href="/studyManager/classManage">클래스 관리</a> /
+				<span style="color:skyblue;">수강생 조회</span>
 			</div>
 		
 		</div>

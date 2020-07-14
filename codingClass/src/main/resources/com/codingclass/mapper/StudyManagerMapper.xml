@@ -12,4 +12,14 @@
 	<select id="getList" resultType="com.codingclass.domain.ClassesVO">
 		select * from classes where userNo = 1
 	</select>
+	
+	<!-- 
+		작성자 : 김성원
+		메소드명 : classInsert
+		기능 : 클래스 테이블에 정보입력
+	 -->
+	 <insert id="classInsert">
+	 	insert into classes(classno,classtitle,userno,classinfo,classcurriculum,classlevel,classthumnail,classdetail)
+	 	values (#{classNo},#{classTitle},#{userNo},#{classInfo},#{classCurriculum},#{classLevel},#{classThumnail},#{classDetail})
+	 </insert>
 </mapper>
