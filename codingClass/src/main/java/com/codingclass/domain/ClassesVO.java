@@ -1,6 +1,7 @@
 package com.codingclass.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -20,4 +21,6 @@ public class ClassesVO {
 	private	String classDetail;
 	
 	private Date classDate;
+	
+	private List<SessionVO> sessionList;
 }

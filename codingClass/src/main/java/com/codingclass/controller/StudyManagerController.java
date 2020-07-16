@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingclass.domain.ClassesVO;
+import com.codingclass.domain.SessionVO;
 import com.codingclass.service.StudyManagerService;
 
 import lombok.AllArgsConstructor;
@@ -84,8 +85,19 @@ public class StudyManagerController {
 	 *3.모든 처리 후 classList로 이동한다. 
 	 */
 	@PostMapping("/classRegister")
-	public String classRegister(ClassesVO classes, RedirectAttributes rttr) {		
-		log.info("register: " + classes);		
+	public String classRegister(SessionVO session, ClassesVO classes, RedirectAttributes rttr) {		
+		log.info("================================");
+		log.info("register: " + classes);	
+		
+		if(classes.getSessionList() != null) {
+			classes.getSessionList().forEach(sessions -> log.info(sessions));
+			
+			if(session.getStudyVideoList() != null) {
+				session.getStudyVideoList().forEach(studyVideo -> log.info(studyVideo));
+			}
+		}
+		
+		log.info("================================");
 		service.register(classes);		
 		rttr.addFlashAttribute("result", classes.getClassNo());		
 		return "redirect:/studyManager/classList";

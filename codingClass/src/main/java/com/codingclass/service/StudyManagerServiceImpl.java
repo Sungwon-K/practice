@@ -2,20 +2,30 @@ package com.codingclass.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codingclass.domain.ClassesVO;
-import com.codingclass.mapper.StudyManagerMapper;
+import com.codingclass.mapper.ClassesMapper;
+import com.codingclass.mapper.SessionMapper;
+import com.codingclass.mapper.StudyVideoMapper;
 
-import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
 public class StudyManagerServiceImpl implements StudyManagerService{
 
-	private StudyManagerMapper mapper;	
+	@Setter(onMethod_= @Autowired)
+	private ClassesMapper classMapper;
+	
+	@Setter(onMethod_= @Autowired)
+	private SessionMapper sessionMapper;
+	
+	@Setter(onMethod_= @Autowired)
+	private StudyVideoMapper studyVideoMapper;
+	
 	
 	/*
 	 *작성자 : 김성원
@@ -25,7 +35,23 @@ public class StudyManagerServiceImpl implements StudyManagerService{
 	@Override
 	public void register(ClassesVO classes) {
 		log.info("regisert :" + classes);
-		mapper.classInsert(classes);		
+		classMapper.classInsert(classes);	
+		
+		if(classes.getSessionList() == null || classes.getSessionList().size() <= 0) {
+			return;
+		}
+		
+		classes.getSessionList().forEach(session ->{
+			session.setClassNo(classes.getClassNo());		
+			sessionMapper.sessionInsert(session);
+			
+			if(session.getSessionList() == null || classes.getSessionList().size() <= 0) {
+				return;
+			}
+			
+		});
+		
+		
 	}
 	
 	/*
@@ -69,7 +95,7 @@ public class StudyManagerServiceImpl implements StudyManagerService{
 	@Override
 	public List<ClassesVO> getList() {
 		// TODO Auto-generated method stub
-		return mapper.getList();
+		return classMapper.getList();
 	}
 	
 

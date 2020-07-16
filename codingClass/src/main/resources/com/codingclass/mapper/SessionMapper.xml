@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codingclass.mapper.SessionMapper">
+
+	<!-- 
+		작성자 : 김성원
+		메소드명 : sessionInsert
+		기능 : 세션 테이블에 정보입력
+	 -->
+	<insert id="sessionInsert">	 		
+	  	insert into sessions(sessionno,sessiontitle,classno)
+  		values (seq_sessionNo.nextval,#{sessionTitle},#{classNo})	
+	</insert>
+</mapper>
